@@ -35,20 +35,28 @@ clock = pygame.time.Clock()
 space = pymunk.Space()
 space.gravity = (0,-100)
 fps = 50
-pos_plano = [(0,200),(info.current_w,0)]
+pos_plano = [(0,0),(info.current_w,0)]
 
-bola = bola(space,(5,215))
-plano = plano(space)
+bola_ = bola(space,(0,0))
+plano_ = plano(space)
 
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT: running = False
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE: running = False
+        elif event.type == pygame.MOUSEBUTTONDOWN:
+            space.remove(bola_)
+            space.remove(plano_)
+            mouse_pos = conv_coord(event.pos)
+            pos_plano = [(0,mouse_pos[1]),(info.current_w,0)]
+            plano_ = plano(space)
+            bola_ = bola(space,(5,mouse_pos[1]+15))
+            
     
     screen.fill((0,0,0))
     clock.tick(fps)
-    draw_bola(bola)
-    draw_plano(plano)
+    draw_bola(bola_)
+    draw_plano(plano_)
     space.step(1/fps)
     pygame.display.update()
