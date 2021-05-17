@@ -22,9 +22,9 @@ def draw_bola(bola):
     pos_x,pos_y = conv_coord(bola.body.position)
     pygame.draw.circle(screen, (255,255,255), (int(pos_x),int(pos_y)), 10)
 
-def plano(space):
+def plano(space,pos_plano,w):
     body = pymunk.Body(body_type=pymunk.Body.STATIC)
-    shape = pymunk.Segment(body, pos_plano[0], pos_plano[1], 2.5)
+    shape = pymunk.Segment(body, pos_plano[0], pos_plano[1], w)
     space.add(body,shape)
     return shape
     
@@ -33,12 +33,13 @@ def draw_plano(plano):
     
 clock = pygame.time.Clock()
 space = pymunk.Space()
-space.gravity = (0,-100)
+space.gravity = (0,-200)
 fps = 50
 pos_plano = [(0,0),(info.current_w,0)]
 
 bola_ = bola(space,(0,0))
-plano_ = plano(space)
+plano_ = plano(space,pos_plano,2.5)
+pared = plano(space,[(info.current_w,0),(info.current_w,info.current_h)],0)
 
 while running:
     for event in pygame.event.get():
@@ -50,7 +51,7 @@ while running:
             space.remove(plano_)
             mouse_pos = conv_coord(event.pos)
             pos_plano = [(0,mouse_pos[1]),(info.current_w,0)]
-            plano_ = plano(space)
+            plano_ = plano(space,pos_plano,2.5)
             bola_ = bola(space,(5,mouse_pos[1]+15))
             
     
