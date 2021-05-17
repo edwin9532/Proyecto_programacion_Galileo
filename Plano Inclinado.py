@@ -31,6 +31,7 @@ while running:
         if event.type == pygame.QUIT: running = False
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE: running = False
+    screen.fill((0,0,0))
     clock.tick(fps)
     draw_bola(bola)
     space.step(1/fps)
