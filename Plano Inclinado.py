@@ -52,6 +52,38 @@ class Slider():
         if self.val > self.max:
             self.val = self.max
 
+class Boton():
+    def __init__(self, txt, location, action, bg=(255,255,255), fg=(0,0,0), size=(80, 30), font_name="Segoe Print", font_size=16):
+        self.color = bg
+        self.bg = bg
+        self.fg = fg
+        self.size = size
+
+        self.font = pygame.font.SysFont(font_name, font_size)
+        self.txt = txt
+        self.txt_surf = self.font.render(self.txt, 1, self.fg)
+        self.txt_rect = self.txt_surf.get_rect(center=[s//2 for s in self.size])
+
+        self.surface = pygame.surface.Surface(size)
+        self.rect = self.surface.get_rect(center=location)
+
+        self.call_back_ = action
+
+    def draw(self):
+        self.mouseover()
+
+        self.surface.fill(self.bg)
+        self.surface.blit(self.txt_surf, self.txt_rect)
+        screen.blit(self.surface, self.rect)
+
+    def mouseover(self):
+        self.bg = self.color
+        pos = pygame.mouse.get_pos()
+        if self.rect.collidepoint(pos):
+            self.bg = (100,100,100)
+
+    def call_back(self):
+        self.call_back_()
 
 
 def conv_coord(pos):
@@ -82,6 +114,23 @@ def masa_radio(m):
     r = int(l[m-1])
     return r
 
+def nums(s,y,u):
+        if s==masa: l=int(s.val)
+        else: l=int(s.val)/100
+        surf = pygame.surface.Surface((100, 50))
+        txt_surf = font.render(str(l)+u, 1, (255,255,255))
+        txt_rect = txt_surf.get_rect(center=(50, 15))
+        surf.blit(txt_surf, txt_rect)
+        screen.blit(surf, (info.current_w-200, y))
+        
+def Boton_mouse():
+    pos = pygame.mouse.get_pos()
+    for b in bs:
+        if b.rect.collidepoint(pos):
+            b.call_back()
+
+def restart_():
+    pygame.display.update() # Todavía no hace nada el restart
 
 font = pygame.font.SysFont("Verdana", 12, True)
 clock = pygame.time.Clock()
@@ -90,10 +139,16 @@ space.gravity = (0,-392.4)
 fps = 50
 pos_plano = [(0,0),(info.current_w,0)]
 
+
+aj = np.linspace(1.1,.67,info.current_h)
+block = plano(space,[(1,1),(1,2)],0)
 r = 20
 masa = Slider("Masa", r, 100, 1, 20)
-altura = Slider("Altura", 0, info.current_h, 0, 80)
+altura = Slider("Altura", 0, info.current_h-60*0.85, 0, 80)
 slides = [masa,altura]
+start = Boton("Simular", (info.current_w-70,180), lambda: space.remove(block))
+restart = Boton("Reiniciar",(info.current_w-70,220),restart_)
+bs = [start,restart]
 
 bola_ = bola(space,(r,r),r,masa.val)
 plano_ = plano(space,pos_plano,2.5)
@@ -106,6 +161,7 @@ while running:
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE: running = False
         elif event.type == pygame.MOUSEBUTTONDOWN:
+            Boton_mouse()
             s_pos = pygame.mouse.get_pos()
             for s in slides:
                 if s.button_rect.collidepoint(s_pos):
@@ -116,19 +172,26 @@ while running:
                 
     r = masa_radio(int(masa.val))
     
+    screen.fill((0,0,0))
     for s in slides:
         if s.hit:
-            space.remove(bola_)
-            space.remove(plano_)
+            space.remove(bola_,plano_)
+            if (block._id in space._shapes): space.remove(block)
             s.move()
             pos_plano = [(0,int(altura.val)),(info.current_w,0)]
             plano_ = plano(space,pos_plano,2.5)
-            bola_ = bola(space,(r,int(altura.val)+r),r,masa.val)
+            bola_ = bola(space,(r,int(altura.val)+r*aj[int(altura.val)]),r,masa.val)
+            block = plano(space,[(r*2,int(altura.val)+r),(r*2,0)],0)
             
     
-    screen.fill((0,0,0))
+    nums(masa,20," kg")
+    nums(altura,80," m")
+    
     for s in slides:
         s.draw()
+    
+    for b in bs:
+        b.draw()
     
     clock.tick(fps)
     draw_bola(bola_,r)
