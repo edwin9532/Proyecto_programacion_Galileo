@@ -133,7 +133,7 @@ def start_():
     if block._id in space._shapes: space.remove(block)
 
 def restart_():
-    pygame.display.update() # Todavía no hace nada el restart
+    masa.hit = True
 
 font = pygame.font.SysFont("Verdana", 12, True)
 clock = pygame.time.Clock()
@@ -143,14 +143,15 @@ fps = 50
 pos_plano = [(0,0),(info.current_w,0)]
 
 
+c = True
 aj = np.linspace(1.1,.67,info.current_h)
 block = plano(space,[(1,1),(1,2)],0)
-r = 20
-masa = Slider("Masa", r, 100, 1, 20)
+r = 30
+masa = Slider("Masa", 100, 100, 1, 20)
 altura = Slider("Altura", 0, info.current_h-60*0.85, 0, 80)
 slides = [masa,altura]
 start = Boton("Simular", (info.current_w-70,180), start_)
-restart = Boton("Reiniciar",(info.current_w-70,220),restart_)
+restart = Boton("Reiniciar",(info.current_w-70,220), restart_)
 bs = [start,restart]
 
 bola_ = bola(space,(r,r),r,masa.val)
@@ -168,10 +169,10 @@ while running:
             s_pos = pygame.mouse.get_pos()
             for s in slides:
                 if s.button_rect.collidepoint(s_pos):
-                    s.hit = True
+                    s.hit,c = True,False
         elif event.type == pygame.MOUSEBUTTONUP:
             for s in slides:
-                s.hit = False
+                s.hit,c = False,True
                 
     r = masa_radio(int(masa.val))
     
@@ -180,13 +181,12 @@ while running:
         if s.hit:
             space.remove(bola_,plano_)
             if (block._id in space._shapes): space.remove(block)
-            s.move()
+            if c == False: s.move()
             pos_plano = [(0,int(altura.val)),(info.current_w,0)]
             plano_ = plano(space,pos_plano,2.5)
             bola_ = bola(space,(r,int(altura.val)+r*aj[int(altura.val)]),r,masa.val)
             block = plano(space,[(r*2,int(altura.val)+r),(r*2,0)],0)
             
-    
     nums(masa,20," kg")
     nums(altura,80," m")
     
