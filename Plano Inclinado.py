@@ -53,13 +53,13 @@ class Slider():
             self.val = self.max
 
 class Boton():
-    def __init__(self, txt, location, action, bg=(255,255,255), fg=(0,0,0), size=(80, 30), font_name="Segoe Print", font_size=16):
+    def __init__(self, txt, location, action, bg=(255,255,255), fg=(0,0,0), size=(80, 30), font_name="Verdana", font_size=14):
         self.color = bg
         self.bg = bg
         self.fg = fg
         self.size = size
 
-        self.font = pygame.font.SysFont(font_name, font_size)
+        self.font = pygame.font.SysFont(font_name, font_size, True)
         self.txt = txt
         self.txt_surf = self.font.render(self.txt, 1, self.fg)
         self.txt_rect = self.txt_surf.get_rect(center=[s//2 for s in self.size])
@@ -129,6 +129,9 @@ def Boton_mouse():
         if b.rect.collidepoint(pos):
             b.call_back()
 
+def start_():
+    if block._id in space._shapes: space.remove(block)
+
 def restart_():
     pygame.display.update() # Todavía no hace nada el restart
 
@@ -146,7 +149,7 @@ r = 20
 masa = Slider("Masa", r, 100, 1, 20)
 altura = Slider("Altura", 0, info.current_h-60*0.85, 0, 80)
 slides = [masa,altura]
-start = Boton("Simular", (info.current_w-70,180), lambda: space.remove(block))
+start = Boton("Simular", (info.current_w-70,180), start_)
 restart = Boton("Reiniciar",(info.current_w-70,220),restart_)
 bs = [start,restart]
 
