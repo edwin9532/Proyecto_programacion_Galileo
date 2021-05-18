@@ -115,10 +115,10 @@ def masa_radio(m):
     return r
 
 def nums(s,y,u):
-        if s==masa: l=int(s.val)
-        else: l=int(s.val)/100
+        if s==masa: l=1
+        else: l=1/100
         surf = pygame.surface.Surface((100, 50))
-        txt_surf = font.render(str(l)+u, 1, (255,255,255))
+        txt_surf = font.render(str(int(s.val)*l)+u, 1, (255,255,255))
         txt_rect = txt_surf.get_rect(center=(50, 15))
         surf.blit(txt_surf, txt_rect)
         screen.blit(surf, (info.current_w-200, y))
