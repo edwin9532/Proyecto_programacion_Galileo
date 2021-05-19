@@ -12,7 +12,7 @@ import sys
 
 class Text:
 
-    def __init__(self, text, pos, fontsize=90, fontname='Bebas Neue', color='white'):
+    def __init__(self, text, pos, fontsize=90, fontname='BebasNeue.otf', color='white'):
         self.text = text
         self.pos = pos
         self.fontname = fontname
@@ -22,7 +22,7 @@ class Text:
         self.render()
 
     def set_font(self):
-        self.font = pygame.font.SysFont(self.fontname, self.fontsize)
+        self.font = pygame.font.Font(self.fontname, self.fontsize)
 
     def render(self):
         self.img = self.font.render(self.text, True, self.fontcolor)
