@@ -167,6 +167,9 @@ class App():
     def __init__(self):
         pygame.init()
         
+        pygame.mixer.music.load("audio1.mp3")
+        pygame.mixer.music.play(3)
+        
         self.running = True
         self.playing = False
         
