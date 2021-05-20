@@ -191,7 +191,7 @@ class App():
         
         while self.playing:
             self.events()
-            if self.enter:
+            if self.enter or self.atras:
                 self.playing = False
                 
             self.window.blit(fondo, frect)
