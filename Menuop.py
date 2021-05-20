@@ -227,9 +227,4 @@ a = App()
 while a.running:
     a.curr_menu.displaymenu()
     a.juego()  
-    import Plano Inclinado
-
-
-
-            
     
