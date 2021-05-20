@@ -1,0 +1,11 @@
+ Dialogo:
+
+Se define dos personajes:un narrador y galileo.
+
+El narrador expresa la situacion historica y cientifica de la epoca. 
+Donde se pone en manifiesto la creencias de la epoca: geocentrismo y la fisica de aristoteles.
+Tambien, es un guia para galileo, tratará  de dar pistas sobre lo que deberia hacer, si quiere demostrar que la ciencia de la epoca funciona o no.
+
+el jugador hace el papel de galileo, el debe entender lo que indica el narrador y haciendo un experimento o varios llegar a la conclusion de si
+aristoteles estaba en lo correcto o no, en caso de no poder encontrar la solucion, el narrador le da mas pistas a donde debe llegar y hacer otro expermento.
+cuando galileo llega a las conclusiones publica sus resultados y continua con otras cuestiones y otros experimentos.
