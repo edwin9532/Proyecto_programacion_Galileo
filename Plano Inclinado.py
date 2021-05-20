@@ -93,6 +93,7 @@ def bola(space,pos,r,m):
     body = pymunk.Body(m,20,body_type= pymunk.Body.DYNAMIC)
     body.position = pos
     shape = pymunk.Circle(body, r)
+    #shape.elasticity = 1
     space.add(body,shape)
     return shape
 
@@ -103,6 +104,7 @@ def draw_bola(bola,r):
 def plano(space,pos_plano,w):
     body = pymunk.Body(body_type=pymunk.Body.STATIC)
     shape = pymunk.Segment(body, pos_plano[0], pos_plano[1], w)
+    #shape.elasticity = 1
     space.add(body,shape)
     return shape
     
@@ -121,7 +123,7 @@ def nums(s,y,u):
         txt_surf = font.render(str(l)+u, 1, (255,255,255))
         txt_rect = txt_surf.get_rect(center=(50, 15))
         surf.blit(txt_surf, txt_rect)
-        screen.blit(surf, (info.current_w-200, y))
+        screen.blit(surf, (info.current_w-210, y))
         
 def Boton_mouse():
     pos = pygame.mouse.get_pos()
@@ -149,17 +151,22 @@ block = plano(space,[(1,1),(1,2)],0)
 r = 30
 masa = Slider("Masa", 100, 100, 1, 20)
 altura = Slider("Altura", 0, info.current_h-60*0.85, 0, 80)
-slides = [masa,altura]
-start = Boton("Simular", (info.current_w-70,180), start_)
-restart = Boton("Reiniciar",(info.current_w-70,220), restart_)
+longitud = Slider("Longitud", info.current_w, info.current_w, r*2, 140)
+slides = [masa,altura,longitud]
+
+
+start = Boton("Simular", (info.current_w-70,240), start_)
+restart = Boton("Reiniciar",(info.current_w-70,280), restart_)
 bs = [start,restart]
 
 bola_ = bola(space,(r,r),r,masa.val)
 plano_ = plano(space,pos_plano,2.5)
 pared = plano(space,[(info.current_w,0),(info.current_w,info.current_h)],0)
+suelo = plano(space,[(0,0),(info.current_w,0)],0)
 
 
 while running:
+    
     for event in pygame.event.get():
         if event.type == pygame.QUIT: running = False
         elif event.type == pygame.KEYDOWN:
@@ -176,19 +183,21 @@ while running:
                 
     r = masa_radio(int(masa.val))
     
+    
     screen.fill((0,0,0))
     for s in slides:
         if s.hit:
             space.remove(bola_,plano_)
             if (block._id in space._shapes): space.remove(block)
             if c == False: s.move()
-            pos_plano = [(0,int(altura.val)),(info.current_w,0)]
+            pos_plano = [(0,int(altura.val)),(int(longitud.val),0)]
             plano_ = plano(space,pos_plano,2.5)
             bola_ = bola(space,(r,int(altura.val)+r*aj[int(altura.val)]),r,masa.val)
             block = plano(space,[(r*2,int(altura.val)+r),(r*2,0)],0)
             
     nums(masa,20," kg")
     nums(altura,80," m")
+    nums(longitud,140," m")
     
     for s in slides:
         s.draw()
@@ -196,8 +205,9 @@ while running:
     for b in bs:
         b.draw()
     
-    clock.tick(fps)
+    ms = clock.tick(fps)
     draw_bola(bola_,r)
     draw_plano(plano_)
     space.step(1/fps)
     pygame.display.update()
+    #print(ms)
