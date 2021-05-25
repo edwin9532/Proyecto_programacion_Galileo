@@ -9,3 +9,57 @@ Tambien, es un guia para galileo, tratará  de dar pistas sobre lo que deberia h
 el jugador hace el papel de galileo, el debe entender lo que indica el narrador y haciendo un experimento o varios llegar a la conclusion de si
 aristoteles estaba en lo correcto o no, en caso de no poder encontrar la solucion, el narrador le da mas pistas a donde debe llegar y hacer otro expermento.
 cuando galileo llega a las conclusiones publica sus resultados y continua con otras cuestiones y otros experimentos.
+
+
+IDEA :
+
+*El jugador se encuentra en la pantalla de inicio*
+Decide empezar la historia.
+
+*PRIMERA SECUENCIA DE DIÁLOGOS: Introducción * 
+
+- Narrador: “Corre el siglo XVI. Despertaste en los recuerdos del maestro Galileo Galilei, y estoy aquí para ayudarte a entender qué está pasando. Estás aquí gracias a tu curiosidad. Y bueno, porque estás dormido en tu comedor mientras hacías la tarea de física y pensaste en ¿por qué los cuerpos caen?”
+
+- Narrador: “Tu deber es entender el razonamiento de Galileo sobre el movimiento de los cuerpos que caen, y tratar de convencer y convencerte de que lo que estás haciendo es correcto. ¿Estás preparado?”
+
+PD1: La estructura de los diálogos puede variar, pensaba en hacerlo estilo el juego de pokemon; un recuadro sencillo fondo negro y letras blancas. Y que el jugador por medio de las flechas avanzará al siguiente diálogo. O por el contrario una estructura en donde vaya subiendo el diálogo, (tipo star wars :v) por si no es complicado.
+
+PD2: Para la opción de escoger el recuadro tipo pokemon, ya que no es tan dinámica, podemos hacer una estructura de Galielo en pixeles y buscarle un fondo de un laboratorio de la época y animarlo para que vaya a ciertas partes del fondo, como si estuviera “trabajando en el experimento” mientras pasa la secuencia del diálogo. Podemos también poner a todos los comentarios que aparezcan, un límite de tiempo para saltarlos, es decir que en promedio tarda en leer cada párrafo unos 10 segundos, pues programamos para que cambie al siguiente después de esa cantidad de tiempo.  
+
+PD3: Cabe resaltar que el juego será en 2 dimensiones :,v
+
+*SEGUNDA SECUENCIA DE DIÁLOGOS: Historia* 
+
+- Pasamos a una pantalla negra (de carga), y tenemos a Galileo leyendo unos libros. Podemos ambientar la escena con una biblioteca también de la época. 
+
+- Narrador : “ Mira, ahí está Galileo, ¿puedes leer su mente?”  
+
+- Galileo : “¿cómo es posible que tal barbarie la sigamos creyendo después de ya más de dos mil años?. Es absurdo pensar que ´los cuerpos se detienen porque se cansan´ y ´que los cuerpos caen porque quieren estar pegados a la tierra´.”
+
+- Narrador : “ Tal vez olvide mencionarlo, pero Galileo tiene un genio bastante … particular.”
+
+- Galileo : “Tiene que haber una forma de explicar porque se mueven las cosas, tal vez por medio de la matemática y la aritmética encuentre algo.” *Pasan unos 3 segundos.
+
+- Narrador : “Presta atención, aquí es donde Galileo prende la antorcha de la física moderna según Einstein.”
+
+- Galileo : “He visto que una bala de cañón aumenta su velocidad cuando cae por una colina, revisaré primero si esa velocidad es generada por el peso.” 
+
+
+PD1: Los diálogos son como los del pokemon :v , algo sencillo y cambia de diálogo con una tecla. O con el tiempo como ya se mencionó. 
+
+PD2: Igual que en el anterior PD2 podemos poner a Galileo a caminar de una punta de la pantalla a otra en el eje x, como si estuviera “pensando”. Mientras pasa la secuencia de dialogos.
+
+*TERCERA SECUENCIA DE DIÁLOGOS: Plano Inclinado*
+
+- En la pantalla de carga negra podremos buscar un sonido de una ferretería o como cortando madera y martillando clavos. Y lo añadimos.
+
+- Galileo : “He diseñado un plano inclinado, en el cual podré cambiar el ángulo de inclinación, y tengo varios objetos para comparar sus caídas.”
+
+- Luego aparece el plano inclinado que ya se diseñó.
+ 
+- Narrador : “Por facilidad hemos añadido un reloj que te puede ayudar, trata de entender qué pasa con cada objeto y toma nota de si la caída de cada objeto depende de su masa o no. O si del ángulo de inclinación. Recuerda que Galileo dejará caer cada objeto.”
+
+PD1: La gracia y lo que se me ocurre aquí, es en el cuadro donde aparece el plano inclinado, puede ser en la parte superior derecha, el jugador pueda escoger entre una bola de madera, una roca y una bola de acero. Tal que los pesos sean de esta manera : madera < roca < acero, y que pueda cambiar el radio de estos ya sea con la barrita que ya está o colocarle radios específicos. Y el plano inclinado ponerle un ángulo entre 0° < ángulo < 90° con una longitud fija que no ocupe toda la pantalla :,v
+
+PD2 : Para esta parte basta colocarle un fondo bomnito, pero pues como hasta ahora estamos colocando fondos en bibliotecas y laboratorios, podremos usar la misma que ya hemos usado o una similar. 
+
