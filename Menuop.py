@@ -6,7 +6,7 @@ Created on Tue May 18 16:19:17 2021
 @author: lizeth
 """
 
-import pygame 
+import pygame , PlanoInclinado
 from pygame.locals import *
 import sys
 
@@ -184,21 +184,16 @@ class App():
         self.curr_menu = self.mainmenu #Menú actual
         
     def juego(self):
-        
-        fondo = pygame.image.load("fondo.png")
-        fondo = pygame.transform.scale(fondo,(self.w, self.h))
-        frect = fondo.get_rect()
-        
         while self.playing:
-            self.events()
-            if self.enter or self.atras:
-                self.playing = False
-                
-            self.window.blit(fondo, frect)
-            self.t5 = Text('Juego', pos=(self.w/2, self.h/2-140), fontsize=180)
-            self.t5.draw()
-            pygame.display.update()
+            pygame.mixer.music.stop()
+            
+            #self.events()
+            #if self.enter or self.atras:
+            #    self.playing = False
+            
+            self.playing = PlanoInclinado.main()
             self.reiniciark()
+            pygame.mixer.music.play(4)
             
     
     def events(self):
@@ -226,5 +221,5 @@ a = App()
 
 while a.running:
     a.curr_menu.displaymenu()
-    a.juego()  
+    a.juego()
     
