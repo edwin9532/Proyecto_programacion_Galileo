@@ -62,4 +62,18 @@ PD2: Igual que en el anterior PD2 podemos poner a Galileo a caminar de una punta
 PD1: La gracia y lo que se me ocurre aquí, es en el cuadro donde aparece el plano inclinado, puede ser en la parte superior derecha, el jugador pueda escoger entre una bola de madera, una roca y una bola de acero. Tal que los pesos sean de esta manera : madera < roca < acero, y que pueda cambiar el radio de estos ya sea con la barrita que ya está o colocarle radios específicos. Y el plano inclinado ponerle un ángulo entre 0° < ángulo < 90° con una longitud fija que no ocupe toda la pantalla :,v
 
 PD2 : Para esta parte basta colocarle un fondo bomnito, pero pues como hasta ahora estamos colocando fondos en bibliotecas y laboratorios, podremos usar la misma que ya hemos usado o una similar. 
+*TERCERA SECUENCIA DE DIÁLOGOS: Pendulo simple*
+-Galileo se encuentra en la iglesia y observa el candelabro oscilando y un sonido  suena en su mente (tic tac) y observa que el movimiento se repite. Entonces, sale corriendo a su laboratorio y construye su propio pendulo con una cuerda y una esfera de metal colgada del techo.
+-Galileo:"¿Cómo podre hacer que cada ciclo de ida y vuelta tarde lo mismo que el ritmo de mi pulso?"
+-Narrador:"como puedes ver solo puedes cambiar dos cosas: la masa de la esfera o su longitud."
+-Galielo:"¡Así es!, cambiemos primero las masas del pendulo, usemos tres esferas diferentes."
+-Narrador:"debes anotar si el periodo del pendulo cambia cuando galileo cambia de esfera, recuerda que debemos encontrar el pendulo perfecto para medir su pulso".
+NOTA: despues de realizar los tres experimentos.
+-Galileo:"¡es maravilloso!, el periodo no depende de las masas."
+-Narrador:"Cambiemos la longitud de la cuerda, usemos tres cuerdas y esperar que pasa."
+Se mide el periodo para cada cuerda.
+-Galielo:"¡Lo descubrí!, cada vez que la cuerda es mas larga el pendulo se demora mucho mas en ir y volver, ahora es solo pacienciencia y tendré el pendulo que mide mi pulso."
+Cambiando la longitud de la cuerda y conociendo el periodo del pulso de galileo se debe encontrar el valor exacto de la cuerda.
+
+
 
