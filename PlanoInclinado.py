@@ -92,7 +92,7 @@ def main():
         return pos[0], info.current_h-pos[1]
     
     def bola(space,pos,r,m):
-        body = pymunk.Body(m,20,body_type= pymunk.Body.DYNAMIC)
+        body = pymunk.Body(m,200,body_type= pymunk.Body.DYNAMIC)
         body.position = pos
         shape = pymunk.Circle(body, r)
         #shape.elasticity = 1
