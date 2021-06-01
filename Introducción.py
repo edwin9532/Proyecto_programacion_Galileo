@@ -3,63 +3,48 @@ import pygame
 
 
 pygame.init()
-#Crear textos y poder visualizarlos
-pygame.font.init()
 
-#Tamaño pantalla
-screen,running = pygame.display.set_mode((0,0),pygame.FULLSCREEN),True
-#Nombre y logo del juego
-pygame.display.set_caption("hm")
-ic = pygame.image.load("Imagenes/1.png")
-pygame.display.set_icon(ic)
-pygame.display.flip()
-#info = pygame.display.Info()
+pygame.mixer.init()
+pantalla = pygame.display.set_mode((1200,600))
+clock = pygame.time.Clock()
 
 
-#ejecutar el juego a 50 FPS
-FPS = 50
-clock = pygame.time.Clock(FPS)
+a = pygame.font.Font(None, 40)
+dialogo1_0 = a.render("Narrador: Corre el siglo XVI. Despertaste en los recuerdos", 1, (255,255,255))  
+dialogo1_1 = a.render("del maestro Galileo Galilei, y estoy aquí para ayudarte a", 1, (255,255,255))
+dialogo1_2 = a.render("entender qué está pasando. Estás aquí gracias a tu curiosidad.", 1, (255,255,255)) 
+dialogo1_3 = a.render("Y bueno, porque estás dormido en tu comedor mientras hacías", 1, (255,255,255))
+dialogo1_4 = a.render("la tarea de física y pensaste en ¿por qué los cuerpos caen?", 1, (255,255,255))
 
-a = pygame.font.SysFont('comicsans', 100)
 
-#Esta función dbuja lo que quiero que se vea
-def draw_window():
-    #Fondo/escenario
     
-    #Galileo
-    
-    #Dialogos
-    dialogo1 = a.render("Narrador: Corre el siglo XVI. Despertaste en los recuerdos del maestro Galileo Galilei, y estoy aquí para ayudarte a entender qué está pasando. Estás aquí gracias a tu curiosidad. Y bueno, porque estás dormido en tu comedor mientras hacías la tarea de física y pensaste en ¿por qué los cuerpos caen?", 1, WHITE)
-    screen.blit(dialogo1, (10,10))
+
+# intento de desaparecer el dialogo transcurridos 30000 milisegundos
+def dibujador_de_dialogos(text):
+    dialogo1 = a.render("Narrador: Corre el siglo XVI. Despertaste en los recuerdos del maestro Galileo Galilei, y estoy aquí para ayudarte a entender qué está pasando. Estás aquí gracias a tu curiosidad. Y bueno, porque estás dormido en tu comedor mientras hacías la tarea de física y pensaste en ¿por qué los cuerpos caen?", 1, (255,255,255))
+    pantalla.blit(dialogo1,(1,500))
     pygame.display.update()
-    pygame.time.delay(5000)  #milisegundos
-    
-    
-#Para escribir los dialogos, tipo de letra y tamaño
-#def dialogos(text):
-    #draw_text = a.render(text, 1, white)
-    #screen.blit(draw_text, (400,400)
-    #pygame.display.update()
-    #pygame.time.delay(5000)  #milisegundos
-    
-    
+    pygame.time.delay(30000)
+                          
 
+#Otra manera de escribir el codigo principal. Que me funciona y cierra bien :,v
 
-
-#Para cerrar el programa
 def main():
-    while running:
-    
+    salir = False
+    while salir!= True:
         for event in pygame.event.get():
-            if event.type == pygame.QUIT: running = False
-            elif event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_ESCAPE: 
-                    running = False
-                    pygame.quit()
-                
-        if pygame.time.delay(10000):
-            dialogos("Corre el siglo XVI. Despertaste en los recuerdos del maestro Galileo Galilei, y estoy aquí para ayudarte a entender qué está pasando. Estás aquí gracias a tu curiosidad. Y bueno, porque estás dormido en tu comedor mientras hacías la tarea de física y pensaste en ¿por qué los cuerpos caen?")          
-        
-        draw_window(dialogo1)
+            if event.type == pygame.QUIT: 
+                salir = True
 
-    main()
+
+        clock.tick(15)          
+        pantalla.fill((0,0,0))
+        pantalla.blit(dialogo1_0,(200,450))
+        pantalla.blit(dialogo1_1,(200,480))
+        pantalla.blit(dialogo1_2,(200,510))
+        pantalla.blit(dialogo1_3,(200,540))
+        pantalla.blit(dialogo1_4,(200,570))
+        pygame.display.update()
+    
+    pygame.quit()
+main()
