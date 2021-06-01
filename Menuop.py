@@ -178,6 +178,9 @@ class App():
         self.display = pygame.Surface((0,0))
         self.window = pygame.display.set_mode((0,0), FULLSCREEN)
         self.w, self.h = self.window.get_width(), self.window.get_height()
+        
+        ic = pygame.image.load("Imagenes/1.png")
+        pygame.display.set_icon(ic)
               
         self.mainmenu = MainMenu(self)
         self.options = OptionsMenu(self)
