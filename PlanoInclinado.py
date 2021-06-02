@@ -4,7 +4,7 @@ def main():
 
     pygame.init()
     screen,running = pygame.display.set_mode((0,0),pygame.FULLSCREEN),True
-    pygame.display.set_caption("hm")
+    #pygame.display.set_caption("hm")
     #ic = pygame.image.load("Imagenes/1.png")
     #pygame.display.set_icon(ic)
     pygame.display.flip()
