@@ -103,22 +103,6 @@ class Dial_1p(Dialogos):
                 self.rundisplay1 = False
     
             
-    #def pos(self):  #si no funciona, probar avanzar y retoceder con flechas y dejar solo el enter para el ult dialogo
-        #if self.Introd.enter:
-            #if self.state == '1':
-              #  self.state = '2'
-            #elif self.state == '2':
-             #   self.state = '3'
-            #elif self.state == '3':
-            #    self.state = 'Juego'
-        #if self.Introd.borrar:
-         #   if self.state == 'Juego':
-          #      self.state == '3'
-           # elif self.state == '3':
-            #    self.state = '2'
-            #elif self.state == '2':
-             #   self.state = '1'
-            
     def checkstate(self):
         
         if self.Introd.esc:
