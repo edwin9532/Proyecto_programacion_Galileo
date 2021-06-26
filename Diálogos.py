@@ -84,6 +84,11 @@ class Dial_1p(Dialogos):
             if self.state == '1':
                 
                 self.Introd.screen.fill(Color(71, 75, 78))
+                
+                #Meter lo que se repite mucho en una función en la clase Dialogos
+                R = Rect((self.Introd.w*0.03 , self.Introd.h*0.06), (self.Introd.w*0.95, self.Introd.h*0.25))
+                pygame.draw.rect(self.Introd.screen, (0, 75, 78), R)
+                
                 self.d1 = Text('Corre el siglo XVI. Despertaste en los recuerdos del maestro Galileo Galilei,', (100, 100), fontsize= 50)
                 self.d12 = Text('y estoy aquí para ayudarte a entender qué está pasando.', (100, 150), fontsize= 50)
                 self.d1.draw()
@@ -94,10 +99,13 @@ class Dial_1p(Dialogos):
             elif self.state == '2':
                 
                 #self.Introd.screen.fill(Color(71, 75, 78))
-                R = Rect(self.d1.pos,(self.d1.rect.width, self.d1.rect.height))
-                R1 = Rect(self.d12.pos,(self.d12.rect.width, self.d12.rect.height))
-                pygame.draw.rect(self.Introd.screen, (71, 75, 78), R)
-                pygame.draw.rect(self.Introd.screen, (71, 75, 78), R1)
+                #R = Rect(self.d1.pos,(self.d1.rect.width, self.d1.rect.height))
+                #R1 = Rect(self.d12.pos,(self.d12.rect.width, self.d12.rect.height))
+                #pygame.draw.rect(self.Introd.screen, (71, 75, 78), R)
+                #pygame.draw.rect(self.Introd.screen, (71, 75, 78), R1)
+                R = Rect((self.Introd.w*0.03 , self.Introd.h*0.06), (self.Introd.w*0.95, self.Introd.h*0.25))
+                pygame.draw.rect(self.Introd.screen, (0, 75, 78), R)
+                
                 self.d2 = Text('Estás aquí gracias a tu curiosidad, y, bueno, porque te quedaste dormido ', (100, 100) , fontsize= 50)
                 self.d22 = Text('en tu comedor mientras hacías la tarea de física y pensabas: ', (100, 150) , fontsize= 50)
                 self.d23 = Text('¿por qué los cuerpos caen?', (100, 200) , fontsize= 50)
@@ -111,8 +119,11 @@ class Dial_1p(Dialogos):
             elif self.state == '3':
                 
                 #self.Introd.screen.fill(Color(71, 75, 78))
-                R = Rect(self.d2.pos,(self.d2.rect.width, self.d2.rect.height))
-                pygame.draw.rect(a.screen, (71, 75, 78), R)
+                #R = Rect(self.d2.pos,(self.d2.rect.width, self.d2.rect.height))
+                #pygame.draw.rect(a.screen, (71, 75, 78), R)
+                R = Rect((self.Introd.w*0.03 , self.Introd.h*0.06), (self.Introd.w*0.95, self.Introd.h*0.25))
+                pygame.draw.rect(self.Introd.screen, (0, 75, 78), R)
+                
                 self.d3 = Text('Este es el tercer diálogo', (100, 100), fontsize= 50)
                 self.d3.draw()
                 self.drawdp()
@@ -164,7 +175,7 @@ class Introd():
         self.display = pygame.Surface((0,0))
         self.screen = pygame.display.set_mode((0,0), FULLSCREEN)
         self.w, self.h = self.screen.get_width(), self.screen.get_height()
-        print (self.w , self.h)
+        #print (self.w , self.h)
               
         self.diag1p = Dial_1p(self)
         #self.options = OptionsMenu(self)
