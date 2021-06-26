@@ -46,6 +46,8 @@ class Dialogos():
         
     def drawdp(self): #muestra el mensaje presione enter para continuar
         self.msj = Text('Presione enter para continuar', (self.mw+150 , self.mh-100), fontsize=50)
+        Re = Rect((self.msj.pos[0]-20, self.msj.pos[1]-10),(self.msj.rect.width+40, self.msj.rect.height+10))
+        pygame.draw.rect(self.Introd.screen, (0, 0, 0), Re)
         self.msj.draw()
 
     def blit_screen(self):
@@ -84,7 +86,9 @@ class Dial_1p(Dialogos):
                 
             elif self.state == '2':
                 
-                self.Introd.screen.fill(Color(71, 75, 78))
+                #self.Introd.screen.fill(Color(71, 75, 78))
+                R = Rect(self.d1.pos,(self.d1.rect.width, self.d1.rect.height))
+                pygame.draw.rect(self.Introd.screen, (71, 75, 78), R)
                 self.d2 = Text('Este es el segundo diálogo', (100, 100))
                 self.d2.draw()
                 self.drawdp()
@@ -92,7 +96,9 @@ class Dial_1p(Dialogos):
                 
             elif self.state == '3':
                 
-                self.Introd.screen.fill(Color(71, 75, 78))
+                #self.Introd.screen.fill(Color(71, 75, 78))
+                R = Rect(self.d2.pos,(self.d2.rect.width, self.d2.rect.height))
+                pygame.draw.rect(a.screen, (71, 75, 78), R)
                 self.d3 = Text('Este es el tercer diálogo', (100, 100))
                 self.d3.draw()
                 self.drawdp()
