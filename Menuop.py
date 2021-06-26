@@ -180,7 +180,7 @@ class App():
         self.w, self.h = self.window.get_width(), self.window.get_height()
         
         pygame.display.set_caption("hm")
-        ic = pygame.image.load("Imagenes/1.png")
+        ic = pygame.image.load("Imagenes/Icono.png")
         pygame.display.set_icon(ic)
               
         self.mainmenu = MainMenu(self)

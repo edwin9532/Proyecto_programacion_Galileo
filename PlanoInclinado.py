@@ -1,4 +1,4 @@
-import pygame, pymunk, numpy as np
+import Boton_, Sliders, pygame, pymunk,pygame.gfxdraw, numpy as np
 
 def main():
 
@@ -9,89 +9,60 @@ def main():
     #pygame.display.set_icon(ic)
     pygame.display.flip()
     info = pygame.display.Info()
+    fondo = pygame.image.load("Imagenes/Fondo_11B.jpg")
+    fondo = pygame.transform.scale(fondo, (info.current_w, info.current_h))
+    fondo_b = fondo
+    fondo = pygame.image.load("Imagenes/Fondo_11.jpg")
+    fondo = pygame.transform.scale(fondo, (info.current_w, info.current_h))
+    fondo_i = fondo
     
-    
-    class Slider():
-        def __init__(self, name, val, max, min, pos):
-            self.val = val
-            self.max = max
-            self.min = min
-            self.xpos = info.current_w-120
-            self.ypos = pos
-            self.surf = pygame.surface.Surface((100, 50))
-            self.hit = False
-            
-            self.txt_surf = font.render(name, 1, (0,0,0))
-            self.txt_rect = self.txt_surf.get_rect(center=(50, 15))
-    
-            self.surf.fill((255, 204, 153))
-            pygame.draw.rect(self.surf, (200, 200, 200), [0, 0, 100, 50], 3)
-            pygame.draw.rect(self.surf, (204, 204, 179), [10, 10, 80, 14], 0)
-            pygame.draw.rect(self.surf, (255,255,255), [10, 30, 80, 5], 0)
-            
-            self.surf.blit(self.txt_surf, self.txt_rect)
-    
-            self.button_surf = pygame.surface.Surface((20, 20))
-            self.button_surf.fill((1, 1, 1))
-            self.button_surf.set_colorkey((1, 1, 1))
-            pygame.draw.circle(self.button_surf, (0,0,0), (10, 10), 6, 0)
-            pygame.draw.circle(self.button_surf, (200, 100, 50), (10, 10), 4, 0)
+        
+    class Bola_T:
+        def __init__(self, pos, r, tipo, i, tipo_n,font_name="BebasNeue.otf",font_size=33):
+            self.pos_i = pos
+            self.tipo = i
+            self.pos = conv_coord((pos[0]+4*rm*i,pos[1]+rm))
+            self.nombre = tipo_n
+            self.font = pygame.font.SysFont(font_name, font_size, False)
+            self.r = r
+            self.image = pygame.image.load(tipo)
+            self.image = pygame.transform.scale(self.image, (2*rm,2*rm))
+            self.rect = self.image.get_rect()
+            self.rect.center = (self.pos[0]+rm,self.pos[1]+rm)
+            self.clicked = False
             
         def draw(self):
-            surf = self.surf.copy()
-    
-            pos = (10+int((self.val-self.min)/(self.max-self.min)*80), 33)
-            self.button_rect = self.button_surf.get_rect(center=pos)
-            surf.blit(self.button_surf, self.button_rect)
-            self.button_rect.move_ip(self.xpos, self.ypos)
-    
-            screen.blit(surf, (self.xpos, self.ypos))
-    
-        def move(self):
-            self.val = (pygame.mouse.get_pos()[0] - self.xpos - 10) / 80 * (self.max - self.min) + self.min
-            if self.val < self.min:
-                self.val = self.min
-            if self.val > self.max:
-                self.val = self.max
-    
-    class Boton():
-        def __init__(self, txt, location, action, bg=(255,255,255), fg=(0,0,0), size=(80, 30), font_name="Verdana", font_size=14):
-            self.color = bg
-            self.bg = bg
-            self.fg = fg
-            self.size = size
-    
-            self.font = pygame.font.SysFont(font_name, font_size, True)
-            self.txt = txt
-            self.txt_surf = self.font.render(self.txt, 1, self.fg)
-            self.txt_rect = self.txt_surf.get_rect(center=[s//2 for s in self.size])
-    
-            self.surface = pygame.surface.Surface(size)
-            self.rect = self.surface.get_rect(center=location)
-    
-            self.call_back_ = action
-    
-        def draw(self):
-            self.mouseover()
-    
-            self.surface.fill(self.bg)
-            self.surface.blit(self.txt_surf, self.txt_rect)
-            screen.blit(self.surface, self.rect)
-    
-        def mouseover(self):
-            self.bg = self.color
-            pos = pygame.mouse.get_pos()
-            if self.rect.collidepoint(pos):
-                self.bg = (100,100,100)
-    
-        def call_back(self):
-            self.call_back_()
-    
+            mpos = pygame.mouse.get_pos()
+            if self.rect.collidepoint(mpos):
+                self.image = pygame.transform.scale(self.image, (2*(rm+5),2*(rm+5)))
+                screen.blit(self.image, (self.pos[0]-5,self.pos[1]-5))
+                
+                txt = self.font.render(self.nombre, 1, (0,0,0))
+                txt_rect = txt.get_rect(center=(self.rect.x+self.image.get_width()/2 -5, self.rect.y+self.image.get_height()/2 -5))
+                screen.blit(txt, txt_rect)
+                t = True
+                
+                if pygame.mouse.get_pressed()[0] == 1 and self.clicked == False:                
+                    self.clicked = True
+                    t = False
+            else:
+                self.image = pygame.transform.scale(self.image, (2*rm,2*rm))
+                screen.blit(self.image, self.pos)
+                t = True
+        
+            if pygame.mouse.get_pressed()[0] == 0:
+                self.clicked = False
+            
+            return t, self.tipo, self.clicked
+            
+            
+        
+            
     
     def conv_coord(pos):
         return pos[0], info.current_h-pos[1]
     
-    def bola(space,pos,r,m):
+    def bola(space,pos,r,m,):
         body = pymunk.Body(m,200,body_type= pymunk.Body.DYNAMIC)
         body.position = pos
         shape = pymunk.Circle(body, r)
@@ -99,9 +70,12 @@ def main():
         space.add(body,shape)
         return shape
     
-    def draw_bola(bola,r):
+    def draw_bola(bola,r,tipo):
+        bola_im = pygame.image.load(Tipos[tipo])
         pos_x,pos_y = conv_coord(bola.body.position)
-        pygame.draw.circle(screen, (255,255,255), (int(pos_x),int(pos_y)), r)
+        bola_im = pygame.transform.scale(bola_im, (2*r,2*r))
+        screen.blit(bola_im, (int(pos_x)-r,int(pos_y)-r))
+        
     
     def plano(space,pos_plano,w):
         body = pymunk.Body(body_type=pymunk.Body.STATIC)
@@ -111,35 +85,40 @@ def main():
         return shape
         
     def draw_plano(plano):
-        pygame.draw.line(screen, (255,255,255), conv_coord(pos_plano[0]), conv_coord(pos_plano[1]),5)
+        pygame.draw.line(screen, (143, 37, 14), conv_coord(pos_plano[0]), conv_coord(pos_plano[1]),5)
     
     def masa_radio(m):
-        l = np.linspace(10,30,100)
+        l = np.linspace(20,40,100)
         r = int(l[m-1])
         return r
     
     def nums(s,y,u):
             if s==masa: l=int(s.val)
             else: l=int(s.val)/100
-            surf = pygame.surface.Surface((100, 50))
-            txt_surf = font.render(str(l)+u, 1, (255,255,255))
-            txt_rect = txt_surf.get_rect(center=(50, 15))
-            surf.blit(txt_surf, txt_rect)
-            screen.blit(surf, (info.current_w-210, y))
-            
-    def Boton_mouse():
-        pos = pygame.mouse.get_pos()
-        for b in bs:
-            if b.rect.collidepoint(pos):
-                b.call_back()
+            txt = font.render(str(l)+u, 1, (0,0,0))
+            screen.blit(txt, (info.current_w-210, y))
     
-    def start_():
-        if block._id in space._shapes: space.remove(block)
+    def Tipo(r,pos):
+        if (bola_._id in space._shapes): space.remove(bola_)
+        
+        bola_Ma = Bola_T(pos,r,Tipos[0],0,"Madera")
+        bola_R = Bola_T(pos,r,Tipos[1],1,"Roca")
+        bola_Me = Bola_T(pos,r,Tipos[2],2,"Metal")
+        
+        bolas = [bola_Ma,bola_R,bola_Me]
+        
+        for bolat in bolas:
+            t, tipo, escogido = bolat.draw()
+            if not t: break
+        
+        return t, tipo, escogido
+        
+        
+    t = False
+    Tipos = ["Imagenes/Bola_Madera.png","Imagenes/Bola_Roca.png","Imagenes/Bola_Metal.png"]
+    tipo = 0
     
-    def restart_():
-        masa.hit = True
-    
-    font = pygame.font.SysFont("Verdana", 12, True)
+    font = pygame.font.SysFont("BebasNeue.otf", 23, False)
     clock = pygame.time.Clock()
     space = pymunk.Space()
     space.gravity = (0,-981)
@@ -150,22 +129,36 @@ def main():
     c = True
     aj = np.linspace(1.1,.67,info.current_h)
     block = plano(space,[(1,1),(1,2)],0)
-    r = 30
-    masa = Slider("Masa", 100, 100, 1, 20)
-    altura = Slider("Altura", 0, info.current_h-60*0.85, 0, 80)
-    longitud = Slider("Longitud", info.current_w, info.current_w, r*2, 140)
+    rm = 40
+    
+    # Sliders
+    masa = Sliders.Slider("Masa", 100, 100, 1, 20, info.current_w-120, font, screen)
+    altura = Sliders.Slider("Altura", 0, info.current_h-(2*rm)*0.85, 0, 80, info.current_w-120, font, screen)
+    longitud = Sliders.Slider("Longitud", info.current_w, info.current_w, rm*2, 140, info.current_w-120, font, screen)
     slides = [masa,altura,longitud]
     
+    # Botones
+    B = pygame.image.load('Imagenes/Boton.png').convert_alpha()
+    Bp = pygame.image.load('Imagenes/Boton_p.png').convert_alpha()
     
-    start = Boton("Simular", (info.current_w-70,240), start_)
-    restart = Boton("Reiniciar",(info.current_w-70,280), restart_)
-    bs = [start,restart]
+    start = Boton_.Boton(info.current_w-70,230, B, Bp, 0.25,"Simular")
+    restart = Boton_.Boton(info.current_w-70,275, B, Bp, 0.25,"Reiniciar")
+    material = Boton_.Boton(info.current_w-70,320, B, Bp, 0.25,"Material")
     
-    bola_ = bola(space,(r,r),r,masa.val)
+    # Objetos iniciales y de borde
+    bola_ = bola(space,(rm,rm),rm,masa.val)
     plano_ = plano(space,pos_plano,2.5)
     pared = plano(space,[(info.current_w,0),(info.current_w,info.current_h)],0)
     suelo = plano(space,[(0,0),(info.current_w,0)],0)
     
+    # Relleno del plano, tres opciones
+    
+    #Plano = pygame.image.load("Imagenes/Plano1.jpg")
+    Plano = pygame.image.load("Imagenes/Plano2.jpg")
+    #Plano = pygame.image.load("Imagenes/Plano3.jpg")
+    
+    simulando = False
+    escogido = False
     
     while running:
         
@@ -174,21 +167,20 @@ def main():
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE: running = False
             elif event.type == pygame.MOUSEBUTTONDOWN:
-                Boton_mouse()
                 s_pos = pygame.mouse.get_pos()
                 for s in slides:
-                    if s.button_rect.collidepoint(s_pos):
+                    if s.button_rect.collidepoint(s_pos) and not t:
                         s.hit,c = True,False
-            elif event.type == pygame.MOUSEBUTTONUP:
+            elif event.type == pygame.MOUSEBUTTONUP and not t:
                 for s in slides:
                     s.hit,c = False,True
                     
         r = masa_radio(int(masa.val))
         
         
-        screen.fill((0,0,0))
+        screen.blit(fondo,(0,0))
         for s in slides:
-            if s.hit:
+            if s.hit and not t:
                 space.remove(bola_,plano_)
                 if (block._id in space._shapes): space.remove(block)
                 if c == False: s.move()
@@ -196,21 +188,48 @@ def main():
                 plano_ = plano(space,pos_plano,2.5)
                 bola_ = bola(space,(r,int(altura.val)+r*aj[int(altura.val)]),r,masa.val)
                 block = plano(space,[(r*2,int(altura.val)+r),(r*2,0)],0)
+                simulando = False
                 
-        nums(masa,20," kg")
-        nums(altura,80," m")
-        nums(longitud,140," m")
+        nums(masa,30," kg")
+        nums(altura,90," m")
+        nums(longitud,150," m")
         
         for s in slides:
             s.draw()
+            
+        if (material.draw(screen) or t):
+            
+            if (bola_._id in space._shapes):
+                pt = ((r,int(altura.val)+r*aj[int(altura.val)]))
+                if block._id not in space._shapes:
+                    block = plano(space,[(r*2,int(altura.val)+r),(r*2,0)],0)
+                t, tipo, escogido = Tipo(r,pt)                
+                fondo = fondo_b
+            else:
+                t, tipo, escogido = Tipo(r,pt)
+        else:
+            fondo = fondo_i
+            if escogido:
+                bola_ = bola(space,(r,int(altura.val)+r*aj[int(altura.val)]),r,masa.val)
+                escogido = False
         
-        for b in bs:
-            b.draw()
+        if start.draw(screen) and not t:
+            if block._id in space._shapes:
+                space.remove(block)
+                simulando = True
+        if restart.draw(screen) and not t:
+            masa.hit = True
+            simulando = False
+            
+        pygame.gfxdraw.textured_polygon(screen, [conv_coord((0,0)),conv_coord(pos_plano[0]),conv_coord(pos_plano[1])],Plano,0,0)
+            
         
         ms = clock.tick(fps)
-        draw_bola(bola_,r)
+        if (bola_._id in space._shapes) or not t: draw_bola(bola_,r,tipo)
         draw_plano(plano_)
         space.step(1/fps)
         pygame.display.update()
         #print(ms)
     return False
+
+#main()
