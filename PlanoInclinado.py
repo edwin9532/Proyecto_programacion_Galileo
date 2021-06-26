@@ -132,10 +132,11 @@ def main():
     rm = 40
     
     # Sliders
-    masa = Sliders.Slider("Masa", 100, 100, 1, 20, info.current_w-120, font, screen)
-    altura = Sliders.Slider("Altura", 0, info.current_h-(2*rm)*0.85, 0, 80, info.current_w-120, font, screen)
-    longitud = Sliders.Slider("Longitud", info.current_w, info.current_w, rm*2, 140, info.current_w-120, font, screen)
+    masa = Sliders.Slider("Masa", 50, 100, 1, 20, info.current_w-120, font, screen)
+    altura = Sliders.Slider("Altura", info.current_h//2, info.current_h-(2*rm)*0.85, 0, 80, info.current_w-120, font, screen)
+    longitud = Sliders.Slider("Longitud", info.current_w//2, info.current_w, rm*2, 140, info.current_w-120, font, screen)
     slides = [masa,altura,longitud]
+    inicio = True
     
     # Botones
     B = pygame.image.load('Imagenes/Boton.png').convert_alpha()
@@ -180,7 +181,8 @@ def main():
         
         screen.blit(fondo,(0,0))
         for s in slides:
-            if s.hit and not t:
+            if (s.hit or inicio) and not t:
+                inicio = False
                 space.remove(bola_,plano_)
                 if (block._id in space._shapes): space.remove(block)
                 if c == False: s.move()
