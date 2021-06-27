@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 """
 Created on Fri Jun 25 12:00:11 2021
-
 @author: lizeth
 """
 
@@ -61,8 +60,23 @@ display = pygame.Surface((0,0))
 screen = pygame.display.set_mode((0,0), FULLSCREEN)
 w, h = screen.get_width(), screen.get_height()
 
-k = Text('Hola esto es un ejemplo :)', (w/2,h-500))
+a = Text('Narrador: “Corre el siglo XVI.', (w/2,h-500))
+b = Text('Despertaste en los recuerdos del maestro Galileo Galilei,', (w/2,h-500))
+c = Text('y estoy aquí para ayudarte a entender qué está pasando.', (w/2,h-500))
+d = Text('Estás aquí gracias a tu curiosidad.', (w/2,h-500))
+e = Text('Y bueno, porque estás dormido en tu comedor mientras hacias', (w/2,h-500))
+f = Text('la tarea de física y pensaste en ¿por qué los cuerpos caen?”', (w/2,h-500))
 
+
+#------------------EJEMPLO(1.0)--------------------
+k = Text('Hola', (w/2,h-500))
+l = Text('Esto', ( w/2,h-500))
+m = Text('Es', (w/2,h-500))
+n = Text('Un', (w/2,h-500))
+o = Text('Ejemplo', (w/2,h-500))
+p = Text(':)', (w/2,h-500))
+
+#--------------------------------------------------
 
 running = True
 while running:
@@ -74,10 +88,57 @@ while running:
                 running = False
                 
     screen.fill(Color(0, 0, 0))
-    k.draw()
-    #if n == k.len-1:
-        #break               # si pongo esto al terminar se cierra el programa
+    #a.draw()
+    k.draw() #Para ver el ejemplo activar esta y desactivar a.draw()
+    
+    #if n == a.len-1:
+      #  screen.fill(Color(0,0,0))
+      #  b.draw()
+    #if n == b.len-1:
+      # screen.fill(Color(0,0,0))
+      #  c.draw()
+    #if n == c.len-1:
+      #  screen.fill(Color(0,0,0))
+      #  d.draw()
+    #if n == d.len-1:
+      #  screen.fill(Color(0,0,0))
+      #  e.draw()
+    #if n == e.len-1:
+      #  screen.fill(Color(0,0,0))
+      #  f.draw()
+        
+    
+    
+    
+    
+    
     pygame.display.update()
+    
+    
+    
+#--------------------EJEMPLO(1.1)---------------------
+    if n == k.len-1:
+       screen.fill(Color(0, 0, 0))
+       l.draw()
+    if n == l.len-1:
+       screen.fill(Color(0, 0, 0))
+       m.draw()
+    if n == m.len-1:
+       screen.fill(Color(0, 0, 0))
+       n.draw()
+    if n == n.len-1:
+       screen.fill(Color(0, 0, 0))
+       o.draw()
+    if n == o.len-1:
+       screen.fill(Color(0, 0, 0))
+       p.draw()        
+        
+        #break               # si pongo esto al terminar se cierra el programa
+                             # No es necesario por ahora
+                             # La gracia es hacer esto pero con todo el texto
+                             # y cuando se llegue al ultimo dialogo trasladar a la simulación
+                             # PD: Mi pc explota
+#------------------------------------------------------
     
     
 
