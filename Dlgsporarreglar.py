@@ -49,6 +49,13 @@ class TextM:
     def set_font(self):
         self.font = pygame.font.Font(self.fontname, self.fontsize)
         
+    def tfin(self):
+        self.img = self.font.render(self.text, True, self.fontcolor)
+        self.rect = self.img.get_rect()
+        self.rect.topleft = self.pos
+        a.screen.blit(self.img, self.rect)
+        pygame.display.update()
+        
     def draw(self):
         global n
         for n in range(0, self.len): 
@@ -60,13 +67,9 @@ class TextM:
             a.screen.blit(self.img, self.rect)
             pygame.display.update()
             pygame.time.wait(55)
-            if n == self.len:
+            if n == self.len-3:
                 break
-        self.img = self.font.render(self.text, True, self.fontcolor)
-        self.rect = self.img.get_rect()
-        self.rect.topleft = self.pos
-        a.screen.blit(self.img, self.rect)
-        pygame.display.update()
+        
         #screen.fill(Color(0, 0, 0))
 
 #-----------------------------------------------------------------------------------#
@@ -129,6 +132,9 @@ class Dial_1p(Dialogos):
                 
                 self.d1.draw()
                 self.d12.draw()
+                
+                self.d1.tfin()
+                self.d12.tfin()
                 
                 
                 self.blit_screen()
