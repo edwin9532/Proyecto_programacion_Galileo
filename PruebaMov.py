@@ -72,7 +72,7 @@ f = Text('la tarea de física y pensaste en ¿por qué los cuerpos caen?”', (w
 k = Text('Hola', (w/2,h-500))
 l = Text('Esto', ( w/2,h-500))
 m = Text('Es', (w/2,h-500))
-n = Text('Un', (w/2,h-500))
+q = Text('Un', (w/2,h-500))
 o = Text('Ejemplo', (w/2,h-500))
 p = Text(':)', (w/2,h-500))
 
@@ -125,8 +125,8 @@ while running:
        m.draw()
     if n == m.len-1:
        screen.fill(Color(0, 0, 0))
-       n.draw()
-    if n == n.len-1:
+       q.draw()
+    if n == q.len-1:
        screen.fill(Color(0, 0, 0))
        o.draw()
     if n == o.len-1:
