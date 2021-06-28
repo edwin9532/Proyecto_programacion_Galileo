@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Sat Jun 26 09:51:52 2021
+Created on Sat Jun 26 12:37:57 2021
 
 @author: lizeth
 """
@@ -9,7 +9,6 @@ Created on Sat Jun 26 09:51:52 2021
 import pygame
 from pygame.locals import *
 import sys
-
 
 class Text:
 
@@ -32,6 +31,46 @@ class Text:
 
     def draw(self):
         a.screen.blit(self.img, self.rect)
+        
+#-----------------------------------------------------------------------------------#
+
+class TextM:
+
+    def __init__(self, text, pos, fontsize=90, fontname='BebasNeue.otf', color='white'):
+        self.text = text
+        self.len = len(self.text)+1
+        self.pos = pos
+        self.fontname = fontname
+        self.fontsize = fontsize
+        self.fontcolor = Color(color)
+        self.set_font()
+        #self.render()
+            
+    def set_font(self):
+        self.font = pygame.font.Font(self.fontname, self.fontsize)
+        
+    def tfin(self):
+        self.img = self.font.render(self.text, True, self.fontcolor)
+        self.rect = self.img.get_rect()
+        self.rect.topleft = self.pos
+        a.screen.blit(self.img, self.rect)
+        pygame.display.update()
+        
+    def draw(self):
+        global n
+        for n in range(0, self.len): 
+            self.img = self.font.render(self.text[0:n], True, self.fontcolor)
+            self.rect = self.img.get_rect()
+            self.rect.topleft = self.pos
+            R=Rect(self.rect.topleft, (self.rect.width, self.rect.height))
+            pygame.draw.rect(a.screen, (0, 75, 78), R)
+            a.screen.blit(self.img, self.rect)
+            pygame.display.update()
+            pygame.time.wait(55)
+            if n == self.len:
+                break
+        
+        #screen.fill(Color(0, 0, 0))
 
 #-----------------------------------------------------------------------------------#
 
@@ -86,23 +125,27 @@ class Dial_1p(Dialogos):
                 
                 self.Introd.screen.fill(Color(71, 75, 78))
                 self.diabox()
+                self.drawdp()
                 
-                self.d1 = Text('Corre el siglo XVI. Despertaste en los recuerdos del maestro Galileo Galilei,', (100, 100), fontsize= 50)
-                self.d12 = Text('y estoy aquí para ayudarte a entender qué está pasando.', (100, 150), fontsize= 50)
+                self.d1 = TextM('Corre el siglo XVI. Despertaste en los recuerdos del maestro Galileo Galilei,', (100, 100), fontsize= 50)
+                self.d12 = TextM('y estoy aquí para ayudarte a entender qué está pasando.', (100, 150), fontsize= 50)
                 
                 self.d1.draw()
                 self.d12.draw()
                 
-                self.drawdp()
+                self.d1.tfin()
+                self.d12.tfin()
+                
+                
                 self.blit_screen()
                 
             elif self.state == '2':
                 
                 self.diabox()
                 
-                self.d2 = Text('Estás aquí gracias a tu curiosidad, y, bueno, porque te quedaste dormido ', (100, 100) , fontsize= 50)
-                self.d22 = Text('en tu comedor mientras hacías la tarea de física y pensabas: ', (100, 150) , fontsize= 50)
-                self.d23 = Text('¿por qué los cuerpos caen?', (100, 200) , fontsize= 50)
+                self.d2 = TextM('Estás aquí gracias a tu curiosidad, y, bueno, porque te quedaste dormido ', (100, 100) , fontsize= 50)
+                self.d22 = TextM('en tu comedor mientras hacías la tarea de física y pensabas: ', (100, 150) , fontsize= 50)
+                self.d23 = TextM('¿por qué los cuerpos caen?', (100, 200) , fontsize= 50)
                 
                 self.d2.draw()
                 self.d22.draw()
@@ -115,7 +158,7 @@ class Dial_1p(Dialogos):
                 
                 self.diabox()
                 
-                self.d3 = Text('Este es el tercer diálogo', (100, 100), fontsize= 50)
+                self.d3 = TextM('Este es el tercer diálogo', (100, 100), fontsize= 50)
                 self.d3.draw()
                 self.drawdp()
                 self.blit_screen()
@@ -223,4 +266,3 @@ while a.running:
   
 
 
-    
