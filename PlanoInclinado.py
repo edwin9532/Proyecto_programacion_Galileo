@@ -87,10 +87,11 @@ def main():
     def draw_plano(plano):
         pygame.draw.line(screen, (143, 37, 14), conv_coord(pos_plano[0]), conv_coord(pos_plano[1]),5)
     
-    def masa_radio(m):
-        l = np.linspace(20,40,100)
-        r = int(l[m-1])
-        return r
+    def masa_radio(m,n,max,min):
+        lr = np.arange(min,max + 1)
+        l = np.linspace(20,40,n)
+        r = int(l[list(lr).index(m)])
+        return r, list(lr).index(m)
     
     def nums(s,y,u):
             if s==masa: l=int(s.val)
@@ -98,7 +99,7 @@ def main():
             txt = font.render(str(l)+u, 1, (0,0,0))
             screen.blit(txt, (info.current_w-210, y))
     
-    def Tipo(r,pos):
+    def Tipo(r,pos,n,max,min,mia):
         if (bola_._id in space._shapes): space.remove(bola_)
         
         bola_Ma = Bola_T(pos,r,Tipos[0],0,"Madera")
@@ -111,7 +112,17 @@ def main():
             t, tipo, escogido = bolat.draw()
             if not t: break
         
-        return t, tipo, escogido
+        if tipo == 0 and not t:
+            masa.refresh(np.arange(1,21)[int(mia*20/(max-min +1))], 20, 1)
+            n,max,min = 20,20,1
+        elif tipo == 1 and not t:
+            masa.refresh(np.arange(20,61)[int(mia*41/(max-min +1))], 60, 20)
+            n,max,min = 41,60,20
+        elif tipo == 2 and not t:
+            masa.refresh(np.arange(60,101)[int(mia*41/(max-min +1))], 100, 60)
+            n,max,min = 41,100,60
+        
+        return t, tipo, escogido, n, max, min
         
         
     t = False
@@ -132,11 +143,12 @@ def main():
     rm = 40
     
     # Sliders
-    masa = Sliders.Slider("Masa", 50, 100, 1, 20, info.current_w-120, font, screen)
+    masa = Sliders.Slider("Masa", 20, 20, 1, 20, info.current_w-120, font, screen)
     altura = Sliders.Slider("Altura", info.current_h//2, info.current_h-(2*rm)*0.85, 0, 80, info.current_w-120, font, screen)
     longitud = Sliders.Slider("Longitud", info.current_w//2, info.current_w, rm*2, 140, info.current_w-120, font, screen)
     slides = [masa,altura,longitud]
     inicio = True
+    n,max,min = 20,20,1
     
     # Botones
     B = pygame.image.load('Imagenes/Boton.png').convert_alpha()
@@ -176,14 +188,15 @@ def main():
                 for s in slides:
                     s.hit,c = False,True
                     
-        r = masa_radio(int(masa.val))
+        r, mia = masa_radio(int(masa.val),n,max,min)
         
         
         screen.blit(fondo,(0,0))
         for s in slides:
             if (s.hit or inicio) and not t:
                 inicio = False
-                space.remove(bola_,plano_)
+                space.remove(plano_)
+                if (bola_._id in space._shapes): space.remove(bola_)
                 if (block._id in space._shapes): space.remove(block)
                 if c == False: s.move()
                 pos_plano = [(0,int(altura.val)),(int(longitud.val),0)]
@@ -205,13 +218,14 @@ def main():
                 pt = ((r,int(altura.val)+r*aj[int(altura.val)]))
                 if block._id not in space._shapes:
                     block = plano(space,[(r*2,int(altura.val)+r),(r*2,0)],0)
-                t, tipo, escogido = Tipo(r,pt)                
+                t, tipo, escogido, n, max, min = Tipo(r,pt,n,max,min,mia)
                 fondo = fondo_b
             else:
-                t, tipo, escogido = Tipo(r,pt)
+                t, tipo, escogido, n, max, min = Tipo(r,pt,n,max,min,mia)
         else:
             fondo = fondo_i
             if escogido:
+                if (bola_._id in space._shapes): space.remove(bola_)
                 bola_ = bola(space,(r,int(altura.val)+r*aj[int(altura.val)]),r,masa.val)
                 escogido = False
         
@@ -224,6 +238,9 @@ def main():
             simulando = False
             
         pygame.gfxdraw.textured_polygon(screen, [conv_coord((0,0)),conv_coord(pos_plano[0]),conv_coord(pos_plano[1])],Plano,0,0)
+        
+        angulo = font.render("Ángulo: "+str(round(np.arctan(altura.val/longitud.val)*180/np.pi,1))+"°", 1, (0,0,0))
+        screen.blit(angulo, (info.current_w-235, 190))
             
         
         ms = clock.tick(fps)

@@ -43,4 +43,9 @@ class Slider():
             self.val = self.min
         if self.val > self.max:
             self.val = self.max
+            
+    def refresh(self, val, max, min):
+        self.val = val
+        self.max = max
+        self.min = min
     
