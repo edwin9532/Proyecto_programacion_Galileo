@@ -48,6 +48,11 @@ class Dialogos():
         R = Rect((self.Introd.w*0.03 , self.Introd.h*0.06), (self.Introd.w*0.95, self.Introd.h*0.25))
         pygame.draw.rect(self.Introd.screen, (0, 75, 78), R)
         
+    def diabox2(self): #hacer otro cuadro de texto ahora como globo de diálogo más abajo que
+        # muestre lo que galileo está diciendo 
+        R = Rect((self.Introd.w*0.4 , self.Introd.h*0.45), (self.Introd.w*0.55, self.Introd.h*0.25))
+        pygame.draw.rect(self.Introd.screen, (125, 96, 114), R)
+        
     def drawdp(self): #muestra el mensaje presione enter para continuar
         self.msj = Text('Presione enter para continuar', (self.mw*1.50 , self.mh*0.7), fontsize=30)
         Re = Rect((self.msj.pos[0]-20, self.msj.pos[1]-10),(self.msj.rect.width+40, self.msj.rect.height+10))
@@ -73,7 +78,6 @@ class Dial_1p(Dialogos):
         #fondo = pygame.image.load("fondo.png")        #---> para poner el fondo 
         #fondo = pygame.transform.scale(fondo,(self.App.w, self.App.h))
         #frect = fondo.get_rect()
-        
         
         
         self.rundisplay1 = True
@@ -115,8 +119,111 @@ class Dial_1p(Dialogos):
                 
                 self.diabox()
                 
-                self.d3 = Text('Este es el tercer diálogo', (100, 100), fontsize= 50)
+                self.d3 = Text('Tu deber es entender el razonamiento de Galileo sobre el movimiento de' , (100, 100), fontsize= 50)
+                self.d32 = Text('los cuerpos, y tratar de convencer y, convencerte, de que lo que estás', (100, 150) , fontsize= 50)
+                self.d33 = Text('haciendo es correcto.    ¿Estás preparado?', (100, 200) , fontsize= 50)
+                
+                
                 self.d3.draw()
+                self.d32.draw()
+                self.d33.draw()
+                
+                self.drawdp()
+                self.blit_screen()
+                
+            elif self.state == 'Juego':
+                self.Introd.playing = True
+                self.rundisplay1 = False
+    
+            
+    def checkstate(self):
+        
+        if self.Introd.esc:
+            self.Introd.running = False
+            #self.rundisplay = False
+        
+        elif self.Introd.enter:
+            if self.state == '1':
+                self.state = '2'
+            elif self.state == '2':
+                self.state = '3'
+            elif self.state == '3':
+                self.state = 'Juego'
+                
+        elif self.Introd.borrar:
+            if self.state == 'Juego':
+                self.state == '3'
+            elif self.state == '3':
+                self.state = '2'
+            elif self.state == '2':
+                self.state = '1'
+       
+#-----------------------------------------------------------------------------------#           
+       
+class Dial_2p(Dialogos):
+    
+    def __init__(self, Introd):   
+        Dialogos.__init__(self, Introd)
+        
+        self.state = '1'
+        
+    def displaydial(self):
+        
+        #fondo = pygame.image.load("fondo.png")        #---> para poner el fondo 
+        #fondo = pygame.transform.scale(fondo,(self.App.w, self.App.h))
+        #frect = fondo.get_rect()
+        
+        
+                
+        self.rundisplay1 = True
+        while self.rundisplay1:
+            
+            self.Introd.events()
+            self.checkstate()
+            
+            if self.state == '1':
+                
+                self.Introd.screen.fill(Color(71, 75, 78))
+                self.diabox()
+                
+                self.d1 = Text('Corre el siglo XVI. Despertaste en los recuerdos del maestro Galileo Galilei,', (100, 100), fontsize= 50)
+                self.d12 = Text('y estoy aquí para ayudarte a entender qué está pasando.', (100, 150), fontsize= 50)
+                
+                self.d1.draw()
+                self.d12.draw()
+                
+                self.drawdp()
+                self.diabox2()
+                self.blit_screen()
+                
+            elif self.state == '2':
+                
+                self.diabox()
+                
+                self.d2 = Text('Estás aquí gracias a tu curiosidad, y, bueno, porque te quedaste dormido ', (100, 100) , fontsize= 50)
+                self.d22 = Text('en tu comedor mientras hacías la tarea de física y pensabas: ', (100, 150) , fontsize= 50)
+                self.d23 = Text('¿por qué los cuerpos caen?', (100, 200) , fontsize= 50)
+                
+                self.d2.draw()
+                self.d22.draw()
+                self.d23.draw()
+                
+                self.drawdp()
+                self.blit_screen()
+                
+            elif self.state == '3':
+                
+                self.diabox()
+                
+                self.d3 = Text('Tu deber es entender el razonamiento de Galileo sobre el movimiento de' , (100, 100), fontsize= 50)
+                self.d32 = Text('los cuerpos, y tratar de convencer y, convencerte, de que lo que estás', (100, 150) , fontsize= 50)
+                self.d33 = Text('haciendo es correcto.    ¿Estás preparado?', (100, 200) , fontsize= 50)
+                
+                
+                self.d3.draw()
+                self.d32.draw()
+                self.d33.draw()
+                
                 self.drawdp()
                 self.blit_screen()
                 
@@ -148,8 +255,7 @@ class Dial_1p(Dialogos):
                 self.state = '1'
             
         
-
-#-----------------------------------------------------------------------------#
+#------------------------------------------------------------------------------------#
 
 
 class Introd():
@@ -169,8 +275,8 @@ class Introd():
         #print (self.w , self.h)
               
         self.diag1p = Dial_1p(self)
-        #self.options = OptionsMenu(self)
-        self.curr_diag = self.diag1p #parte de diálogos actual
+        self.diag2p = Dial_2p(self)
+        self.curr_diag = self.diag2p #parte de diálogos actual
     
     
     def juego(self):
@@ -185,9 +291,8 @@ class Introd():
             
             #self.events()
             #if self.enter or self.atras:
-            #    self.playing = False
+            #self.playing = False
             
-        
     
     def events(self):
         for event in pygame.event.get():
