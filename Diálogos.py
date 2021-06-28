@@ -222,8 +222,8 @@ class Dial_2p(Dialogos):
                 self.diabox()
                 self.diabox2()
                 
-                self.d3 = Text('Tal vez olvide mencionarlo, pero Galileo tiene un genio bastante  .  .  .     ', (100, 100), fontsize= 50)
-                self.d31 = Text('particular.', (100, 150), fontsize= 50)
+                self.d3 = Text('Tal vez olvidé mencionarlo, pero Galileo tiene un genio bastante  .  .  .     ', (100, 100), fontsize= 50)
+                self.d31 = Text('particular.     ', (100, 150), fontsize= 50)
                 
                 
                 self.g3 = Text('Tiene que haber una forma de explicar por qué se mueven', (self.Introd.w*0.42, self.Introd.h*0.47), fontsize= 40)
