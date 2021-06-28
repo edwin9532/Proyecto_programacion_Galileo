@@ -132,7 +132,7 @@ class Dial_1p(Dialogos):
                 self.blit_screen()
                 
             elif self.state == 'Juego':
-                self.Introd.playing = True
+                self.Introd.curr_diag = self.Introd.diag2p
                 self.rundisplay1 = False
     
             
@@ -169,26 +169,14 @@ class Dial_2p(Dialogos):
         
     def displaydial(self):
         
-        #fondo = pygame.image.load("fondo.png")        #---> para poner el fondo 
+        #fondo = pygame.image.load("fondo.png")        -----> para poner el fondo 
         #fondo = pygame.transform.scale(fondo,(self.App.w, self.App.h))
         #frect = fondo.get_rect()
         
         
-        #N: “ Mira, ahí está Galileo, ¿puedes leer su mente?”  
-
-        #G: “¿cómo es posible que tal barbarie la sigamos creyendo después de ya más de dos mil años?. Es absurdo pensar que ´los cuerpos se detienen porque se cansan´ y ´que los cuerpos caen porque quieren estar pegados a la tierra´.”
-
-        #N: “ Tal vez olvide mencionarlo, pero Galileo tiene un genio bastante … particular.”
-
-        #G: “Tiene que haber una forma de explicar porque se mueven las cosas, tal vez por medio de la matemática y la aritmética encuentre algo.” *Pasan unos 3 segundos.
-
-        #N: “Presta atención, aquí es donde Galileo prende la antorcha de la física moderna según Einstein.”
-
-        #G: “He visto que una bala de cañón aumenta su velocidad cuando cae por una colina, revisaré primero si esa velocidad es generada por el peso.” 
-        
                 
-        self.rundisplay1 = True
-        while self.rundisplay1:
+        self.rundisplay2 = True
+        while self.rundisplay2:
             
             self.Introd.events()
             self.checkstate()
@@ -237,16 +225,50 @@ class Dial_2p(Dialogos):
                 self.d3 = Text('Tal vez olvide mencionarlo, pero Galileo tiene un genio bastante  .  .  .     ', (100, 100), fontsize= 50)
                 self.d31 = Text('particular.', (100, 150), fontsize= 50)
                 
+                
+                self.g3 = Text('Tiene que haber una forma de explicar por qué se mueven', (self.Introd.w*0.42, self.Introd.h*0.47), fontsize= 40)
+                self.g31 = Text('las cosas. Tal vez por medio de la matemática y la ', (self.Introd.w*0.42, self.Introd.h*0.47+42), fontsize= 40)
+                self.g32 = Text('aritmética encuentre algo.', (self.Introd.w*0.42, self.Introd.h*0.47+84), fontsize= 40)
+                #self.g23 = Text('--', (self.Introd.w*0.42, self.Introd.h*0.47+126), fontsize= 40)    
+                
+                         
                 self.d3.draw()
                 self.d31.draw()
-                #self.d33.draw()
+                self.g3.draw()
+                self.g31.draw()
+                self.g32.draw()
                 
                 self.drawdp()
                 self.blit_screen()
+            
+            elif self.state == '4':
                 
+                self.diabox()
+                self.diabox2()
+                
+                self.d4 = Text('Presta atención, aquí es donde, según Einstein, Galileo prende la antorcha ', (100, 100), fontsize= 50)
+                self.d41 = Text('de la física moderna.', (100, 150), fontsize= 50)
+                
+                
+                self.g4 = Text('He visto que una bala de cañón aumenta su velocidad ', (self.Introd.w*0.42, self.Introd.h*0.47), fontsize= 40)
+                self.g41 = Text('a medida que cae por una colina. Revisaré primero', (self.Introd.w*0.42, self.Introd.h*0.47+42), fontsize= 40)
+                self.g42 = Text('si esa velocidad es generada por el peso.', (self.Introd.w*0.42, self.Introd.h*0.47+84), fontsize= 40)
+                #self.g23 = Text('--', (self.Introd.w*0.42, self.Introd.h*0.47+126), fontsize= 40)    
+                
+                         
+                self.d4.draw()
+                self.d41.draw()
+                self.g4.draw()
+                self.g41.draw()
+                self.g42.draw()
+                
+                self.drawdp()
+                self.blit_screen()    
+            
+            
             elif self.state == 'Juego':
                 self.Introd.playing = True
-                self.rundisplay1 = False
+                self.rundisplay2 = False
     
             
     def checkstate(self):
@@ -261,17 +283,24 @@ class Dial_2p(Dialogos):
             elif self.state == '2':
                 self.state = '3'
             elif self.state == '3':
+                self.state = '4'
+            elif self.state == '4':
                 self.state = 'Juego'
                 
         elif self.Introd.borrar:
             if self.state == 'Juego':
+                self.state = '4'
+            elif self.state == '4':
                 self.state == '3'
             elif self.state == '3':
                 self.state = '2'
             elif self.state == '2':
                 self.state = '1'
             
-        
+            #Cuando estoy en 4 y oprimo backspace no retrocede
+            # en cambio si estoy en 3 o en 2 sí retrocede 
+            # ¿qué puede ser?
+         
 #------------------------------------------------------------------------------------#
 
 
@@ -293,7 +322,7 @@ class Introd():
               
         self.diag1p = Dial_1p(self)
         self.diag2p = Dial_2p(self)
-        self.curr_diag = self.diag2p #parte de diálogos actual
+        self.curr_diag = self.diag1p #parte de diálogos actual
     
     
     def juego(self):
