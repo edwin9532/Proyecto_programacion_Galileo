@@ -174,6 +174,18 @@ class Dial_2p(Dialogos):
         #frect = fondo.get_rect()
         
         
+        #N: “ Mira, ahí está Galileo, ¿puedes leer su mente?”  
+
+        #G: “¿cómo es posible que tal barbarie la sigamos creyendo después de ya más de dos mil años?. Es absurdo pensar que ´los cuerpos se detienen porque se cansan´ y ´que los cuerpos caen porque quieren estar pegados a la tierra´.”
+
+        #N: “ Tal vez olvide mencionarlo, pero Galileo tiene un genio bastante … particular.”
+
+        #G: “Tiene que haber una forma de explicar porque se mueven las cosas, tal vez por medio de la matemática y la aritmética encuentre algo.” *Pasan unos 3 segundos.
+
+        #N: “Presta atención, aquí es donde Galileo prende la antorcha de la física moderna según Einstein.”
+
+        #G: “He visto que una bala de cañón aumenta su velocidad cuando cae por una colina, revisaré primero si esa velocidad es generada por el peso.” 
+        
                 
         self.rundisplay1 = True
         while self.rundisplay1:
@@ -185,28 +197,37 @@ class Dial_2p(Dialogos):
                 
                 self.Introd.screen.fill(Color(71, 75, 78))
                 self.diabox()
+                self.diabox2()
                 
-                self.d1 = Text('Corre el siglo XVI. Despertaste en los recuerdos del maestro Galileo Galilei,', (100, 100), fontsize= 50)
-                self.d12 = Text('y estoy aquí para ayudarte a entender qué está pasando.', (100, 150), fontsize= 50)
+                self.d1 = Text('Mira, ahí está Galileo, ¿puedes leer su mente?', (100, 100), fontsize= 50)
+                self.g1 = Text(' . . . ', (self.Introd.w*0.42, self.Introd.h*0.47), fontsize= 50)
                 
                 self.d1.draw()
-                self.d12.draw()
+                self.g1.draw()
                 
                 self.drawdp()
-                self.diabox2()
                 self.blit_screen()
                 
             elif self.state == '2':
                 
                 self.diabox()
+                self.diabox2()
                 
-                self.d2 = Text('Estás aquí gracias a tu curiosidad, y, bueno, porque te quedaste dormido ', (100, 100) , fontsize= 50)
-                self.d22 = Text('en tu comedor mientras hacías la tarea de física y pensabas: ', (100, 150) , fontsize= 50)
-                self.d23 = Text('¿por qué los cuerpos caen?', (100, 200) , fontsize= 50)
+                self.d2 = Text('Mira, ahí está Galileo, ¿puedes leer su mente?', (100, 100), fontsize= 50)
+                
+                self.g2 = Text('¡¿Cómo es posible que tal barbarie la sigamos creyendo', (self.Introd.w*0.42, self.Introd.h*0.47), fontsize= 40)
+                self.g21 = Text('después de ya más de dos mil años?! Es absurdo pensar', (self.Introd.w*0.42, self.Introd.h*0.47+40), fontsize= 40)
+                self.g22 = Text('que `los cuerpos se detienen porque se cansan´ y que', (self.Introd.w*0.42, self.Introd.h*0.47+80), fontsize= 40)
+                self.g23 = Text('`caen porque quieren estar pegados a la tierra´,', (self.Introd.w*0.42, self.Introd.h*0.47+120), fontsize= 40)
+                
                 
                 self.d2.draw()
-                self.d22.draw()
-                self.d23.draw()
+                self.g2.draw()
+                self.g21.draw()
+                self.g22.draw()
+                self.g23.draw()
+                #self.d22.draw()
+                #self.d23.draw()
                 
                 self.drawdp()
                 self.blit_screen()

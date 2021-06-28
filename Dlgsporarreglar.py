@@ -67,8 +67,8 @@ class TextM:
             a.screen.blit(self.img, self.rect)
             pygame.display.update()
             pygame.time.wait(55)
-            if n == self.len:
-                break
+            #if n == self.len:
+                #break
         
         #screen.fill(Color(0, 0, 0))
 
