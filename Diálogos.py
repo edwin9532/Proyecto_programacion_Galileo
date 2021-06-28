@@ -226,9 +226,9 @@ class Dial_2p(Dialogos):
                 self.d31 = Text('particular.     ', (100, 150), fontsize= 50)
                 
                 
-                self.g3 = Text('Tiene que haber una forma de explicar por qué se mueven', (self.Introd.w*0.42, self.Introd.h*0.47), fontsize= 40)
-                self.g31 = Text('las cosas. Tal vez por medio de la matemática y la ', (self.Introd.w*0.42, self.Introd.h*0.47+42), fontsize= 40)
-                self.g32 = Text('aritmética encuentre algo.', (self.Introd.w*0.42, self.Introd.h*0.47+84), fontsize= 40)
+                self.g3 = Text('Tiene que haber una forma de explicar por qué se ', (self.Introd.w*0.42, self.Introd.h*0.47), fontsize= 40)
+                self.g31 = Text('mueven las cosas. Tal vez por medio de la ', (self.Introd.w*0.42, self.Introd.h*0.47+42), fontsize= 40)
+                self.g32 = Text('matemática y la aritmética encuentre algo.', (self.Introd.w*0.42, self.Introd.h*0.47+84), fontsize= 40)
                 #self.g23 = Text('--', (self.Introd.w*0.42, self.Introd.h*0.47+126), fontsize= 40)    
                 
                          
