@@ -129,7 +129,7 @@ class Dial_1p(Dialogos):
                 
                 self.d1 = TextM('Corre el siglo XVI. Despertaste en los recuerdos del maestro Galileo Galilei,', (100, 100), fontsize= 50)
                 self.d12 = TextM('y estoy aquí para ayudarte a entender qué está pasando.', (100, 150), fontsize= 50)
-                
+            
                 self.d1.draw()
                 self.d12.draw()
                 
@@ -137,7 +137,7 @@ class Dial_1p(Dialogos):
                 self.d12.tfin()
                 
                 
-                self.blit_screen()
+                #self.blit_screen()
                 
             elif self.state == '2':
                 
