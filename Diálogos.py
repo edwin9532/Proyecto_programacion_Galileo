@@ -216,34 +216,30 @@ class Dial_2p(Dialogos):
                 self.d2 = Text('Mira, ahí está Galileo, ¿puedes leer su mente?', (100, 100), fontsize= 50)
                 
                 self.g2 = Text('¡¿Cómo es posible que tal barbarie la sigamos creyendo', (self.Introd.w*0.42, self.Introd.h*0.47), fontsize= 40)
-                self.g21 = Text('después de ya más de dos mil años?! Es absurdo pensar', (self.Introd.w*0.42, self.Introd.h*0.47+40), fontsize= 40)
-                self.g22 = Text('que `los cuerpos se detienen porque se cansan´ y que', (self.Introd.w*0.42, self.Introd.h*0.47+80), fontsize= 40)
-                self.g23 = Text('`caen porque quieren estar pegados a la tierra´,', (self.Introd.w*0.42, self.Introd.h*0.47+120), fontsize= 40)
-                
+                self.g21 = Text('después de ya más de dos mil años?!  Es absurdo pensar', (self.Introd.w*0.42, self.Introd.h*0.47+42), fontsize= 40)
+                self.g22 = Text('que \'los cuerpos se detienen porque se cansan\' y que', (self.Introd.w*0.42, self.Introd.h*0.47+84), fontsize= 40)
+                self.g23 = Text('\'caen porque quieren estar pegados a la tierra\',', (self.Introd.w*0.42, self.Introd.h*0.47+126), fontsize= 40)               
                 
                 self.d2.draw()
                 self.g2.draw()
                 self.g21.draw()
                 self.g22.draw()
                 self.g23.draw()
-                #self.d22.draw()
-                #self.d23.draw()
-                
+                     
                 self.drawdp()
                 self.blit_screen()
                 
             elif self.state == '3':
                 
                 self.diabox()
+                self.diabox2()
                 
-                self.d3 = Text('Tu deber es entender el razonamiento de Galileo sobre el movimiento de' , (100, 100), fontsize= 50)
-                self.d32 = Text('los cuerpos, y tratar de convencer y, convencerte, de que lo que estás', (100, 150) , fontsize= 50)
-                self.d33 = Text('haciendo es correcto.    ¿Estás preparado?', (100, 200) , fontsize= 50)
-                
+                self.d3 = Text('Tal vez olvide mencionarlo, pero Galileo tiene un genio bastante  .  .  .     ', (100, 100), fontsize= 50)
+                self.d31 = Text('particular.', (100, 150), fontsize= 50)
                 
                 self.d3.draw()
-                self.d32.draw()
-                self.d33.draw()
+                self.d31.draw()
+                #self.d33.draw()
                 
                 self.drawdp()
                 self.blit_screen()
