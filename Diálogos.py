@@ -48,7 +48,7 @@ class Dialogos():
         R = Rect((self.Introd.w*0.03 , self.Introd.h*0.06), (self.Introd.w*0.95, self.Introd.h*0.25))
         pygame.draw.rect(self.Introd.screen, (0, 75, 78), R)
         
-    def diabox2(self): #hacer otro cuadro de texto ahora como globo de diálogo más abajo que
+    def diabox2(self): #hace otro cuadro de texto ahora como globo de diálogo más abajo que
         # muestre lo que galileo está diciendo 
         R = Rect((self.Introd.w*0.4 , self.Introd.h*0.45), (self.Introd.w*0.55, self.Introd.h*0.25))
         pygame.draw.rect(self.Introd.screen, (125, 96, 114), R)
@@ -173,8 +173,7 @@ class Dial_2p(Dialogos):
         #fondo = pygame.transform.scale(fondo,(self.App.w, self.App.h))
         #frect = fondo.get_rect()
         
-        
-                
+                      
         self.rundisplay2 = True
         while self.rundisplay2:
             
@@ -330,7 +329,7 @@ class Introd():
         while self.playing:
             
             self.screen.fill(Color(71, 75, 78))
-            self.asd = Text('aqui va la simulación', (self.w/2, self.h/2))
+            self.asd = Text('aquí va la simulación', (self.w/2, self.h/2))
             self.asd.draw()
             pygame.display.update()
             self.events()

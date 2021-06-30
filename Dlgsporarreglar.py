@@ -214,6 +214,7 @@ class Dial_2p(Dialogos):
         #fondo = pygame.image.load("fondo.png")        -----> para poner el fondo 
         #fondo = pygame.transform.scale(fondo,(self.App.w, self.App.h))
         #frect = fondo.get_rect()
+        
         self.Introd.screen.fill(Color(71, 75, 78))  
         self.rundisplay2 = True
         while self.rundisplay2:
@@ -336,9 +337,7 @@ class Dial_2p(Dialogos):
             elif self.state == '2':
                 self.state = '1'
             
-            #Cuando estoy en 4 y oprimo backspace no retrocede
-            # en cambio si estoy en 3 o en 2 sí retrocede 
-            # ¿qué puede ser?
+            
          
 #------------------------------------------------------------------------------------#
 
@@ -369,7 +368,7 @@ class Introd():
         while self.playing:
             
             self.screen.fill(Color(71, 75, 78))
-            self.asd = Text('aqui va la simulación', (self.w/2, self.h/2))
+            self.asd = Text('aquí va la simulación', (self.w/2, self.h/2))
             self.asd.draw()
             pygame.display.update()
             self.events()
