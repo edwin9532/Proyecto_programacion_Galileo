@@ -45,6 +45,7 @@ class TextM:
         self.fontsize = fontsize
         self.fontcolor = Color(color)
         self.set_font()
+        self.move = True
         #self.render()
             
     def set_font(self):
@@ -54,25 +55,28 @@ class TextM:
         self.img = self.font.render(self.text, True, self.fontcolor)
         self.rect = self.img.get_rect()
         self.rect.topleft = self.pos
+        R=Rect(self.rect.topleft, (self.rect.width, self.rect.height))
+        pygame.draw.rect(a.screen, (229,190,1), R)
         a.screen.blit(self.img, self.rect)
         pygame.display.update()
         
     def draw(self):
-        global n
-        for n in range(0, self.len): 
-            self.img = self.font.render(self.text[0:n], True, self.fontcolor)
-            self.rect = self.img.get_rect()
-            self.rect.topleft = self.pos
-            R=Rect(self.rect.topleft, (self.rect.width, self.rect.height))
-            pygame.draw.rect(a.screen, self.cfondo, R)
-            a.screen.blit(self.img, self.rect)
-            pygame.display.update()
-            pygame.time.wait(55)
-            #if n == self.len:
-                #break
+        while self.move:
+            for n in range(0, self.len): 
+                if n == self.len-1:
+                    self.move = False
+                self.img = self.font.render(self.text[0:n], True, self.fontcolor)
+                self.rect = self.img.get_rect()
+                self.rect.topleft = self.pos
+                R=Rect(self.rect.topleft, (self.rect.width, self.rect.height))
+                pygame.draw.rect(a.screen, self.cfondo, R)
+                a.screen.blit(self.img, self.rect)
+                pygame.display.update()
+                pygame.time.wait(55)
+        self.tfin()        
         
-        #screen.fill(Color(0, 0, 0))
-
+        
+        
 #-----------------------------------------------------------------------------------#
 
 class Dialogos():
@@ -126,7 +130,7 @@ class Dial_1p(Dialogos):
             self.Introd.events()
             self.checkstate()
             
-            if self.state == '1':
+            while self.state == '1':
                 
                 self.Introd.screen.fill(Color(71, 75, 78))
                 self.diabox()
@@ -138,10 +142,9 @@ class Dial_1p(Dialogos):
                 self.d1.draw()
                 self.d12.draw()
                 
-                self.drawdp()
-                self.blit_screen()
+                pygame.display.update()
                 
-            elif self.state == '2':
+            if self.state == '2':
                 
                 self.diabox()
                 self.drawdp()
