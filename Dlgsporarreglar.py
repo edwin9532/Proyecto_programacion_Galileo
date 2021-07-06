@@ -130,7 +130,7 @@ class Dial_1p(Dialogos):
             self.Introd.events()
             self.checkstate()
             
-            while self.state == '1':
+            if self.state == '1':
                 
                 self.Introd.screen.fill(Color(71, 75, 78))
                 self.diabox()
@@ -144,7 +144,7 @@ class Dial_1p(Dialogos):
                 
                 pygame.display.update()
                 
-            if self.state == '2':
+            elif self.state == '2':
                 
                 self.diabox()
                 self.drawdp()
