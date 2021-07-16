@@ -4,9 +4,9 @@ def main():
 
     pygame.init()
     screen,running = pygame.display.set_mode((0,0),pygame.FULLSCREEN),True
-    #pygame.display.set_caption("hm")
-    #ic = pygame.image.load("Imagenes/1.png")
-    #pygame.display.set_icon(ic)
+    pygame.display.set_caption("Mente Brillante")
+    ic = pygame.image.load("Imagenes/Icono.png")
+    pygame.display.set_icon(ic)
     pygame.display.flip()
     info = pygame.display.Info()
     fondo = pygame.image.load("Imagenes/Fondo_11B.jpg")
@@ -56,7 +56,9 @@ def main():
             return t, self.tipo, self.clicked
             
             
-        
+    # Herramientas: Reloj: Intervalo de toma de datos. Dejar puntos en posición de bola.
+    #               Metro: Medir distancias.
+    # Guiar al jugador durante toda la sim (?). Libertad al final.
             
     
     def conv_coord(pos):
@@ -251,4 +253,4 @@ def main():
         #print(ms)
     return False
 
-#main()
+main()
