@@ -140,7 +140,7 @@ class Dial_1p(Dialogos):
                 self.d12 = TextM('y estoy aquí para ayudarte a entender qué está pasando.', (100, 150), fontsize= 50)
                 
                 self.d1.draw()
-                #self.d12.draw()
+                self.d12.draw()
                 
                # pygame.display.update()
                 
