@@ -73,7 +73,7 @@ class TextM:
                 a.screen.blit(self.img, self.rect)
                 pygame.display.update()
                 pygame.time.wait(55)
-        self.tfin()        
+        #self.tfin()        
         
         
         
@@ -140,9 +140,9 @@ class Dial_1p(Dialogos):
                 self.d12 = TextM('y estoy aquí para ayudarte a entender qué está pasando.', (100, 150), fontsize= 50)
                 
                 self.d1.draw()
-                self.d12.draw()
+                #self.d12.draw()
                 
-                pygame.display.update()
+               # pygame.display.update()
                 
             elif self.state == '2':
                 
