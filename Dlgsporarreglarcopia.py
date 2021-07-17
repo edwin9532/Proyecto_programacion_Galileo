@@ -147,7 +147,7 @@ class Dial_1p(Dialogos):
                 self.d1.draw()
                 self.stop = self.d12.draw()
                 
-                #pygame.display.update()
+                self.Introd.reiniciark()
                 
             elif self.state == '2':
                 
@@ -164,7 +164,7 @@ class Dial_1p(Dialogos):
                 self.d22.draw()
                 self.stop = self.d23.draw()
                         
-                #self.blit_screen()
+                self.Introd.reiniciark()
                 
             elif self.state == '3':
                 
@@ -182,7 +182,7 @@ class Dial_1p(Dialogos):
                 self.d32.draw()
                 self.stop = self.d33.draw()
                 
-                #self.blit_screen()
+                self.Introd.reiniciark()
                 
             elif self.state == 'Juego':
                 self.Introd.reiniciark()
@@ -194,7 +194,7 @@ class Dial_1p(Dialogos):
         
         if self.Introd.esc:
             self.Introd.running = False
-            #self.rundisplay = False
+            self.rundisplay = False
         
         elif self.Introd.enter:
             if self.state == '1':
@@ -340,8 +340,8 @@ class Dial_2p(Dialogos):
     def checkstate(self):
         
         if self.Introd.esc:
-            self.Introd.running = False
-            #self.rundisplay = False
+            self.a.running = False
+            self.rundisplay = False
         
         elif self.Introd.enter:
             if self.state == '1':
