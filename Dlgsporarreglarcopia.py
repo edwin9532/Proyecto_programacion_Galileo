@@ -126,8 +126,8 @@ class Dial_1p(Dialogos):
         #frect = fondo.get_rect()
         
         
-        self.rundisplay1 = True
-        while self.rundisplay1:
+        self.rundisplay = True
+        while self.rundisplay:
             
             self.Introd.events()
             self.checkstate()
@@ -187,7 +187,7 @@ class Dial_1p(Dialogos):
             elif self.state == 'Juego':
                 self.Introd.reiniciark()
                 self.Introd.curr_diag = self.Introd.diag2p
-                self.rundisplay1 = False
+                self.rundisplay = False
     
             
     def checkstate(self):
@@ -226,6 +226,7 @@ class Dial_2p(Dialogos):
         Dialogos.__init__(self, Introd)
         
         self.state = '1'
+        self.stop = False
         
     def displaydial(self):
         
@@ -234,8 +235,8 @@ class Dial_2p(Dialogos):
         #frect = fondo.get_rect()
         
         self.Introd.screen.fill(Color(71, 75, 78))  
-        self.rundisplay2 = True
-        while self.rundisplay2:
+        self.rundisplay = True
+        while self.rundisplay:
             
             self.Introd.events()
             self.checkstate()
@@ -246,15 +247,15 @@ class Dial_2p(Dialogos):
                 self.diabox2()
                 self.drawdp()
                 
-                self.d1 = TextM('Mira, ahí está Galileo, ¿puedes leer su mente?         ', (100, 100), fontsize= 50)
-                self.g1 = TextM('  .     .     .  ', (self.Introd.w*0.42, self.Introd.h*0.47), fontsize= 50, cfondo=(125, 96, 114))
+                if self.stop == False :
+                    
+                    self.d1 = TextM('Mira, ahí está Galileo, ¿puedes leer su mente?         ', (100, 100), fontsize= 50)
+                    self.g1 = TextM('  .     .     .  ', (self.Introd.w*0.42, self.Introd.h*0.47), fontsize= 50, cfondo=(125, 96, 114))
                 
                 self.d1.draw()
-                self.g1.draw()
+                self.stop = self.g1.draw()
                 
-                self.state = "2"
-                
-                self.blit_screen()
+                self.Introd.reiniciark()
                 
             elif self.state == '2':
                 
@@ -264,20 +265,20 @@ class Dial_2p(Dialogos):
                 
                 self.d2 = Text('Mira, ahí está Galileo, ¿puedes leer su mente? ', (100, 100), fontsize= 50)
                 
-                self.g2 = TextM('¡¿Cómo es posible que tal barbarie la sigamos creyendo ', (self.Introd.w*0.42, self.Introd.h*0.47), fontsize= 40, cfondo=(125, 96, 114))
-                self.g21 = TextM('después de ya más de dos mil años?!  Es absurdo pensar ', (self.Introd.w*0.42, self.Introd.h*0.47+42), fontsize= 40, cfondo=(125, 96, 114))
-                self.g22 = TextM('que \'los cuerpos se detienen porque se cansan\' y que ', (self.Introd.w*0.42, self.Introd.h*0.47+84), fontsize= 40, cfondo=(125, 96, 114))
-                self.g23 = TextM('\'caen porque quieren estar pegados a la tierra\', ', (self.Introd.w*0.42, self.Introd.h*0.47+126), fontsize= 40, cfondo=(125, 96, 114))               
+                if self.stop == False :
+                    
+                    self.g2 = TextM('¡¿Cómo es posible que tal barbarie la sigamos creyendo ', (self.Introd.w*0.42, self.Introd.h*0.47), fontsize= 40, cfondo=(125, 96, 114))
+                    self.g21 = TextM('después de ya más de dos mil años?!  Es absurdo pensar ', (self.Introd.w*0.42, self.Introd.h*0.47+42), fontsize= 40, cfondo=(125, 96, 114))
+                    self.g22 = TextM('que \'los cuerpos se detienen porque se cansan\' y que ', (self.Introd.w*0.42, self.Introd.h*0.47+84), fontsize= 40, cfondo=(125, 96, 114))
+                    self.g23 = TextM('\'caen porque quieren estar pegados a la tierra\', ', (self.Introd.w*0.42, self.Introd.h*0.47+126), fontsize= 40, cfondo=(125, 96, 114))               
                 
                 self.d2.draw()
                 self.g2.draw()
                 self.g21.draw()
                 self.g22.draw()
-                self.g23.draw()
-                
-                self.state = "3"
+                self.stop = self.g23.draw()
                      
-                self.blit_screen()
+                self.Introd.reiniciark()
                 
             elif self.state == '3':
                 
@@ -285,25 +286,25 @@ class Dial_2p(Dialogos):
                 self.diabox2()
                 self.drawdp()
                 
-                self.d3 = TextM('Tal vez olvidé mencionarlo, pero Galileo tiene un genio bastante  .  .  .     ', (100, 100), fontsize= 50)
-                self.d31 = TextM('particular.  ', (100, 150), fontsize= 50)
+                if self.stop == False :
+                    
+                    self.d3 = TextM('Tal vez olvidé mencionarlo, pero Galileo tiene un genio bastante  .  .  .     ', (100, 100), fontsize= 50)
+                    self.d31 = TextM('particular.  ', (100, 150), fontsize= 50)
                 
                 
-                self.g3 = TextM('Tiene que haber una forma de explicar por qué se ', (self.Introd.w*0.42, self.Introd.h*0.47), fontsize= 40, cfondo=(125, 96, 114))
-                self.g31 = TextM('mueven las cosas. Tal vez por medio de la ', (self.Introd.w*0.42, self.Introd.h*0.47+42), fontsize= 40, cfondo=(125, 96, 114))
-                self.g32 = TextM('matemática y la aritmética encuentre algo.  ', (self.Introd.w*0.42, self.Introd.h*0.47+84), fontsize= 40, cfondo=(125, 96, 114))
-                #self.g23 = Text('--', (self.Introd.w*0.42, self.Introd.h*0.47+126), fontsize= 40)    
+                    self.g3 = TextM('Tiene que haber una forma de explicar por qué se ', (self.Introd.w*0.42, self.Introd.h*0.47), fontsize= 40, cfondo=(125, 96, 114))
+                    self.g31 = TextM('mueven las cosas. Tal vez por medio de la ', (self.Introd.w*0.42, self.Introd.h*0.47+42), fontsize= 40, cfondo=(125, 96, 114))
+                    self.g32 = TextM('matemática y la aritmética encuentre algo.  ', (self.Introd.w*0.42, self.Introd.h*0.47+84), fontsize= 40, cfondo=(125, 96, 114))
+                    #self.g33 = Text('--', (self.Introd.w*0.42, self.Introd.h*0.47+126), fontsize= 40)    
                 
                          
                 self.d3.draw()
                 self.d31.draw()
                 self.g3.draw()
                 self.g31.draw()
-                self.g32.draw()
-                
-                self.state = "4"
+                self.stop = self.g32.draw()
               
-                self.blit_screen()
+                self.Introd.reiniciark()
             
             elif self.state == '4':
                 
@@ -311,30 +312,29 @@ class Dial_2p(Dialogos):
                 self.diabox2()
                 self.drawdp()
                 
-                self.d4 = TextM('Presta atención, aquí es donde, según Einstein, Galileo prende la antorcha ', (100, 100), fontsize= 50)
-                self.d41 = TextM('de la física moderna. ', (100, 150), fontsize= 50)
+                if self.stop == False:
+                    self.d4 = TextM('Presta atención, aquí es donde, según Einstein, Galileo prende la antorcha ', (100, 100), fontsize= 50)
+                    self.d41 = TextM('de la física moderna. ', (100, 150), fontsize= 50)
                 
                 
-                self.g4 = TextM('He visto que una bala de cañón aumenta su velocidad ', (self.Introd.w*0.42, self.Introd.h*0.47), fontsize= 40, cfondo=(125, 96, 114))
-                self.g41 = TextM('a medida que cae por una colina. Revisaré primero ', (self.Introd.w*0.42, self.Introd.h*0.47+42), fontsize= 40, cfondo=(125, 96, 114))
-                self.g42 = TextM('si esa velocidad es generada por el peso.   ', (self.Introd.w*0.42, self.Introd.h*0.47+84), fontsize= 40, cfondo=(125, 96, 114))
-                #self.g23 = Text('--', (self.Introd.w*0.42, self.Introd.h*0.47+126), fontsize= 40)    
+                    self.g4 = TextM('He visto que una bala de cañón aumenta su velocidad ', (self.Introd.w*0.42, self.Introd.h*0.47), fontsize= 40, cfondo=(125, 96, 114))
+                    self.g41 = TextM('a medida que cae por una colina. Revisaré primero ', (self.Introd.w*0.42, self.Introd.h*0.47+42), fontsize= 40, cfondo=(125, 96, 114))
+                    self.g42 = TextM('si esa velocidad es generada por el peso.   ', (self.Introd.w*0.42, self.Introd.h*0.47+84), fontsize= 40, cfondo=(125, 96, 114))
+                    #self.g43 = Text('--', (self.Introd.w*0.42, self.Introd.h*0.47+126), fontsize= 40)    
                 
                          
                 self.d4.draw()
                 self.d41.draw()
                 self.g4.draw()
                 self.g41.draw()
-                self.g42.draw()
+                self.stop = self.g42.draw()
                 
-                self.state = "Juego"
-                
-                self.blit_screen()    
+                self.Introd.reiniciark()  
             
             
             elif self.state == 'Juego':
                 self.Introd.playing = True
-                self.rundisplay2 = False
+                self.rundisplay = False
     
             
     def checkstate(self):
@@ -346,22 +346,30 @@ class Dial_2p(Dialogos):
         elif self.Introd.enter:
             if self.state == '1':
                 self.state = '2'
+                self.stop = False
             elif self.state == '2':
                 self.state = '3'
+                self.stop = False
             elif self.state == '3':
                 self.state = '4'
+                self.stop = False
             elif self.state == '4':
                 self.state = 'Juego'
+                self.stop = False
                 
         elif self.Introd.borrar:
             if self.state == 'Juego':
                 self.state = '4'
+                self.stop = False
             elif self.state == '4':
                 self.state == '3'
+                self.stop = False
             elif self.state == '3':
                 self.state = '2'
+                self.stop = False
             elif self.state == '2':
                 self.state = '1'
+                self.stop = False
             
             
          
