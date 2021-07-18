@@ -238,11 +238,11 @@ class Dial_2p(Dialogos):
         
         self.x100 = self.Introd.w*0.069
         self.y100 = self.Introd.h*0.11
-        self.f50 = round(self.Introd.h*0.055)
+        self.f50 = round(self.Introd.w*0.035)
         
         self.xdg = self.Introd.w*0.42
         self.ydg = self.Introd.h*0.47
-        self.f40 = round(self.Introd.h*0.044)
+        self.f40 = round(self.Introd.w*0.028)
                
         
         self.Introd.screen.fill(Color(71, 75, 78))  
