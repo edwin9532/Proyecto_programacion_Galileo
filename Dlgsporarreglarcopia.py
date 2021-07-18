@@ -263,7 +263,7 @@ class Dial_2p(Dialogos):
                 self.diabox2()
                 self.drawdp()
                 
-                self.d2 = Text('Mira, ahí está Galileo, ¿puedes leer su mente? ', (100, 100), fontsize= 50)
+                self.d2 = Text('Mira, ahí está Galileo, ¿puedes leer su mente? ', (self.Introd.w*0.069, self.Introd.h*0.11), fontsize= round(self.Introd.h*0.055))
                 
                 if self.stop == False :
                     
