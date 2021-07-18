@@ -99,7 +99,7 @@ class Dialogos():
         pygame.draw.rect(self.Introd.screen, (125, 96, 114), R)
         
     def drawdp(self): #muestra el mensaje presione enter para continuar
-        self.msj = Text('Presione enter para continuar', (self.mw*1.50 , self.mh*0.7), fontsize=30)
+        self.msj = Text('Presione enter para continuar', (self.mw*1.50 , self.mh*0.7), fontsize=round(self.Introd.w*0.021))
         Re = Rect((self.msj.pos[0]-20, self.msj.pos[1]-10),(self.msj.rect.width+40, self.msj.rect.height+10))
         pygame.draw.rect(self.Introd.screen, (0, 0, 0), Re)
         self.msj.draw()
