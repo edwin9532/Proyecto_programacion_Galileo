@@ -351,7 +351,7 @@ class Dial_2p(Dialogos):
     def checkstate(self):
         
         if self.Introd.esc:
-            self.a.running = False
+            self.Introd.running = False
             self.rundisplay = False
         
         elif self.Introd.enter:
