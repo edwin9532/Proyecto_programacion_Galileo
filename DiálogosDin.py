@@ -36,7 +36,7 @@ class Text:
 
 class TextM:
 
-    def __init__(self, text, pos, fontsize=90, fontname='BebasNeue.otf', color='white', cfondo=(0, 75, 78)):
+    def __init__(self, text, pos, fontsize=90, fontname='BebasNeue.otf', color='black', cfondo=(0, 75, 78)):
         self.text = text
         self.len = len(self.text)+1
         self.pos = pos
@@ -94,9 +94,15 @@ class Dialogos():
         pygame.draw.rect(self.Introd.screen, (0, 75, 78), R)
         
     def diabox2(self): #hacer otro cuadro de texto ahora como globo de diálogo más abajo que
-        # muestre lo que galileo está diciendo 
-        R = Rect((self.Introd.w*0.4 , self.Introd.h*0.45), (self.Introd.w*0.55, self.Introd.h*0.25))
-        pygame.draw.rect(self.Introd.screen, (125, 96, 114), R)
+        # muestre lo que galileo está diciendo
+        nube = pygame.image.load("Imagenes/Nube.png")
+        nube = pygame.transform.scale(nube, (round(self.Introd.w*0.67), round(self.Introd.h*0.42)))
+        nrect = nube.get_rect()
+        nrect.topleft = (self.Introd.w*0.35 , self.Introd.h*0.4)
+        self.Introd.screen.blit(nube, nrect)
+         
+        #R = Rect((self.Introd.w*0.4 , self.Introd.h*0.45), (self.Introd.w*0.55, self.Introd.h*0.25))
+        #pygame.draw.rect(self.Introd.screen, (125, 96, 114), R)
         
     def drawdp(self): #muestra el mensaje presione enter para continuar
         self.msj = Text('Presione enter para continuar', (self.mw*1.50 , self.mh*0.7), fontsize=round(self.Introd.w*0.021))
@@ -236,10 +242,7 @@ class Dial_2p(Dialogos):
         #fondo = pygame.transform.scale(fondo,(self.App.w, self.App.h))
         #frect = fondo.get_rect()
         
-        #nube = pygame.image.load("Imagenes/Nube.png")
-        #nube = pygame.transform.scale(nube, (round(self.Introd.w*0.7), round(self.Introd.h*0.4)))
-        #nrect = nube.get_rect()
-        #nrect.topleft = (self.Introd.w*0.2 , self.Introd.h*0.41)
+        
         
         
         self.x100 = self.Introd.w*0.069
@@ -249,7 +252,7 @@ class Dial_2p(Dialogos):
         self.xdg = self.Introd.w*0.42
         self.ydg = self.Introd.h*0.47
         self.f40 = round(self.Introd.w*0.027)
-               
+              
         
         self.Introd.screen.fill(Color(71, 75, 78))  
         self.rundisplay = True
@@ -263,12 +266,12 @@ class Dial_2p(Dialogos):
                 self.diabox()
                 self.diabox2()
                 self.drawdp()
-                #self.Introd.screen.blit(nube, nrect)
+                
                 
                 if self.stop == False :
                     
-                    self.d1 = TextM('Mira, ahí está Galileo, ¿puedes leer su mente?         ', (self.x100, self.y100), fontsize= self.f50)
-                    self.g1 = TextM('  .     .     .  ', (self.xdg, self.ydg), fontsize= self.f50, cfondo=(125, 96, 114))
+                    self.d1 = TextM('Mira, ahí está Galileo, ¿puedes leer su mente?         ', (self.x100, self.y100), fontsize= self.f50, color='white')
+                    self.g1 = TextM('  .     .     .  ', (self.xdg, self.ydg), fontsize= self.f50, cfondo=(255, 255, 255))
                 
                 self.d1.draw()
                 self.stop = self.g1.draw()
@@ -285,10 +288,10 @@ class Dial_2p(Dialogos):
                 
                 if self.stop == False :
                     
-                    self.g2 = TextM('¡¿Cómo es posible que tal barbarie la sigamos creyendo ', (self.xdg, self.ydg), fontsize= self.f40, cfondo=(125, 96, 114))
-                    self.g21 = TextM('después de ya más de dos mil años?!  Es absurdo pensar ', (self.xdg, self.ydg+self.f40), fontsize= self.f40, cfondo=(125, 96, 114))
-                    self.g22 = TextM('que \'los cuerpos se detienen porque se cansan\' y que ', (self.xdg, self.ydg+2*self.f40), fontsize= self.f40, cfondo=(125, 96, 114))
-                    self.g23 = TextM('\'caen porque quieren estar pegados a la tierra\', ', (self.xdg, self.ydg+3*self.f40), fontsize= self.f40, cfondo=(125, 96, 114))               
+                    self.g2 = TextM('¡¿Cómo es posible que tal barbarie la sigamos creyendo ', (self.xdg, self.ydg), fontsize= self.f40, cfondo=(255, 255, 255))
+                    self.g21 = TextM('después de ya más de dos mil años?!  Es absurdo pensar ', (self.xdg, self.ydg+self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
+                    self.g22 = TextM('que \'los cuerpos se detienen porque se cansan\' y que ', (self.xdg, self.ydg+2*self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
+                    self.g23 = TextM('\'caen porque quieren estar pegados a la tierra\', ', (self.xdg, self.ydg+3*self.f40), fontsize= self.f40, cfondo=(255, 255, 255))               
                 
                 self.d2.draw()
                 self.g2.draw()
@@ -306,13 +309,13 @@ class Dial_2p(Dialogos):
                 
                 if self.stop == False :
                     
-                    self.d3 = TextM('Tal vez olvidé mencionarlo, pero Galileo tiene un genio bastante  .  .  .     ', (self.x100, self.y100), fontsize= self.f50)
-                    self.d31 = TextM('particular.  ', (self.x100, self.y100+self.f50), fontsize= self.f50)
+                    self.d3 = TextM('Tal vez olvidé mencionarlo, pero Galileo tiene un genio bastante  .  .  .     ', (self.x100, self.y100), fontsize= self.f50, color='white')
+                    self.d31 = TextM('particular.  ', (self.x100, self.y100+self.f50), fontsize= self.f50, color='white')
                 
                 
-                    self.g3 = TextM('Tiene que haber una forma de explicar por qué se ', (self.xdg, self.ydg), fontsize= self.f40, cfondo=(125, 96, 114))
-                    self.g31 = TextM('mueven las cosas. Tal vez por medio de la ', (self.xdg, self.ydg+self.f40), fontsize= self.f40, cfondo=(125, 96, 114))
-                    self.g32 = TextM('matemática y la aritmética encuentre algo.  ', (self.xdg, self.ydg+2*self.f40), fontsize= self.f40, cfondo=(125, 96, 114))
+                    self.g3 = TextM('Tiene que haber una forma de explicar por qué se ', (self.xdg, self.ydg), fontsize= self.f40, cfondo=(255, 255, 255))
+                    self.g31 = TextM('mueven las cosas. Tal vez por medio de la ', (self.xdg, self.ydg+self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
+                    self.g32 = TextM('matemática y la aritmética encuentre algo.  ', (self.xdg, self.ydg+2*self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
                     #self.g33 = Text('--', (self.xdg, self.ydg+3*self.f40), fontsize= self.f40)    
                 
                          
@@ -331,13 +334,13 @@ class Dial_2p(Dialogos):
                 self.drawdp()
                 
                 if self.stop == False:
-                    self.d4 = TextM('Presta atención, aquí es donde, según Einstein, Galileo prende la antorcha ',  (self.x100, self.y100), fontsize= self.f50)
-                    self.d41 = TextM('de la física moderna. ',  (self.x100, self.y100+self.f50), fontsize= self.f50)
+                    self.d4 = TextM('Presta atención, aquí es donde, según Einstein, Galileo prende la antorcha ',  (self.x100, self.y100), fontsize= self.f50, color='white')
+                    self.d41 = TextM('de la física moderna. ',  (self.x100, self.y100+self.f50), fontsize= self.f50, color='white')
                 
                 
-                    self.g4 = TextM('He visto que una bala de cañón aumenta su velocidad ', (self.xdg, self.ydg), fontsize= self.f40, cfondo=(125, 96, 114))
-                    self.g41 = TextM('a medida que cae por una colina. Revisaré primero ', (self.xdg, self.ydg+self.f40), fontsize= self.f40, cfondo=(125, 96, 114))
-                    self.g42 = TextM('si esa velocidad es generada por el peso.   ', (self.xdg, self.ydg+2*self.f40), fontsize= self.f40, cfondo=(125, 96, 114))
+                    self.g4 = TextM('He visto que una bala de cañón aumenta su velocidad ', (self.xdg, self.ydg), fontsize= self.f40, cfondo=(255, 255, 255))
+                    self.g41 = TextM('a medida que cae por una colina. Revisaré primero ', (self.xdg, self.ydg+self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
+                    self.g42 = TextM('si esa velocidad es generada por su peso.   ', (self.xdg, self.ydg+2*self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
                     #self.g43 = Text('--', self.xdg, self.ydg+3*self.f40), fontsize= self.f40)    
                 
                          
