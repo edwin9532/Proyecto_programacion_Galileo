@@ -44,25 +44,33 @@ PD3: Cabe resaltar que el juego será en 2 dimensiones :,v
 
 - Galileo : “He visto que una bala de cañón aumenta su velocidad cuando cae por una colina, revisaré primero si esa velocidad es generada por el peso.” 
 
+*TERCERA SECUENCIA DE DIALOGOS
 
-PD1: Los diálogos son como los del pokemon :v , algo sencillo y cambia de diálogo con una tecla. O con el tiempo como ya se mencionó. 
+-	Narrador : “Comenzaremos por mostrarte el primer experimento de Galileo. La caída libre.”
+-	Galileo: "Teóricamente si lanzo una roca muy pesada y un acumulado de heno al mismo tiempo, caerá más rápido la piedra. De tal forma que la balanza se incline hacia la roca."
+-	Narrador: "La intuición nos hizo pensar eso, veamos que hará Galileo."
+-	Galileo: "Subiré a la torre de Pisa y lanzare una roca y un poco de heno."
+- Narrador: "Presta atención al tiempo de la caida de cada objeto, vamos a suponer que no hay resitencia al aire."
 
-PD2: Igual que en el anterior PD2 podemos poner a Galileo a caminar de una punta de la pantalla a otra en el eje x, como si estuviera “pensando”. Mientras pasa la secuencia de dialogos.
+•	CUARTA SECUENCIA DE DIALOGOS: CONCLUSIONES CAIDA LIBRE
 
-*TERCERA SECUENCIA DE DIÁLOGOS: Plano Inclinado*
+-	Después de 3 simulaciones se le dará a siguiente.
+-	Narrador: "Bien, veamos a que conclusiones llego Galileo."
+-	Galileo: "Para mi sorpresa, la roca y el heno caen al mismo tiempo; y al probar con otros objetos con diferentes pesos pasa lo mismo, caen al mismo tiempo. Puedo concluir que los cuerpos caes independientemente de cuanta masa tienen."
+-	Narrador: "Galileo tiempo después describió este movimiento algebraicamente, con lo cual quiso comprobar que también una pluma y una roca caen al mismo tiempo, pero esto es difícil de probar debido a la resistencia del aire en el medio."
+-	Galileo: "Estoy convencido de que si no hubiese resistencia al aire una pluma y una roca caerán al mismo tiempo."
 
-- En la pantalla de carga negra podremos buscar un sonido de una ferretería o como cortando madera y martillando clavos. Y lo añadimos.
+
+*QUINTA SECUENCIA DE DIÁLOGOS: Plano Inclinado*
 
 - Galileo : “He diseñado un plano inclinado, en el cual podré cambiar el ángulo de inclinación, y tengo varios objetos para comparar sus caídas.”
-
-- Luego aparece el plano inclinado que ya se diseñó.
- 
 - Narrador : “Por facilidad hemos añadido un reloj que te puede ayudar, trata de entender qué pasa con cada objeto y toma nota de si la caída de cada objeto depende de su masa o no. O si del ángulo de inclinación. Recuerda que Galileo dejará caer cada objeto.”
 
-PD1: La gracia y lo que se me ocurre aquí, es en el cuadro donde aparece el plano inclinado, puede ser en la parte superior derecha, el jugador pueda escoger entre una bola de madera, una roca y una bola de acero. Tal que los pesos sean de esta manera : madera < roca < acero, y que pueda cambiar el radio de estos ya sea con la barrita que ya está o colocarle radios específicos. Y el plano inclinado ponerle un ángulo entre 0° < ángulo < 90° con una longitud fija que no ocupe toda la pantalla :,v
 
-PD2 : Para esta parte basta colocarle un fondo bomnito, pero pues como hasta ahora estamos colocando fondos en bibliotecas y laboratorios, podremos usar la misma que ya hemos usado o una similar. 
-*TERCERA SECUENCIA DE DIÁLOGOS: Pendulo simple*
+
+
+ 
+*SEXTA SECUENCIA DE DIÁLOGOS: Pendulo simple*
 -Galileo se encuentra en la iglesia y observa el candelabro oscilando y un sonido  suena en su mente (tic tac) y observa que el movimiento se repite. Entonces, sale corriendo a su laboratorio y construye su propio pendulo con una cuerda y una esfera de metal colgada del techo.
 -Galileo:"¿Cómo podre hacer que cada ciclo de ida y vuelta tarde lo mismo que el ritmo de mi pulso?"
 -Narrador:"como puedes ver solo puedes cambiar dos cosas: la masa de la esfera o su longitud."
