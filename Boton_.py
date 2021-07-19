@@ -3,10 +3,11 @@ import pygame
 # imagen= botón normal, imagen_p= Botón cuando mouse encima, scale= Factor para ajustar el tamaño de la imagen
 
 class Boton():
-    def __init__(self, x, y, imagen, imagen_p, scale, txt, font_name="BebasNeue.otf",font_size=25):
+    def __init__(self, x, y, imagen, imagen_p, scale, txt, font_name="BebasNeue.otf",font_size=25,font_color=(0,0,0)):
         self.txt = txt
         self.font_name = font_name
         self.font_size = font_size
+        self.font_color = font_color
         self.font = pygame.font.SysFont(self.font_name, self.font_size, False)
         self.scale = scale
         width = imagen.get_width()
@@ -34,7 +35,7 @@ class Boton():
         if pygame.mouse.get_pressed()[0] == 0:
             self.clicked = False
 
-        txt = self.font.render(self.txt, 1, (0,0,0))
+        txt = self.font.render(self.txt, 1, self.font_color)
         txt_rect = txt.get_rect(center=(self.rect.x+self.imagen.get_width() /2, self.rect.y+self.imagen.get_height()/2))
         surface.blit(txt, txt_rect)
         

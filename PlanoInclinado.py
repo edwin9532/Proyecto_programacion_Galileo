@@ -56,10 +56,6 @@ def main():
             return t, self.tipo, self.clicked
             
             
-    # Herramientas: Reloj: Intervalo de toma de datos. Dejar puntos en posición de bola.
-    #               Metro: Medir distancias.
-    # Guiar al jugador durante toda la sim (?). Libertad al final.
-            
     
     def conv_coord(pos):
         return pos[0], info.current_h-pos[1]
@@ -155,10 +151,13 @@ def main():
     # Botones
     B = pygame.image.load('Imagenes/Boton.png').convert_alpha()
     Bp = pygame.image.load('Imagenes/Boton_p.png').convert_alpha()
+    B1 = pygame.image.load('Imagenes/Boton1.png').convert_alpha()
+    Bp1 = pygame.image.load('Imagenes/Boton1_p.png').convert_alpha()
     
     start = Boton_.Boton(info.current_w-70,230, B, Bp, 0.25,"Simular")
     restart = Boton_.Boton(info.current_w-70,275, B, Bp, 0.25,"Reiniciar")
     material = Boton_.Boton(info.current_w-70,320, B, Bp, 0.25,"Material")
+    siguiente = Boton_.Boton(info.current_w-70, 380, B1, Bp1, 0.3, "Siguiente",font_size=30,font_color=(255,255,255)) # No sé si se vea mejor negro que blanco.
     
     # Objetos iniciales y de borde
     bola_ = bola(space,(rm,rm),rm,masa.val)
@@ -173,6 +172,8 @@ def main():
     #Plano = pygame.image.load("Imagenes/Plano3.jpg")
     
     simulando = False
+    cont = [0,0,0,0,0]
+    sig = 0
     escogido = False
     
     while running:
@@ -185,6 +186,8 @@ def main():
                 s_pos = pygame.mouse.get_pos()
                 for s in slides:
                     if s.button_rect.collidepoint(s_pos) and not t:
+                        if not s.hit:
+                            cont[slides.index(s)]+=1
                         s.hit,c = True,False
             elif event.type == pygame.MOUSEBUTTONUP and not t:
                 for s in slides:
@@ -230,14 +233,27 @@ def main():
                 if (bola_._id in space._shapes): space.remove(bola_)
                 bola_ = bola(space,(r,int(altura.val)+r*aj[int(altura.val)]),r,masa.val)
                 escogido = False
+                cont[3]+=1
         
         if start.draw(screen) and not t:
             if block._id in space._shapes:
                 space.remove(block)
                 simulando = True
+                cont[4]+=1
         if restart.draw(screen) and not t:
             masa.hit = True
             simulando = False
+            
+        if sig != 5:
+            for co in cont:
+                if co>=2: sig+=1
+                else: sig = 0
+        if sig == 5:
+            if siguiente.draw(screen) and not t:
+                print("Siguiente")
+                # Aquí pasaría al siguiente nivel. 
+                # Se activa el botón una vez se haya modificado mínimo 2 veces la masa, la altura, la longitud, y el material, y se haya simluado mínimo 2 veces.
+        else: sig=0
             
         pygame.gfxdraw.textured_polygon(screen, [conv_coord((0,0)),conv_coord(pos_plano[0]),conv_coord(pos_plano[1])],Plano,0,0)
         
