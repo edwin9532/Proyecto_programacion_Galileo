@@ -176,6 +176,11 @@ def main():
     sig = 0
     escogido = False
     
+    tiempo = 0
+    fontcro = pygame.font.SysFont("BebasNeue.otf", 23, False)
+    pulse = 0
+    ini = True
+    
     while running:
         
         for event in pygame.event.get():
@@ -209,6 +214,7 @@ def main():
                 bola_ = bola(space,(r,int(altura.val)+r*aj[int(altura.val)]),r,masa.val)
                 block = plano(space,[(r*2,int(altura.val)+r),(r*2,0)],0)
                 simulando = False
+                ini = True
                 
         nums(masa,30," kg")
         nums(altura,90," m")
@@ -238,11 +244,11 @@ def main():
         if start.draw(screen) and not t:
             if block._id in space._shapes:
                 space.remove(block)
-                simulando = True
+                simulando, tiempo = True, 0
                 cont[4]+=1
         if restart.draw(screen) and not t:
             masa.hit = True
-            simulando = False
+            simulando, ini = False, True
             
         if sig != 5:
             for co in cont:
@@ -259,9 +265,35 @@ def main():
         
         angulo = font.render("Ángulo: "+str(round(np.arctan(altura.val/longitud.val)*180/np.pi,1))+"°", 1, (0,0,0))
         screen.blit(angulo, (info.current_w-235, 190))
-            
         
         ms = clock.tick(fps)
+        
+        if ini: fontcro = pygame.font.SysFont("BebasNeue.otf", 23, False)
+        if simulando:
+            tiempo+=ms
+            fontcro = pygame.font.SysFont("BebasNeue.otf", 23, False)
+            pulse = 0
+        elif not simulando and not ini:
+            if pulse >= 10 and pulse <20:
+                fontcro = pygame.font.SysFont("BebasNeue.otf", 23, False)
+                pulse+=1
+            elif pulse <10:
+                fontcro = pygame.font.SysFont("BebasNeue.otf", 26, False)
+                pulse+=1
+            elif pulse == 20:
+                pulse=0
+            
+        
+        if bola_.body.position.y <= r or (bola_.body.position.x >= longitud.val-r and longitud.val > info.current_w-2.5*r):
+            simulando, ini = False, False
+        
+        crono = fontcro.render(str(round(tiempo/1000,2))+"s", 1, (0,0,0))
+        # El tiempo de simulaciones idénticas difiere en el segundo decimal, no sé si dejarlo con 2 decimales o solo 1.
+        screen.blit(font.render("Tiempo", 1, (0,0,0)), (info.current_w-240, 225))
+        screen.blit(font.render("de caída:", 1, (0,0,0)), (info.current_w-240, 240))
+        screen.blit(crono, (info.current_w-170, 240))
+            
+        
         if (bola_._id in space._shapes) or not t: draw_bola(bola_,r,tipo)
         draw_plano(plano_)
         space.step(1/fps)
