@@ -98,7 +98,7 @@ class Dialogos():
         nube = pygame.image.load("Imagenes/Nube.png")
         nube = pygame.transform.scale(nube, (round(self.Introd.w*0.67), round(self.Introd.h*0.42)))
         nrect = nube.get_rect()
-        nrect.topleft = (self.Introd.w*0.35 , self.Introd.h*0.4)
+        nrect.topleft = (self.Introd.w*0.35 , self.Introd.h*0.38)
         self.Introd.screen.blit(nube, nrect)
          
         #R = Rect((self.Introd.w*0.4 , self.Introd.h*0.45), (self.Introd.w*0.55, self.Introd.h*0.25))
@@ -241,9 +241,6 @@ class Dial_2p(Dialogos):
         #fondo = pygame.image.load("fondo.png")        -----> para poner el fondo 
         #fondo = pygame.transform.scale(fondo,(self.App.w, self.App.h))
         #frect = fondo.get_rect()
-        
-        
-        
         
         self.x100 = self.Introd.w*0.069
         self.y100 = self.Introd.h*0.11
