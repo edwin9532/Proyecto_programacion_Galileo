@@ -236,6 +236,12 @@ class Dial_2p(Dialogos):
         #fondo = pygame.transform.scale(fondo,(self.App.w, self.App.h))
         #frect = fondo.get_rect()
         
+        #nube = pygame.image.load("Imagenes/Nube.png")
+        #nube = pygame.transform.scale(nube, (round(self.Introd.w*0.7), round(self.Introd.h*0.4)))
+        #nrect = nube.get_rect()
+        #nrect.topleft = (self.Introd.w*0.2 , self.Introd.h*0.41)
+        
+        
         self.x100 = self.Introd.w*0.069
         self.y100 = self.Introd.h*0.11
         self.f50 = round(self.Introd.w*0.034)
@@ -257,6 +263,7 @@ class Dial_2p(Dialogos):
                 self.diabox()
                 self.diabox2()
                 self.drawdp()
+                #self.Introd.screen.blit(nube, nrect)
                 
                 if self.stop == False :
                     
@@ -405,7 +412,7 @@ class Introd():
               
         self.diag1p = Dial_1p(self)
         self.diag2p = Dial_2p(self)
-        self.curr_diag = self.diag1p #parte de diálogos actual
+        self.curr_diag = self.diag2p #parte de diálogos actual
     
     
     def juego(self):
