@@ -272,8 +272,8 @@ def main():
         if simulando:
             tiempo+=ms
             fontcro = pygame.font.SysFont("BebasNeue.otf", 23, False)
-            pulse = 0
-        elif not simulando and not ini:
+            pulse,ps = 0,0
+        elif not simulando and not ini and ps<=10:
             if pulse >= 10 and pulse <20:
                 fontcro = pygame.font.SysFont("BebasNeue.otf", 23, False)
                 pulse+=1
@@ -282,6 +282,7 @@ def main():
                 pulse+=1
             elif pulse == 20:
                 pulse=0
+                ps+=1
             
         
         if bola_.body.position.y <= r or (bola_.body.position.x >= longitud.val-r and longitud.val > info.current_w-2.5*r):
