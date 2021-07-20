@@ -484,17 +484,17 @@ class Dial_3p(Dialogos):
                 if self.stop == False :
                     
                     self.g2 = TextM('¡He diseñado un plano inclinado! Éste me servirá  ', (self.x100, self.y100), fontsize= self.f40, cfondo=(255, 255, 255))
-                    self.g21 = TextM('para realizar mis experimentos, ya que puedo:', (self.x100, self.y100+self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
-                    #self.g22 = TextM('que \'los cuerpos se detienen porque se cansan\' y que ', (self.x100, self.y100+2*self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
+                    self.g21 = TextM('para realizar mis experimentos ya que puedo ', (self.x100, self.y100+self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
+                    self.g22 = TextM('cambiarle varias características. Por ejemplo: ', (self.x100, self.y100+2*self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
                     #self.g23 = TextM('\'caen porque quieren estar pegados a la tierra\', ', (self.x100, self.y100+3*self.f40), fontsize= self.f40, cfondo=(255, 255, 255))               
                 
                 #self.d2.draw()
                 self.g2.draw()
-                self.stop = self.g21.draw()
+                self.g21.draw()
+                self.stop = self.g22.draw()
                 #self.g22.draw()
                 #self.stop = self.g23.draw()
-                
-                
+                     
                 self.Introd.reiniciark()
                 
             elif self.state == '3':
