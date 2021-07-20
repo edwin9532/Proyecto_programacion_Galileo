@@ -145,9 +145,11 @@ class Dial_1p(Dialogos):
         
     def displaydial(self):
         
-        #fondo = pygame.image.load("fondo.png")        #---> para poner el fondo 
-        #fondo = pygame.transform.scale(fondo,(self.App.w, self.App.h))
-        #frect = fondo.get_rect()
+        fondo = pygame.image.load("Imagenes/Escenario.png")       
+        fondo = pygame.transform.scale(fondo,(self.Introd.w, self.Introd.h))
+        frect = fondo.get_rect()
+        
+        
         self.x100 = self.Introd.w*0.069
         self.y100 = self.Introd.h*0.11
         self.f50 = round(self.Introd.w*0.034)
@@ -161,7 +163,8 @@ class Dial_1p(Dialogos):
             
             if self.state == '1':
                 
-                self.Introd.screen.fill(Color(71, 75, 78))
+                #self.Introd.screen.fill(Color(71, 75, 78))
+                self.Introd.screen.blit(fondo, frect)
                 self.diabox()
                 self.drawdp()
                 
@@ -410,16 +413,6 @@ class Dial_2p(Dialogos):
 #------------------------------------------------------------------------------------#
 
 
-    
-# "Modificar su altura y longitud (y de esta forma variar el ángulo de inclinación),"(flechas)
-
-# "Y usar diferentes materiales para las esferas que van a caer, cada material tiene un rango
-# de masa distinto ¡Empecemos!
-
-#Narrador : “Por facilidad hemos añadido un reloj que te puede ayudar. Trata de entender 
-# qué pasa con cada objeto y toma nota de si la caída de cada objeto depende de su masa o no. 
-# O si del ángulo de inclinación. Recuerda que Galileo dejará caer cada objeto.”
-
 class Dial_3p(Dialogos):
     
     def __init__(self, Introd):   
@@ -430,17 +423,21 @@ class Dial_3p(Dialogos):
         
     def displaydial(self):
         
-        fondo = pygame.image.load("Imagenes/ftutpi.png")       # -----> para poner el fondo 
-        fondo = pygame.transform.scale(fondo,(self.Introd.w, self.Introd.h))
-        frect = fondo.get_rect()
+        fondo1 = pygame.image.load("Imagenes/ftutpi.png")       # -----> para poner el fondo 
+        fondo1 = pygame.transform.scale(fondo1,(self.Introd.w, self.Introd.h))
+        f1rect = fondo1.get_rect()
         
-        flecha = pygame.image.load("Imagenes/flecha.png")
-        flecha = pygame.transform.scale(flecha, (round(self.Introd.w*0.07), round(self.Introd.h*0.07)))
-        flrect = flecha.get_rect()
+        fondo2 =  pygame.image.load("Imagenes/ftutpi2.png")
+        fondo2 = pygame.transform.scale(fondo2,(self.Introd.w, self.Introd.h))
+        f2rect = fondo2.get_rect()
         
-        circ = pygame.image.load("Imagenes/circulo.png")
-        circ = pygame.transform.scale(circ, (round(self.Introd.w*0.085), round(self.Introd.h*0.073)))
-        crect = circ.get_rect()
+        fondo3 =  pygame.image.load("Imagenes/ftutpi3.png")
+        fondo3 = pygame.transform.scale(fondo3,(self.Introd.w, self.Introd.h))
+        f3rect = fondo3.get_rect()
+        
+        fondo4 =  pygame.image.load("Imagenes/ftutpi4.png")
+        fondo4 = pygame.transform.scale(fondo4,(self.Introd.w, self.Introd.h))
+        f4rect = fondo4.get_rect()
         
         self.x100 = self.Introd.w*0.069
         self.y100 = self.Introd.h*0.11
@@ -523,7 +520,7 @@ class Dial_3p(Dialogos):
                 
             elif self.state == '3':
                             
-                self.Introd.screen.blit(fondo, frect)
+                self.Introd.screen.blit(fondo1, f1rect)
                 self.diabox3()
                 self.drawdpPI()
             
@@ -543,17 +540,10 @@ class Dial_3p(Dialogos):
                 
             elif self.state == '4':
                 
-                self.Introd.screen.blit(fondo, frect)
+                self.Introd.screen.blit(fondo2, f2rect)
                 self.diabox3()
                 self.drawdpPI()
                 
-                flrect.topleft = (self.Introd.w*0.74 , self.Introd.h*0.17)
-                self.Introd.screen.blit(flecha, flrect)
-                flrect.topleft = (self.Introd.w*0.74 , self.Introd.h*0.09)
-                self.Introd.screen.blit(flecha, flrect)
-                
-                crect.topleft = (self.Introd.w*0.82 , self.Introd.h*0.22)
-                self.Introd.screen.blit(circ, crect)
                 
                 if self.stop == False :
                     
@@ -570,14 +560,10 @@ class Dial_3p(Dialogos):
             
             elif self.state == '5':
                 
-                self.Introd.screen.blit(fondo, frect)
+                self.Introd.screen.blit(fondo3, f3rect)
                 self.diabox3()
                 self.drawdpPI()
                 
-                flrect.topleft = (self.Introd.w*0.83 , self.Introd.h*0.38)
-                self.Introd.screen.blit(flecha, flrect)
-                flrect.topleft = (self.Introd.w*0.74 , self.Introd.h*0.02)
-                self.Introd.screen.blit(flecha, flrect)
                 
                 
                 if self.stop == False :
@@ -596,7 +582,7 @@ class Dial_3p(Dialogos):
                 
             elif self.state == '6':
                 
-                self.Introd.screen.blit(fondo, frect)
+                self.Introd.screen.blit(fondo4, f4rect)
                 self.diaboxPI()
                 self.drawdpPI()
                 #Narrador : “Por facilidad hemos añadido un reloj que te puede ayudar. Trata de entender 
@@ -697,7 +683,7 @@ class Introd():
         self.diag1p = Dial_1p(self)
         self.diag2p = Dial_2p(self)
         self.diag3p = Dial_3p(self)
-        self.curr_diag = self.diag3p #parte de diálogos actual
+        self.curr_diag = self.diag1p #parte de diálogos actual
     
     
     def juego(self):
