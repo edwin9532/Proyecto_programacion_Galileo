@@ -150,6 +150,10 @@ class Dial_1p(Dialogos):
         frect = fondo.get_rect()
         self.Introd.screen.blit(fondo, frect)
         
+        gal = pygame.image.load("Imagenes/Galileoc.png")
+        gal = pygame.transform.scale(gal,(round(self.Introd.w*0.13), round(self.Introd.h*0.47)))
+        grect = gal.get_rect()
+        
         self.x100 = self.Introd.w*0.069
         self.y100 = self.Introd.h*0.11
         self.f50 = round(self.Introd.w*0.034)
@@ -160,6 +164,9 @@ class Dial_1p(Dialogos):
             self.Introd.events()
             self.checkstate()
             #print(self.state)
+            
+            grect.topleft = (self.Introd.w*0.1, self.Introd.h*0.5)
+            self.Introd.screen.blit(gal, grect)
             
             if self.state == '1':
                 
@@ -265,6 +272,12 @@ class Dial_2p(Dialogos):
         frect = fondo.get_rect()
         self.Introd.screen.blit(fondo, frect)
         
+        galg = pygame.image.load("Imagenes/GalileoGa.gif")
+        #galg = pygame.transform.scale(galg, (round(self.Introd.w), round(self.Introd.h)))
+        ggrect = galg.get_rect()
+        
+        ggrect.topleft = (self.Introd.w*0.1, self.Introd.h*0.5)
+        self.Introd.screen.blit(galg, ggrect)
         
         self.x100 = self.Introd.w*0.069
         self.y100 = self.Introd.h*0.11
@@ -287,6 +300,8 @@ class Dial_2p(Dialogos):
                 self.diabox2()
                 self.drawdp()
                 
+                #ggrect.topleft = (self.Introd.w*0.1, self.Introd.h*0.5)
+                #self.Introd.screen.blit(galg, ggrect)
                 
                 if self.stop == False :
                     
@@ -692,7 +707,7 @@ class Introd():
         self.diag1p = Dial_1p(self)
         self.diag2p = Dial_2p(self)
         self.diag3p = Dial_3p(self)
-        self.curr_diag = self.diag3p #parte de diálogos actual
+        self.curr_diag = self.diag2p #parte de diálogos actual
     
     
     def juego(self):
