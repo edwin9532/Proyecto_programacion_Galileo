@@ -47,7 +47,7 @@ PD3: Cabe resaltar que el juego será en 2 dimensiones :,v
 *TERCERA SECUENCIA DE DIALOGOS
 
 -	Narrador : “Comenzaremos por mostrarte el primer experimento de Galileo. La caída libre.”
--	Galileo: "Teóricamente si lanzo una roca muy pesada y un acumulado de heno al mismo tiempo, caerá más rápido la piedra. De tal forma que la balanza se incline hacia la roca."
+-	Galileo: "Teóricamente si lanzo una roca muy pesada y un acumulado de heno al mismo tiempo, caerá más rápido la piedra. De la misma forma en que una balanza se inclina hacia la roca por su mayor peso."
 -	Narrador: "La intuición nos hizo pensar eso, veamos que hará Galileo."
 -	Galileo: "Subiré a la torre de Pisa y lanzare una roca y un poco de heno."
 - Narrador: "Presta atención al tiempo de la caida de cada objeto, vamos a suponer que no hay resitencia al aire."
@@ -63,8 +63,21 @@ PD3: Cabe resaltar que el juego será en 2 dimensiones :,v
 
 *QUINTA SECUENCIA DE DIÁLOGOS: Plano Inclinado*
 
-- Galileo : “He diseñado un plano inclinado, en el cual podré cambiar el ángulo de inclinación, y tengo varios objetos para comparar sus caídas.”
-- Narrador : “Por facilidad hemos añadido un reloj que te puede ayudar, trata de entender qué pasa con cada objeto y toma nota de si la caída de cada objeto depende de su masa o no. O si del ángulo de inclinación. Recuerda que Galileo dejará caer cada objeto.”
+
+-Galileo : "Sé que la caída de los objetos no ocurre a velocidad constante, ya que he visto que cuando un objeto cae por una colina su velocidad va 
+            aumentando. ¿Cómo puedo estudiar este movimiento? ... ¡Tengo una idea!"
+
+PANTALLA con el sonido ese y ". . ."
+
+-Galileo: "¡He diseñado un plano inclinado! Éste me servirá para realizar mis experimentos
+           ya que puedo cambiarle varias características. "
+- Galileo "Por ejemplo puedo modificar su altura y longitud (y de esta forma variar el ángulo de inclinación),"(flechas)
+          "Y usar diferentes materiales para las esferas que van a caer, cada material tiene un rango
+           de masa distinto ¡Empecemos!
+
+- Narrador : “Por facilidad hemos añadido un reloj que te puede ayudar. Trata de entender 
+              qué pasa con cada objeto y toma nota de si la caída de cada objeto depende de su masa o no. 
+              O si del ángulo de inclinación. Recuerda que Galileo dejará caer cada objeto.”
 
 
 
