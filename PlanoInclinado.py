@@ -9,12 +9,22 @@ def main():
     pygame.display.set_icon(ic)
     pygame.display.flip()
     info = pygame.display.Info()
+    
     fondo = pygame.image.load("Imagenes/Fondo_11B.jpg")
     fondo = pygame.transform.scale(fondo, (info.current_w, info.current_h))
     fondo_b = fondo
     fondo = pygame.image.load("Imagenes/Fondo_11.jpg")
     fondo = pygame.transform.scale(fondo, (info.current_w, info.current_h))
     fondo_i = fondo
+    
+    crono_p = pygame.image.load("Imagenes/Crono_p.png")
+    crono_ = pygame.image.load("Imagenes/Crono.png")
+    notepad = pygame.image.load("Imagenes/Notepad.png")
+    notepad = pygame.transform.scale(notepad, (int(notepad.get_width()*0.68),int(notepad.get_height()*0.68)))
+    np_rect = notepad.get_rect()
+    np_rect.center = (info.current_w-notepad.get_width()//2,500)
+    
+    
     
         
     class Bola_T:
@@ -53,8 +63,7 @@ def main():
             if pygame.mouse.get_pressed()[0] == 0:
                 self.clicked = False
             
-            return t, self.tipo, self.clicked
-            
+            return t, self.tipo, self.clicked         
             
     
     def conv_coord(pos):
@@ -95,7 +104,7 @@ def main():
             if s==masa: l=int(s.val)
             else: l=int(s.val)/100
             txt = font.render(str(l)+u, 1, (0,0,0))
-            screen.blit(txt, (info.current_w-210, y))
+            screen.blit(txt, (info.current_w-220, y))
     
     def Tipo(r,pos,n,max,min,mia):
         if (bola_._id in space._shapes): space.remove(bola_)
@@ -128,6 +137,7 @@ def main():
     tipo = 0
     
     font = pygame.font.SysFont("BebasNeue.otf", 23, False)
+    font.set_underline(True)
     clock = pygame.time.Clock()
     space = pymunk.Space()
     space.gravity = (0,-981)
@@ -141,9 +151,9 @@ def main():
     rm = 40
     
     # Sliders
-    masa = Sliders.Slider("Masa", 20, 20, 1, 20, info.current_w-120, font, screen)
-    altura = Sliders.Slider("Altura", info.current_h//2, info.current_h-(2*rm)*0.85, 0, 80, info.current_w-120, font, screen)
-    longitud = Sliders.Slider("Longitud", info.current_w//2, info.current_w, rm*2, 140, info.current_w-120, font, screen)
+    masa = Sliders.Slider("Masa", 20, 20, 1, 65, info.current_w-130, font, screen)
+    altura = Sliders.Slider("Altura", info.current_h//2, info.current_h-(2*rm)*0.85, 0, 125, info.current_w-130, font, screen)
+    longitud = Sliders.Slider("Longitud", info.current_w//2, info.current_w, rm*2, 185, info.current_w-130, font, screen)
     slides = [masa,altura,longitud]
     inicio = True
     n,max,min = 20,20,1
@@ -154,10 +164,10 @@ def main():
     B1 = pygame.image.load('Imagenes/Boton1.png').convert_alpha()
     Bp1 = pygame.image.load('Imagenes/Boton1_p.png').convert_alpha()
     
-    start = Boton_.Boton(info.current_w-70,230, B, Bp, 0.25,"Simular")
-    restart = Boton_.Boton(info.current_w-70,275, B, Bp, 0.25,"Reiniciar")
-    material = Boton_.Boton(info.current_w-70,320, B, Bp, 0.25,"Material")
-    siguiente = Boton_.Boton(info.current_w-70, 380, B1, Bp1, 0.3, "Siguiente",font_size=30,font_color=(255,255,255)) # No sé si se vea mejor negro que blanco.
+    start = Boton_.Boton(info.current_w-80,275, B, Bp, 0.25,"Simular")
+    restart = Boton_.Boton(info.current_w-80,320, B, Bp, 0.25,"Reiniciar")
+    material = Boton_.Boton(info.current_w-80,365, B, Bp, 0.25,"Material")
+    siguiente = Boton_.Boton(info.current_w-80, 445, B1, Bp1, 0.3, "Siguiente",font_size=30,font_color=(255,255,255)) # No sé si se vea mejor negro que blanco.
     
     # Objetos iniciales y de borde
     bola_ = bola(space,(rm,rm),rm,masa.val)
@@ -177,7 +187,7 @@ def main():
     escogido = False
     
     tiempo = 0
-    fontcro = pygame.font.SysFont("BebasNeue.otf", 23, False)
+    fontcro = pygame.font.Font("Digital-7.ttf", 35)
     pulse = 0
     ini = True
     
@@ -215,10 +225,12 @@ def main():
                 block = plano(space,[(r*2,int(altura.val)+r),(r*2,0)],0)
                 simulando = False
                 ini = True
-                
-        nums(masa,30," kg")
-        nums(altura,90," m")
-        nums(longitud,150," m")
+        
+        screen.blit(notepad,(info.current_w-notepad.get_width(),0))
+        
+        nums(masa,75," kg")
+        nums(altura,135," m")
+        nums(longitud,195," m")
         
         for s in slides:
             s.draw()
@@ -264,21 +276,24 @@ def main():
         pygame.gfxdraw.textured_polygon(screen, [conv_coord((0,0)),conv_coord(pos_plano[0]),conv_coord(pos_plano[1])],Plano,0,0)
         
         angulo = font.render("Ángulo: "+str(round(np.arctan(altura.val/longitud.val)*180/np.pi,1))+"°", 1, (0,0,0))
-        screen.blit(angulo, (info.current_w-235, 190))
+        screen.blit(angulo, (info.current_w-245, 240))
         
         ms = clock.tick(fps)
         
-        if ini: fontcro = pygame.font.SysFont("BebasNeue.otf", 23, False)
+        
+        if ini: fontcro = pygame.font.Font("Digital-7.ttf", 35)
         if simulando:
             tiempo+=ms
-            fontcro = pygame.font.SysFont("BebasNeue.otf", 23, False)
+            fontcro = pygame.font.Font("Digital-7.ttf", 35)
             pulse,ps = 0,0
+            c_image=crono_p
+        elif not simulando: c_image=crono_
         elif not simulando and not ini and ps<=10:
             if pulse >= 10 and pulse <20:
-                fontcro = pygame.font.SysFont("BebasNeue.otf", 23, False)
+                fontcro = pygame.font.Font("Digital-7.ttf", 35)
                 pulse+=1
             elif pulse <10:
-                fontcro = pygame.font.SysFont("BebasNeue.otf", 26, False)
+                fontcro = pygame.font.Font("Digital-7.ttf", 38)
                 pulse+=1
             elif pulse == 20:
                 pulse=0
@@ -288,11 +303,16 @@ def main():
         if bola_.body.position.y <= r or (bola_.body.position.x >= longitud.val-r and longitud.val > info.current_w-2.5*r):
             simulando, ini = False, False
         
-        crono = fontcro.render(str(round(tiempo/1000,2))+"s", 1, (0,0,0))
+        c_image = pygame.transform.scale(c_image, (int(c_image.get_width()*0.2),int(c_image.get_height()*0.2)))
+        c_rect = c_image.get_rect()
+        c_rect.center = (info.current_w-250+c_image.get_width()//2, 345)
+        screen.blit(c_image, (c_rect.x, c_rect.y))
+        
+        crono = fontcro.render(str(round(tiempo/1000,2)), 1, (57,255,20))
         # El tiempo de simulaciones idénticas difiere en el segundo decimal, no sé si dejarlo con 2 decimales o solo 1.
-        screen.blit(font.render("Tiempo", 1, (0,0,0)), (info.current_w-240, 225))
-        screen.blit(font.render("de caída:", 1, (0,0,0)), (info.current_w-240, 240))
-        screen.blit(crono, (info.current_w-170, 240))
+        screen.blit(font.render("Tiempo", 1, (0,0,0)), (info.current_w-225, 280))
+        screen.blit(font.render("de caída:", 1, (0,0,0)), (info.current_w-230, 295))
+        screen.blit(crono, (info.current_w-250+c_image.get_width()//4, 335))
             
         
         if (bola_._id in space._shapes) or not t: draw_bola(bola_,r,tipo)
