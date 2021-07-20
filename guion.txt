@@ -47,7 +47,7 @@ PD3: Cabe resaltar que el juego será en 2 dimensiones :,v
 *TERCERA SECUENCIA DE DIALOGOS
 
 -	Narrador : “Comenzaremos por mostrarte el primer experimento de Galileo. La caída libre.”
--	Galileo: "Teóricamente si lanzo una roca muy pesada y un acumulado de heno al mismo tiempo, caerá más rápido la piedra. De tal forma que la balanza se incline hacia la roca."
+-	Galileo: "Teóricamente si lanzo una roca muy pesada y un acumulado de heno al mismo tiempo, caerá más rápido la piedra. De la misma forma en que una balanza se inclina hacia la roca por su mayor peso."
 -	Narrador: "La intuición nos hizo pensar eso, veamos que hará Galileo."
 -	Galileo: "Subiré a la torre de Pisa y lanzare una roca y un poco de heno."
 - Narrador: "Presta atención al tiempo de la caida de cada objeto, vamos a suponer que no hay resitencia al aire."
