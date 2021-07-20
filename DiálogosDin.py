@@ -434,6 +434,10 @@ class Dial_3p(Dialogos):
         fondo = pygame.transform.scale(fondo,(self.Introd.w, self.Introd.h))
         frect = fondo.get_rect()
         
+        flecha = pygame.image.load("Imagenes/flecha.png")
+        flecha = pygame.transform.scale(flecha, (round(self.Introd.w*0.07), round(self.Introd.h*0.07)))
+        flrect = flecha.get_rect()
+        
         self.x100 = self.Introd.w*0.069
         self.y100 = self.Introd.h*0.11
         self.f50 = round(self.Introd.w*0.034)
@@ -454,7 +458,7 @@ class Dial_3p(Dialogos):
             self.Introd.events()
             self.checkstate()
             
-            if self.state == '6':
+            if self.state == '4':
                 
                 self.diabox()
                 self.diabox2()
@@ -533,12 +537,18 @@ class Dial_3p(Dialogos):
                      
                 self.Introd.reiniciark()
                 
-            elif self.state == '4':
+            elif self.state == '1':
                 
                 self.Introd.screen.blit(fondo, frect)
                 self.diabox3()
                 self.drawdpPI()
-            
+                
+                flrect.topleft = (self.Introd.w*0.74 , self.Introd.h*0.17)
+                self.Introd.screen.blit(flecha, flrect)
+                
+                flrect.topleft = (self.Introd.w*0.74 , self.Introd.h*0.09)
+                self.Introd.screen.blit(flecha, flrect)
+                
                 #Modificar su altura y longitud (y de esta forma variar el ángulo de inclinación),
                 if self.stop == False :
                     
@@ -574,7 +584,7 @@ class Dial_3p(Dialogos):
                      
                 self.Introd.reiniciark()
                 
-            elif self.state == '1':
+            elif self.state == '6':
                 
                 self.Introd.screen.blit(fondo, frect)
                 self.diaboxPI()
