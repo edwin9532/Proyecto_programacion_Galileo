@@ -146,7 +146,7 @@ class Dial_1p(Dialogos):
     def displaydial(self):
         
         fondo = pygame.image.load("Imagenes/Escenario.png")       
-        fondo = pygame.transform.scale(fondo,(self.Introd.w, self.Introd.h))
+        fondo = pygame.transform.scale(fondo,(self.Introd.w, round(self.Introd.h*0.5)))
         frect = fondo.get_rect()
         
         
@@ -372,7 +372,8 @@ class Dial_2p(Dialogos):
             
             
             elif self.state == 'Juego':
-                self.Introd.playing = True
+                self.Introd.reiniciark()
+                self.Introd.curr_diag = self.Introd.diag3p
                 self.rundisplay = False
     
             
