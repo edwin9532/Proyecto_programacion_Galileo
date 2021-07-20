@@ -472,9 +472,9 @@ class Dial_3p(Dialogos):
                     
                     self.d1 = TextM('- - -    ', (self.x100, self.y100), fontsize= self.f50, color='white')
                     
-                    self.g1 = TextM('He notado que cuando un objeto cae por una colina Sé que la caída de los objetos no ocurre a velocidad ', (self.xdg, self.ydg), fontsize= self.f40, cfondo=(255, 255, 255))
-                    self.g11 = TextM('su velocidad va aumentando. Por lo que puedo constante, ya que he visto que cuando un objeto ', (self.xdg, self.ydg+self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
-                    self.g12 = TextM('deducir cae por una colina su velocidad va aumentando.', (self.xdg, self.ydg+2*self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
+                    self.g1 = TextM('He notado que cuando un objeto cae por una colina  ', (self.xdg, self.ydg), fontsize= self.f40, cfondo=(255, 255, 255))
+                    self.g11 = TextM('su velocidad va aumentando. Por lo que puedo deducir ', (self.xdg, self.ydg+self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
+                    self.g12 = TextM('que las cosas no caen a velocidad constante', (self.xdg, self.ydg+2*self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
                     #self.g13 = TextM(' ...', (self.xdg, self.ydg+3*self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
                   
                 self.d1.draw()
