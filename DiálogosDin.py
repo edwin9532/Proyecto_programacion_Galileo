@@ -94,6 +94,10 @@ class Dialogos():
         R = Rect((self.Introd.w*0.03 , self.Introd.h*0.06), (self.Introd.w*0.95, self.Introd.h*0.25))
         pygame.draw.rect(self.Introd.screen, (0, 75, 78), R)
         
+    def diaboxPI(self):
+        R = Rect((self.Introd.w*0.03 , self.Introd.h*0.07), (self.Introd.w*0.75, self.Introd.h*0.25))
+        pygame.draw.rect(self.Introd.screen, (0, 75, 78), R)  
+        
     def diabox2(self): #hacer otro cuadro de texto ahora como globo de diálogo más abajo que
         # muestre lo que galileo está diciendo
         nube = pygame.image.load("Imagenes/Nube.png")
@@ -405,15 +409,7 @@ class Dial_2p(Dialogos):
             
 #------------------------------------------------------------------------------------#
 
-#Sé que la caída de los objetos no ocurre a velocidad constante, ya que
-#he visto que cuando un objeto cae por una colina su velocidad va 
-# aumentando. ¿Cómo puedo estudiar este movimiento? ...
-# ¡Tengo una idea!
 
-#  Pantalla con el sonido ese y ". . ."
-
-# "¡He diseñado un plano inclinado! Éste me servirá para realizar mis experimentos
-# ya que puedo: "
     
 # "Modificar su altura y longitud (y de esta forma variar el ángulo de inclinación),"(flechas)
 
@@ -458,113 +454,148 @@ class Dial_3p(Dialogos):
             self.Introd.events()
             self.checkstate()
             
-            if self.state == '1':
+            if self.state == '6':
                 
                 self.diabox()
                 self.diabox2()
                 self.drawdp()
-                
-                
+                    
                 if self.stop == False :
                     
-                    self.d1 = TextM('Mira, ahí está Galileo, ¿puedes leer su mente?         ', (self.x100, self.y100), fontsize= self.f50, color='white')
-                    self.g1 = TextM('  .     .     .  ', (self.xdg, self.ydg), fontsize= self.f50, cfondo=(255, 255, 255))
-                
+                    self.d1 = TextM('- - -    ', (self.x100, self.y100), fontsize= self.f50, color='white')
+                    
+                    self.g1 = TextM('Sé que la caída de los objetos no ocurre a velocidad ', (self.xdg, self.ydg), fontsize= self.f40, cfondo=(255, 255, 255))
+                    self.g11 = TextM('constante, ya que he visto que cuando un objeto ', (self.xdg, self.ydg+self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
+                    self.g12 = TextM('cae por una colina su velocidad va aumentando.', (self.xdg, self.ydg+2*self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
+                    #self.g13 = TextM(' ...', (self.xdg, self.ydg+3*self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
+                  
                 self.d1.draw()
-                self.stop = self.g1.draw()
+                self.g1.draw()
+                self.g11.draw()
+                #self.g12.draw()
+                self.stop = self.g12.draw()
+                
+                self.Introd.reiniciark()
+            
+            elif self.state == '1.5':
+                
+                self.diabox()
+                self.diabox2()
+                self.drawdp()
+                    
+                if self.stop == False :
+                    
+                    self.d1 = TextM('- - -    ', (self.x100, self.y100), fontsize= self.f50, color='white')
+                    
+                    self.g1 = TextM('¿Cómo puedo estudiar este movimiento?     ', (self.xdg, self.ydg), fontsize= self.f40, cfondo=(255, 255, 255))
+                    self.g11 = TextM('  .    .    .             ', (self.xdg, self.ydg+self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
+                    self.g12 = TextM('  ¡Tengo una idea!   ', (self.xdg, self.ydg+2*self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
+                    
+                  
+                self.d1.draw()
+                self.g1.draw()
+                self.g11.draw()
+                self.stop = self.g12.draw()
                 
                 self.Introd.reiniciark()
                 
             elif self.state == '2':
                        
-                     
+                self.Introd.screen.fill(Color(71, 75, 78))     
+                
                 if self.stop == False :
                     
-                    self.d1 = TextM('  .     .     .  ', (self.Introd.w*0.35, self.Introd.h*0.4), fontsize= round(self.Introd.w*0.1), color='white', cfondo=(71, 75, 78), time=65)
+                    self.d2 = TextM('  .     .     .  ', (self.Introd.w*0.35, self.Introd.h*0.4), fontsize= round(self.Introd.w*0.1), color='white', cfondo=(71, 75, 78), time=70)
                     self.pe = TextM('Presione enter para continuar', (self.xda, self.yda), fontsize= self.f60, color='white', cfondo=(71, 75, 78)) #fontsi 60
                  
-                self.d1.draw()
-                self.pe.draw()
+                self.d2.draw()
+                self.stop = self.pe.draw()
                 
                 self.Introd.reiniciark()
                 
             elif self.state == '3':
                             
                 self.Introd.screen.blit(fondo, frect)
-                #self.diabox()
                 self.diabox3()
                 self.drawdpPI()
-                
-                #self.d2 = Text('Mira, ahí está Galileo, ¿puedes leer su mente? ', (self.x100, self.y100), fontsize= self.f50)
-                #self.pe1 = Text('Presione enter para continuar', (self.xda, self.yda), fontsize= self.f40, color='black')
+            
                 
                 if self.stop == False :
                     
-                    self.g2 = TextM('¡He diseñado un plano inclinado! Éste me servirá  ', (self.x100, self.y100), fontsize= self.f40, cfondo=(255, 255, 255))
-                    self.g21 = TextM('para realizar mis experimentos ya que puedo ', (self.x100, self.y100+self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
-                    self.g22 = TextM('cambiarle varias características. Por ejemplo: ', (self.x100, self.y100+2*self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
+                    self.g3 = TextM('¡He diseñado un plano inclinado! Éste me servirá  ', (self.x100, self.y100), fontsize= self.f40, cfondo=(255, 255, 255))
+                    self.g31 = TextM('para realizar mis experimentos ya que puedo ', (self.x100, self.y100+self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
+                    self.g32 = TextM('cambiarle varias características. ', (self.x100, self.y100+2*self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
                     #self.g23 = TextM('\'caen porque quieren estar pegados a la tierra\', ', (self.x100, self.y100+3*self.f40), fontsize= self.f40, cfondo=(255, 255, 255))               
                 
-                #self.d2.draw()
-                self.g2.draw()
-                self.g21.draw()
-                self.stop = self.g22.draw()
-                #self.g22.draw()
-                #self.stop = self.g23.draw()
+                self.g3.draw()
+                self.g31.draw()
+                self.stop = self.g32.draw()
                      
                 self.Introd.reiniciark()
                 
             elif self.state == '4':
                 
-                self.diabox()
-                self.diabox2()
-                self.drawdp()
-                
+                self.Introd.screen.blit(fondo, frect)
+                self.diabox3()
+                self.drawdpPI()
+            
+                #Modificar su altura y longitud (y de esta forma variar el ángulo de inclinación),
                 if self.stop == False :
                     
-                    self.d3 = TextM('Tal vez olvidé mencionarlo, pero Galileo tiene un genio bastante  .  .  .     ', (self.x100, self.y100), fontsize= self.f50, color='white')
-                    self.d31 = TextM('particular.  ', (self.x100, self.y100+self.f50), fontsize= self.f50, color='white')
+                    self.g4 = TextM('  Por ejemplo puedo modificar su altura y ', (self.x100, self.y100), fontsize= self.f40, cfondo=(255, 255, 255))
+                    self.g41 = TextM(' longitud, (y de esta forma variar el ángulo ', (self.x100, self.y100+self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
+                    self.g42 = TextM(' de inclinación)', (self.x100, self.y100+2*self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
+                               
                 
-                
-                    self.g3 = TextM('Tiene que haber una forma de explicar por qué se ', (self.xdg, self.ydg), fontsize= self.f40, cfondo=(255, 255, 255))
-                    self.g31 = TextM('mueven las cosas. Tal vez por medio de la ', (self.xdg, self.ydg+self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
-                    self.g32 = TextM('matemática y la aritmética encuentre algo.  ', (self.xdg, self.ydg+2*self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
-                    #self.g33 = Text('--', (self.xdg, self.ydg+3*self.f40), fontsize= self.f40)    
-                
-                         
-                self.d3.draw()
-                self.d31.draw()
-                self.g3.draw()
-                self.g31.draw()
-                self.stop = self.g32.draw()
-              
+                self.g4.draw()
+                self.g41.draw()
+                self.stop = self.g42.draw()
+                     
                 self.Introd.reiniciark()
             
             elif self.state == '5':
                 
-                self.diabox()
-                self.diabox2()
-                self.drawdp()
-                
-                if self.stop == False:
-                    self.d4 = TextM('Presta atención, aquí es donde, según Einstein, Galileo prende la antorcha ',  (self.x100, self.y100), fontsize= self.f50, color='white')
-                    self.d41 = TextM('de la física moderna. ',  (self.x100, self.y100+self.f50), fontsize= self.f50, color='white')
+                self.Introd.screen.blit(fondo, frect)
+                self.diabox3()
+                self.drawdpPI()
                 
                 
-                    self.g4 = TextM('He visto que una bala de cañón aumenta su velocidad ', (self.xdg, self.ydg), fontsize= self.f40, cfondo=(255, 255, 255))
-                    self.g41 = TextM('a medida que cae por una colina. Revisaré primero ', (self.xdg, self.ydg+self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
-                    self.g42 = TextM('si esa velocidad es generada por su peso.   ', (self.xdg, self.ydg+2*self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
-                    #self.g43 = Text('--', self.xdg, self.ydg+3*self.f40), fontsize= self.f40)    
+                if self.stop == False :
+                    
+                    self.g5 = TextM('  Y también puedo usar diferentes materiales para  ', (self.x100, self.y100), fontsize= self.f40, cfondo=(255, 255, 255))
+                    self.g51 = TextM(' las esferas que van a caer, cada material tiene  ', (self.x100, self.y100+self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
+                    self.g52 = TextM(' un rango de masa distinto. ', (self.x100, self.y100+2*self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
+                    self.g53 = TextM('    ¡Empecemos!   ', (self.x100, self.y100+3*self.f40), fontsize= self.f40, cfondo=(255, 255, 255))           
                 
-                         
-                self.d4.draw()
-                self.d41.draw()
-                self.g4.draw()
-                self.g41.draw()
-                self.stop = self.g42.draw()
+                self.g5.draw()
+                self.g51.draw()
+                self.g52.draw()
+                self.stop = self.g53.draw()
+                     
+                self.Introd.reiniciark()
                 
-                self.Introd.reiniciark()  
-            
+            elif self.state == '1':
+                
+                self.Introd.screen.blit(fondo, frect)
+                self.diaboxPI()
+                self.drawdpPI()
+                #Narrador : “Por facilidad hemos añadido un reloj que te puede ayudar. Trata de entender 
+                # qué pasa con cada objeto y toma nota de si la caída de cada objeto depende de su masa o no. 
+                # O si del ángulo de inclinación. Recuerda que Galileo dejará caer cada objeto.”
+                
+                if self.stop == False :
+                    
+                    self.d61 = TextM('Por facilidad hemos añadido un reloj que te puede ayudar. Trata de  ', (self.x100, self.y100), fontsize= self.f40, color='white')
+                    self.d62 = TextM('entender qué pasa con el movimiento de cada objeto y toma nota de  ', (self.x100, self.y100+self.f40), fontsize= self.f40, color='white')      
+                    self.d63 = TextM('si su caída depende de la masa o del ángulo de inclinación.  ', (self.x100, self.y100+2*self.f40), fontsize= self.f40, color='white')
+                    self.d64 = TextM('Recuerda que los objetos inician en reposo. ', (self.x100, self.y100+3*self.f40), fontsize= self.f40, color='white')
+                
+                self.d61.draw()
+                self.d62.draw()
+                self.d63.draw()
+                self.stop = self.d64.draw()
+                     
+                self.Introd.reiniciark()    
             
             elif self.state == 'Juego':
                 self.Introd.playing = True
@@ -579,6 +610,9 @@ class Dial_3p(Dialogos):
         
         elif self.Introd.enter:
             if self.state == '1':
+                self.state = '1.5'
+                self.stop = False
+            elif self.state == '1.5':
                 self.state = '2'
                 self.stop = False
             elif self.state == '2':
@@ -588,11 +622,24 @@ class Dial_3p(Dialogos):
                 self.state = '4'
                 self.stop = False
             elif self.state == '4':
+                self.state = '5'
+                self.stop = False
+            elif self.state == '5':
+                self.state = '6'
+                self.stop = False
+            elif self.state == '6':
                 self.state = 'Juego'
                 self.stop = False
                 
         elif self.Introd.borrar:
+            
             if self.state == 'Juego':
+                self.state = '6'
+                self.stop = False
+            elif self.state == '6':
+                self.state = '5'
+                self.stop = False
+            elif self.state == '5':
                 self.state = '4'
                 self.stop = False
             elif self.state == '4':
@@ -602,6 +649,9 @@ class Dial_3p(Dialogos):
                 self.state = '2'
                 self.stop = False
             elif self.state == '2':
+                self.state = '1.5'
+                self.stop = False
+            elif self.state == '1.5':
                 self.state = '1'
                 self.stop = False
             
