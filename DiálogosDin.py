@@ -459,6 +459,23 @@ class Dial_3p(Dialogos):
             self.checkstate()
             
             if self.state == '1':
+                
+                self.diabox()
+                self.diabox2()
+                self.drawdp()
+                
+                
+                if self.stop == False :
+                    
+                    self.d1 = TextM('Mira, ahí está Galileo, ¿puedes leer su mente?         ', (self.x100, self.y100), fontsize= self.f50, color='white')
+                    self.g1 = TextM('  .     .     .  ', (self.xdg, self.ydg), fontsize= self.f50, cfondo=(255, 255, 255))
+                
+                self.d1.draw()
+                self.stop = self.g1.draw()
+                
+                self.Introd.reiniciark()
+                
+            elif self.state == '2':
                        
                      
                 if self.stop == False :
@@ -471,7 +488,7 @@ class Dial_3p(Dialogos):
                 
                 self.Introd.reiniciark()
                 
-            elif self.state == '2':
+            elif self.state == '3':
                             
                 self.Introd.screen.blit(fondo, frect)
                 #self.diabox()
@@ -497,7 +514,7 @@ class Dial_3p(Dialogos):
                      
                 self.Introd.reiniciark()
                 
-            elif self.state == '3':
+            elif self.state == '4':
                 
                 self.diabox()
                 self.diabox2()
@@ -523,7 +540,7 @@ class Dial_3p(Dialogos):
               
                 self.Introd.reiniciark()
             
-            elif self.state == '4':
+            elif self.state == '5':
                 
                 self.diabox()
                 self.diabox2()
