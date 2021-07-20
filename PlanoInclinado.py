@@ -272,7 +272,8 @@ def main():
         if simulando:
             tiempo+=ms
             fontcro = pygame.font.SysFont("BebasNeue.otf", 23, False)
-            pulse,ps = 0,0
+            pulse = 0
+            ps = 0
         elif not simulando and not ini and ps<=10:
             if pulse >= 10 and pulse <20:
                 fontcro = pygame.font.SysFont("BebasNeue.otf", 23, False)
