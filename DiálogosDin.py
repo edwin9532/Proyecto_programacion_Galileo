@@ -36,7 +36,7 @@ class Text:
 
 class TextM:
 
-    def __init__(self, text, pos, fontsize=90, fontname='BebasNeue.otf', color='black', cfondo=(0, 75, 78), time=55):
+    def __init__(self, text, pos, fontsize=90, fontname='BebasNeue.otf', color='black', cfondo=(0, 0, 0), time=55):
         self.text = text
         self.len = len(self.text)+1
         self.pos = pos
@@ -92,7 +92,7 @@ class Dialogos():
         
     def diabox(self):
         R = Rect((self.Introd.w*0.03 , self.Introd.h*0.06), (self.Introd.w*0.95, self.Introd.h*0.25))
-        pygame.draw.rect(self.Introd.screen, (0, 75, 78), R)
+        pygame.draw.rect(self.Introd.screen, (0, 0, 0), R)
         
     def diaboxPI(self):
         R = Rect((self.Introd.w*0.03 , self.Introd.h*0.07), (self.Introd.w*0.75, self.Introd.h*0.25))
@@ -117,9 +117,9 @@ class Dialogos():
         #pygame.draw.rect(self.Introd.screen, (125, 96, 114), R)
         
     def drawdp(self): #muestra el mensaje presione enter para continuar
-        self.msj = Text('Presione enter para continuar', (self.mw*1.50 , self.mh*0.7), fontsize=round(self.Introd.w*0.021))
+        self.msj = Text('Presione enter para continuar', (self.mw*1.50 , self.mh*0.65), fontsize=round(self.Introd.w*0.021))
         Re = Rect((self.msj.pos[0]-20, self.msj.pos[1]-10),(self.msj.rect.width+40, self.msj.rect.height+10))
-        pygame.draw.rect(self.Introd.screen, (0, 0, 0), Re)
+        pygame.draw.rect(self.Introd.screen, (87, 35, 100), Re)
         self.msj.draw()
         
     def drawdpPI(self): #muestra el mensaje presione enter para continuar
@@ -145,10 +145,10 @@ class Dial_1p(Dialogos):
         
     def displaydial(self):
         
-        fondo = pygame.image.load("Imagenes/Escenario.png")       
-        fondo = pygame.transform.scale(fondo,(self.Introd.w, round(self.Introd.h*0.5)))
+        fondo = pygame.image.load("Imagenes/Escenario2.png")       
+        fondo = pygame.transform.scale(fondo,(self.Introd.w, round(self.Introd.h)))
         frect = fondo.get_rect()
-        
+        self.Introd.screen.blit(fondo, frect)
         
         self.x100 = self.Introd.w*0.069
         self.y100 = self.Introd.h*0.11
@@ -164,7 +164,7 @@ class Dial_1p(Dialogos):
             if self.state == '1':
                 
                 #self.Introd.screen.fill(Color(71, 75, 78))
-                self.Introd.screen.blit(fondo, frect)
+                
                 self.diabox()
                 self.drawdp()
                 
@@ -259,9 +259,12 @@ class Dial_2p(Dialogos):
         
     def displaydial(self):
         
-        #fondo = pygame.image.load("fondo.png")        -----> para poner el fondo 
-        #fondo = pygame.transform.scale(fondo,(self.App.w, self.App.h))
-        #frect = fondo.get_rect()
+        
+        fondo = pygame.image.load("Imagenes/Escenario2.png")       
+        fondo = pygame.transform.scale(fondo,(self.Introd.w, round(self.Introd.h)))
+        frect = fondo.get_rect()
+        self.Introd.screen.blit(fondo, frect)
+        
         
         self.x100 = self.Introd.w*0.069
         self.y100 = self.Introd.h*0.11
@@ -271,8 +274,7 @@ class Dial_2p(Dialogos):
         self.ydg = self.Introd.h*0.47
         self.f40 = round(self.Introd.w*0.027)
               
-        
-        self.Introd.screen.fill(Color(71, 75, 78))  
+    
         self.rundisplay = True
         while self.rundisplay:
             
@@ -440,6 +442,11 @@ class Dial_3p(Dialogos):
         fondo4 = pygame.transform.scale(fondo4,(self.Introd.w, self.Introd.h))
         f4rect = fondo4.get_rect()
         
+        fondo = pygame.image.load("Imagenes/Escenario2.png")       
+        fondo = pygame.transform.scale(fondo,(self.Introd.w, round(self.Introd.h)))
+        frect = fondo.get_rect()
+        self.Introd.screen.blit(fondo, frect)
+        
         self.x100 = self.Introd.w*0.069
         self.y100 = self.Introd.h*0.11
         self.f50 = round(self.Introd.w*0.034)
@@ -453,7 +460,7 @@ class Dial_3p(Dialogos):
         self.f60 = round(self.Introd.w*0.04)
               
         
-        self.Introd.screen.fill(Color(71, 75, 78))  
+          
         self.rundisplay = True
         while self.rundisplay:
             
@@ -468,7 +475,7 @@ class Dial_3p(Dialogos):
                     
                 if self.stop == False :
                     
-                    self.d1 = TextM('- - -    ', (self.x100, self.y100), fontsize= self.f50, color='white')
+                    self.d1 = TextM('Ahora Galileo realizará su segundo experimento    ', (self.x100, self.y100), fontsize= self.f50, color='white')
                     
                     self.g1 = TextM('He notado que cuando un objeto cae por una colina  ', (self.xdg, self.ydg), fontsize= self.f40, cfondo=(255, 255, 255))
                     self.g11 = TextM('su velocidad va aumentando. Por lo que puedo deducir ', (self.xdg, self.ydg+self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
@@ -488,17 +495,18 @@ class Dial_3p(Dialogos):
                 self.diabox()
                 self.diabox2()
                 self.drawdp()
-                    
+                self.d1 = Text('Ahora Galileo realizará su segundo experimento    ', (self.x100, self.y100), fontsize= self.f50, color='white')   
+                self.d1.draw()
+                
                 if self.stop == False :
                     
-                    self.d1 = TextM('- - -    ', (self.x100, self.y100), fontsize= self.f50, color='white')
+                    #self.d1 = TextM('- - -    ', (self.x100, self.y100), fontsize= self.f50, color='white')
                     
                     self.g1 = TextM('¿Cómo puedo estudiar este movimiento?     ', (self.xdg, self.ydg), fontsize= self.f40, cfondo=(255, 255, 255))
                     self.g11 = TextM('  .    .    .             ', (self.xdg, self.ydg+self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
                     self.g12 = TextM('  ¡Tengo una idea!   ', (self.xdg, self.ydg+2*self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
                     
-                  
-                self.d1.draw()
+                 
                 self.g1.draw()
                 self.g11.draw()
                 self.stop = self.g12.draw()
@@ -684,7 +692,7 @@ class Introd():
         self.diag1p = Dial_1p(self)
         self.diag2p = Dial_2p(self)
         self.diag3p = Dial_3p(self)
-        self.curr_diag = self.diag1p #parte de diálogos actual
+        self.curr_diag = self.diag3p #parte de diálogos actual
     
     
     def juego(self):
