@@ -438,6 +438,10 @@ class Dial_3p(Dialogos):
         flecha = pygame.transform.scale(flecha, (round(self.Introd.w*0.07), round(self.Introd.h*0.07)))
         flrect = flecha.get_rect()
         
+        circ = pygame.image.load("Imagenes/circulo.png")
+        circ = pygame.transform.scale(circ, (round(self.Introd.w*0.085), round(self.Introd.h*0.073)))
+        crect = circ.get_rect()
+        
         self.x100 = self.Introd.w*0.069
         self.y100 = self.Introd.h*0.11
         self.f50 = round(self.Introd.w*0.034)
@@ -458,7 +462,7 @@ class Dial_3p(Dialogos):
             self.Introd.events()
             self.checkstate()
             
-            if self.state == '4':
+            if self.state == '5':
                 
                 self.diabox()
                 self.diabox2()
@@ -537,7 +541,7 @@ class Dial_3p(Dialogos):
                      
                 self.Introd.reiniciark()
                 
-            elif self.state == '1':
+            elif self.state == '4':
                 
                 self.Introd.screen.blit(fondo, frect)
                 self.diabox3()
@@ -545,11 +549,12 @@ class Dial_3p(Dialogos):
                 
                 flrect.topleft = (self.Introd.w*0.74 , self.Introd.h*0.17)
                 self.Introd.screen.blit(flecha, flrect)
-                
                 flrect.topleft = (self.Introd.w*0.74 , self.Introd.h*0.09)
                 self.Introd.screen.blit(flecha, flrect)
                 
-                #Modificar su altura y longitud (y de esta forma variar el ángulo de inclinación),
+                crect.topleft = (self.Introd.w*0.82 , self.Introd.h*0.22)
+                self.Introd.screen.blit(circ, crect)
+                
                 if self.stop == False :
                     
                     self.g4 = TextM('  Por ejemplo puedo modificar su altura y ', (self.x100, self.y100), fontsize= self.f40, cfondo=(255, 255, 255))
@@ -563,17 +568,22 @@ class Dial_3p(Dialogos):
                      
                 self.Introd.reiniciark()
             
-            elif self.state == '5':
+            elif self.state == '1':
                 
                 self.Introd.screen.blit(fondo, frect)
                 self.diabox3()
                 self.drawdpPI()
                 
+                flrect.topleft = (self.Introd.w*0.83 , self.Introd.h*0.38)
+                self.Introd.screen.blit(flecha, flrect)
+                flrect.topleft = (self.Introd.w*0.74 , self.Introd.h*0.02)
+                self.Introd.screen.blit(flecha, flrect)
+                
                 
                 if self.stop == False :
                     
                     self.g5 = TextM('  Y también puedo usar diferentes materiales para  ', (self.x100, self.y100), fontsize= self.f40, cfondo=(255, 255, 255))
-                    self.g51 = TextM(' las esferas que van a caer, cada material tiene  ', (self.x100, self.y100+self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
+                    self.g51 = TextM(' las esferas que van a caer. Cada material tiene  ', (self.x100, self.y100+self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
                     self.g52 = TextM(' un rango de masa distinto. ', (self.x100, self.y100+2*self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
                     self.g53 = TextM('    ¡Empecemos!   ', (self.x100, self.y100+3*self.f40), fontsize= self.f40, cfondo=(255, 255, 255))           
                 
