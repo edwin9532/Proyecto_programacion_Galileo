@@ -106,17 +106,24 @@ class Dialogos():
         nube = pygame.image.load("Imagenes/Nube.png")
         nube = pygame.transform.scale(nube, (round(self.Introd.w*0.67), round(self.Introd.h*0.42)))
         nrect = nube.get_rect()
-        nrect.topleft = (self.Introd.w*0.01 , self.Introd.h*0.04)
+        nrect.topleft = (self.Introd.w*0.001 , self.Introd.h*0.02)
         self.Introd.screen.blit(nube, nrect)
          
         #R = Rect((self.Introd.w*0.4 , self.Introd.h*0.45), (self.Introd.w*0.55, self.Introd.h*0.25))
-        #pygame.draw.rect(self.Introd.screen, (125, 96, 114), R)    
+        #pygame.draw.rect(self.Introd.screen, (125, 96, 114), R)
+        
     def drawdp(self): #muestra el mensaje presione enter para continuar
         self.msj = Text('Presione enter para continuar', (self.mw*1.50 , self.mh*0.7), fontsize=round(self.Introd.w*0.021))
         Re = Rect((self.msj.pos[0]-20, self.msj.pos[1]-10),(self.msj.rect.width+40, self.msj.rect.height+10))
         pygame.draw.rect(self.Introd.screen, (0, 0, 0), Re)
         self.msj.draw()
-
+        
+    def drawdpPI(self): #muestra el mensaje presione enter para continuar
+        self.msj = Text('Presione enter para continuar', (self.Introd.w*0.74 , self.Introd.h*0.92), fontsize=round(self.Introd.w*0.021))
+        Re = Rect((self.msj.pos[0]-20, self.msj.pos[1]-10),(self.msj.rect.width+40, self.msj.rect.height+10))
+        pygame.draw.rect(self.Introd.screen, (0, 0, 0), Re)
+        self.msj.draw()
+        
     def blit_screen(self):
         self.Introd.screen.blit(self.Introd.display, (0,0))
         pygame.display.update()
@@ -397,6 +404,26 @@ class Dial_2p(Dialogos):
                 self.stop = False
             
 #------------------------------------------------------------------------------------#
+
+#Sé que la caída de los objetos no ocurre a velocidad constante, ya que
+#he visto que cuando un objeto cae por una colina su velocidad va 
+# aumentando. ¿Cómo puedo estudiar este movimiento? ...
+# ¡Tengo una idea!
+
+#  Pantalla con el sonido ese y ". . ."
+
+# "¡He diseñado un plano inclinado! Éste me servirá para realizar mis experimentos
+# ya que puedo: "
+    
+# "Modificar su altura y longitud (y de esta forma variar el ángulo de inclinación),"(flechas)
+
+# "Y usar diferentes materiales para las esferas que van a caer, cada material tiene un rango
+# de masa distinto ¡Empecemos!
+
+#Narrador : “Por facilidad hemos añadido un reloj que te puede ayudar. Trata de entender 
+# qué pasa con cada objeto y toma nota de si la caída de cada objeto depende de su masa o no. 
+# O si del ángulo de inclinación. Recuerda que Galileo dejará caer cada objeto.”
+
 class Dial_3p(Dialogos):
     
     def __init__(self, Introd):   
@@ -433,7 +460,7 @@ class Dial_3p(Dialogos):
             
             if self.state == '1':
                        
-                        
+                     
                 if self.stop == False :
                     
                     self.d1 = TextM('  .     .     .  ', (self.Introd.w*0.35, self.Introd.h*0.4), fontsize= round(self.Introd.w*0.1), color='white', cfondo=(71, 75, 78), time=65)
@@ -445,27 +472,29 @@ class Dial_3p(Dialogos):
                 self.Introd.reiniciark()
                 
             elif self.state == '2':
-                
+                            
                 self.Introd.screen.blit(fondo, frect)
                 #self.diabox()
                 self.diabox3()
-                #self.drawdp()
+                self.drawdpPI()
                 
                 #self.d2 = Text('Mira, ahí está Galileo, ¿puedes leer su mente? ', (self.x100, self.y100), fontsize= self.f50)
+                #self.pe1 = Text('Presione enter para continuar', (self.xda, self.yda), fontsize= self.f40, color='black')
                 
                 if self.stop == False :
                     
-                    self.g2 = TextM('¡¿Cómo es posible que tal barbarie la sigamos creyendo ', (self.x100, self.y100), fontsize= self.f40, cfondo=(255, 255, 255))
-                    self.g21 = TextM('después de ya más de dos mil años?!  Es absurdo pensar ', (self.x100, self.y100+self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
-                    self.g22 = TextM('que \'los cuerpos se detienen porque se cansan\' y que ', (self.x100, self.y100+2*self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
-                    self.g23 = TextM('\'caen porque quieren estar pegados a la tierra\', ', (self.x100, self.y100+3*self.f40), fontsize= self.f40, cfondo=(255, 255, 255))               
+                    self.g2 = TextM('¡He diseñado un plano inclinado! Éste me servirá  ', (self.x100, self.y100), fontsize= self.f40, cfondo=(255, 255, 255))
+                    self.g21 = TextM('para realizar mis experimentos, ya que puedo:', (self.x100, self.y100+self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
+                    #self.g22 = TextM('que \'los cuerpos se detienen porque se cansan\' y que ', (self.x100, self.y100+2*self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
+                    #self.g23 = TextM('\'caen porque quieren estar pegados a la tierra\', ', (self.x100, self.y100+3*self.f40), fontsize= self.f40, cfondo=(255, 255, 255))               
                 
                 #self.d2.draw()
                 self.g2.draw()
-                self.g21.draw()
-                self.g22.draw()
-                self.stop = self.g23.draw()
-                     
+                self.stop = self.g21.draw()
+                #self.g22.draw()
+                #self.stop = self.g23.draw()
+                
+                
                 self.Introd.reiniciark()
                 
             elif self.state == '3':
