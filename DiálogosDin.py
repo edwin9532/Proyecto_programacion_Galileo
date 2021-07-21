@@ -430,7 +430,7 @@ class Dial_2p(Dialogos):
             
 #------------------------------------------------------------------------------------#
 
-class Dial_4p(Dialogos):
+class Dial_3p(Dialogos):
     
     def __init__(self, Introd):   
         Dialogos.__init__(self, Introd)
@@ -488,7 +488,7 @@ class Dial_4p(Dialogos):
                     
                     self.g1 = TextM('Teóricamente, si dejo caer una roca muy pesada y un ', (self.xdg, self.ydg), fontsize= self.f40, cfondo=(255, 255, 255))
                     self.g11 = TextM('acumulado de heno al mismo tiempo, deberá caer más ', (self.xdg, self.ydg+self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
-                    self.g12 = TextM('rápido la roca de igual forma en que una balanza se  ', (self.xdg, self.ydg+2*self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
+                    self.g12 = TextM('rápido la roca, de igual forma que una balanza se  ', (self.xdg, self.ydg+2*self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
                     self.g13 = TextM('inclinaría hacia su lado por la diferencia de peso. ', (self.xdg, self.ydg+3*self.f40), fontsize= self.f40, cfondo=(255, 255, 255))  
                 
                 self.d1.draw()
@@ -525,61 +525,10 @@ class Dial_4p(Dialogos):
                      
                 self.Introd.reiniciark()
                 
-            elif self.state == '3':
-                
-                self.diabox()
-                self.diabox2()
-                self.drawdp()
-                
-                if self.stop == False :
-                    
-                    self.d3 = TextM('Tal vez olvidé mencionarlo, pero Galileo tiene un genio bastante  .  .  .     ', (self.x100, self.y100), fontsize= self.f50, color='white')
-                    self.d31 = TextM('particular.  ', (self.x100, self.y100+self.f50), fontsize= self.f50, color='white')
-                
-                
-                    self.g3 = TextM('Tiene que haber una forma de explicar por qué se ', (self.xdg, self.ydg), fontsize= self.f40, cfondo=(255, 255, 255))
-                    self.g31 = TextM('mueven las cosas. Tal vez por medio de la ', (self.xdg, self.ydg+self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
-                    self.g32 = TextM('matemática y la aritmética encuentre algo.  ', (self.xdg, self.ydg+2*self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
-                    #self.g33 = Text('--', (self.xdg, self.ydg+3*self.f40), fontsize= self.f40)    
-                
-                         
-                self.d3.draw()
-                self.d31.draw()
-                self.g3.draw()
-                self.g31.draw()
-                self.stop = self.g32.draw()
-              
-                self.Introd.reiniciark()
-            
-            elif self.state == '4':
-                
-                self.diabox()
-                self.diabox2()
-                self.drawdp()
-                
-                if self.stop == False:
-                    self.d4 = TextM('Presta atención, aquí es donde, según Einstein, Galileo prende la antorcha ',  (self.x100, self.y100), fontsize= self.f50, color='white')
-                    self.d41 = TextM('de la física moderna. ',  (self.x100, self.y100+self.f50), fontsize= self.f50, color='white')
-                
-                
-                    self.g4 = TextM('He visto que una bala de cañón aumenta su velocidad ', (self.xdg, self.ydg), fontsize= self.f40, cfondo=(255, 255, 255))
-                    self.g41 = TextM('a medida que cae por una colina. Revisaré primero ', (self.xdg, self.ydg+self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
-                    self.g42 = TextM('si esa velocidad es generada por su peso.   ', (self.xdg, self.ydg+2*self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
-                    #self.g43 = Text('--', self.xdg, self.ydg+3*self.f40), fontsize= self.f40)    
-                
-                         
-                self.d4.draw()
-                self.d41.draw()
-                self.g4.draw()
-                self.g41.draw()
-                self.stop = self.g42.draw()
-                
-                self.Introd.reiniciark()  
-            
             
             elif self.state == 'Juego':
                 self.Introd.reiniciark()
-                self.Introd.curr_diag = self.Introd.diag3p
+                self.Introd.curr_diag = self.Introd.diag4p
                 self.rundisplay = False
     
             
@@ -594,32 +543,32 @@ class Dial_4p(Dialogos):
                 self.state = '2'
                 self.stop = False
             elif self.state == '2':
-                self.state = '3'
-                self.stop = False
-            elif self.state == '3':
-                self.state = '4'
-                self.stop = False
-            elif self.state == '4':
                 self.state = 'Juego'
                 self.stop = False
+            #elif self.state == '3':
+                #self.state = '4'
+                #self.stop = False
+            #elif self.state == '4':
+                #self.state = 'Juego'
+                #self.stop = False
                 
         elif self.Introd.borrar:
             if self.state == 'Juego':
-                self.state = '4'
-                self.stop = False
-            elif self.state == '4':
-                self.state == '3'
-                self.stop = False
-            elif self.state == '3':
                 self.state = '2'
                 self.stop = False
+            #elif self.state == '4':
+                #self.state == '3'
+                #self.stop = False
+            #elif self.state == '3':
+                #self.state = '2'
+                #self.stop = False
             elif self.state == '2':
                 self.state = '1'
                 self.stop = False
             
 #------------------------------------------------------------------------------------#
 
-class Dial_3p(Dialogos):
+class Dial_4p(Dialogos):
     
     def __init__(self, Introd):   
         Dialogos.__init__(self, Introd)
@@ -644,6 +593,7 @@ class Dial_3p(Dialogos):
         fondo4 =  pygame.image.load("Imagenes/ftutpi4.png")
         fondo4 = pygame.transform.scale(fondo4,(self.Introd.w, self.Introd.h))
         f4rect = fondo4.get_rect()
+    
         
         fondo = pygame.image.load("Imagenes/Escenario2.png")       
         fondo = pygame.transform.scale(fondo,(self.Introd.w, round(self.Introd.h)))
@@ -670,7 +620,7 @@ class Dial_3p(Dialogos):
             self.Introd.events()
             self.checkstate()
             
-            if self.state == '7':
+            if self.state == '1':
                 
                 self.diabox()
                 self.diabox2()
@@ -678,11 +628,11 @@ class Dial_3p(Dialogos):
                     
                 if self.stop == False :
                     
-                    self.d1 = TextM('Ahora Galileo realizará su segundo experimento    ', (self.x100, self.y100), fontsize= self.f50, color='white')
+                    self.d1 = TextM('Ahora Galileo realizará su segundo experimento:    ', (self.x100, self.y100), fontsize= self.f50, color='white')
                     
                     self.g1 = TextM('He notado que cuando un objeto cae por una colina  ', (self.xdg, self.ydg), fontsize= self.f40, cfondo=(255, 255, 255))
                     self.g11 = TextM('su velocidad va aumentando. Por lo que puedo deducir ', (self.xdg, self.ydg+self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
-                    self.g12 = TextM('que las cosas no caen a velocidad constante', (self.xdg, self.ydg+2*self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
+                    self.g12 = TextM('que las cosas no caen a velocidad constante. ', (self.xdg, self.ydg+2*self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
                     #self.g13 = TextM(' ...', (self.xdg, self.ydg+3*self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
                   
                 self.d1.draw()
@@ -718,12 +668,12 @@ class Dial_3p(Dialogos):
                 
             elif self.state == '2':
                        
-                self.Introd.screen.fill(Color(71, 75, 78))     
+                self.Introd.screen.fill(Color(253, 194, 0))     
                 
                 if self.stop == False :
                     
-                    self.d2 = TextM('  .     .     .  ', (self.Introd.w*0.35, self.Introd.h*0.4), fontsize= round(self.Introd.w*0.1), color='white', cfondo=(71, 75, 78), time=70)
-                    self.pe = TextM('Presione enter para continuar', (self.xda, self.yda), fontsize= self.f60, color='white', cfondo=(71, 75, 78)) #fontsi 60
+                    self.d2 = TextM('  .     .     .  ', (self.Introd.w*0.35, self.Introd.h*0.4), fontsize= round(self.Introd.w*0.1), cfondo=(253, 194, 0), time=70)
+                    self.pe = TextM('Presione enter para continuar', (self.xda, self.yda), fontsize= self.f60, cfondo=(253, 194, 0)) #fontsi 60
                  
                 self.d2.draw()
                 self.stop = self.pe.draw()
@@ -792,7 +742,7 @@ class Dial_3p(Dialogos):
                      
                 self.Introd.reiniciark()
                 
-            elif self.state == '1':
+            elif self.state == '6':
                 
                 self.Introd.screen.blit(fondo4, f4rect)
                 self.diaboxPI()
@@ -896,7 +846,7 @@ class Introd():
         self.diag2p = Dial_2p(self)
         self.diag3p = Dial_3p(self)
         self.diag4p = Dial_4p(self)
-        self.curr_diag = self.diag3p #parte de diálogos actual
+        self.curr_diag = self.diag1p #parte de diálogos actual
     
     
     def juego(self):
