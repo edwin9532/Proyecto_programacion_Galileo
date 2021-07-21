@@ -36,7 +36,7 @@ class Text:
 
 class TextM:
 
-    def __init__(self, text, pos, fontsize=90, fontname='BebasNeue.otf', color='black', cfondo=(0, 0, 0), time=55):
+    def __init__(self, text, pos, fontsize=90, fontname='BebasNeue.otf', color='black', cfondo=(61, 64, 70), time=55):
         self.text = text
         self.len = len(self.text)+1
         self.pos = pos
@@ -92,11 +92,11 @@ class Dialogos():
         
     def diabox(self):
         R = Rect((self.Introd.w*0.03 , self.Introd.h*0.06), (self.Introd.w*0.95, self.Introd.h*0.25))
-        pygame.draw.rect(self.Introd.screen, (0, 0, 0), R)
+        pygame.draw.rect(self.Introd.screen, (61, 64, 70), R)
         
     def diaboxPI(self):
-        R = Rect((self.Introd.w*0.03 , self.Introd.h*0.07), (self.Introd.w*0.75, self.Introd.h*0.25))
-        pygame.draw.rect(self.Introd.screen, (0, 75, 78), R)  
+        R = Rect((self.Introd.w*0.03 , self.Introd.h*0.07), (self.Introd.w*0.72, self.Introd.h*0.25))
+        pygame.draw.rect(self.Introd.screen, (61, 64, 70), R)  
         
     def diabox2(self): #hacer otro cuadro de texto ahora como globo de diálogo más abajo que
         # muestre lo que galileo está diciendo
@@ -118,13 +118,13 @@ class Dialogos():
         
     def drawdp(self): #muestra el mensaje presione enter para continuar
         self.msj = Text('Presione enter para continuar', (self.mw*1.50 , self.mh*0.65), fontsize=round(self.Introd.w*0.021))
-        Re = Rect((self.msj.pos[0]-20, self.msj.pos[1]-10),(self.msj.rect.width+40, self.msj.rect.height+10))
-        pygame.draw.rect(self.Introd.screen, (87, 35, 100), Re)
+        Re = Rect((self.msj.pos[0]-20, self.msj.pos[1]-10),(self.msj.rect.width+40, self.msj.rect.height+14))
+        pygame.draw.rect(self.Introd.screen, (4, 0, 61), Re)
         self.msj.draw()
         
     def drawdpPI(self): #muestra el mensaje presione enter para continuar
         self.msj = Text('Presione enter para continuar', (self.Introd.w*0.74 , self.Introd.h*0.92), fontsize=round(self.Introd.w*0.021))
-        Re = Rect((self.msj.pos[0]-20, self.msj.pos[1]-10),(self.msj.rect.width+40, self.msj.rect.height+10))
+        Re = Rect((self.msj.pos[0]-20, self.msj.pos[1]-10),(self.msj.rect.width+40, self.msj.rect.height+14))
         pygame.draw.rect(self.Introd.screen, (0, 0, 0), Re)
         self.msj.draw()
         
@@ -277,7 +277,7 @@ class Dial_2p(Dialogos):
         ggrect = galg.get_rect()
         
         ggrect.topleft = (self.Introd.w*0.1, self.Introd.h*0.5)
-        self.Introd.screen.blit(galg, ggrect)
+        #self.Introd.screen.blit(galg, ggrect)
         
         self.x100 = self.Introd.w*0.069
         self.y100 = self.Introd.h*0.11
@@ -430,6 +430,194 @@ class Dial_2p(Dialogos):
             
 #------------------------------------------------------------------------------------#
 
+class Dial_4p(Dialogos):
+    
+    def __init__(self, Introd):   
+        Dialogos.__init__(self, Introd)
+        
+        self.state = '1'
+        self.stop = False
+        
+    def displaydial(self):
+        
+        
+        fondo = pygame.image.load("Imagenes/Escenario2.png")       
+        fondo = pygame.transform.scale(fondo,(self.Introd.w, round(self.Introd.h)))
+        frect = fondo.get_rect()
+        self.Introd.screen.blit(fondo, frect)
+        
+        galg = pygame.image.load("Imagenes/GalileoGa.gif")
+        #galg = pygame.transform.scale(galg, (round(self.Introd.w), round(self.Introd.h)))
+        ggrect = galg.get_rect()
+        
+        ggrect.topleft = (self.Introd.w*0.1, self.Introd.h*0.5)
+        #self.Introd.screen.blit(galg, ggrect)
+        
+        self.x100 = self.Introd.w*0.069
+        self.y100 = self.Introd.h*0.11
+        self.f50 = round(self.Introd.w*0.034)
+        
+        self.xdg = self.Introd.w*0.42
+        self.ydg = self.Introd.h*0.47
+        self.f40 = round(self.Introd.w*0.027)
+              
+    
+        self.rundisplay = True
+        while self.rundisplay:
+            
+            self.Introd.events()
+            self.checkstate()
+            
+            if self.state == '1':
+                
+                self.diabox()
+                self.diabox2()
+                self.drawdp()
+                
+                #ggrect.topleft = (self.Introd.w*0.1, self.Introd.h*0.5)
+                #self.Introd.screen.blit(galg, ggrect)
+                
+                #Teóricamente, si lanzo una roca muy pesada y un acumulado de heno al mismo tiempo, 
+                #caerá más rápido la roca de igual forma en que una balanza se inclinaría hacia 
+                #su lado por la diferencia de peso."
+                
+                if self.stop == False :
+                    
+                    self.d1 = TextM('Comenzaremos por mostrarte el primer experimento de Galileo:    ', (self.x100, self.y100), fontsize= self.f50, color='white')
+                    self.d12 = TextM('La caída libre.    ', (self.x100, self.y100+self.f50), fontsize= self.f50, color='white')
+                    
+                    self.g1 = TextM('Teóricamente, si dejo caer una roca muy pesada y un ', (self.xdg, self.ydg), fontsize= self.f40, cfondo=(255, 255, 255))
+                    self.g11 = TextM('acumulado de heno al mismo tiempo, deberá caer más ', (self.xdg, self.ydg+self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
+                    self.g12 = TextM('rápido la roca de igual forma en que una balanza se  ', (self.xdg, self.ydg+2*self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
+                    self.g13 = TextM('inclinaría hacia su lado por la diferencia de peso. ', (self.xdg, self.ydg+3*self.f40), fontsize= self.f40, cfondo=(255, 255, 255))  
+                
+                self.d1.draw()
+                self.d12.draw()
+                
+                self.g1.draw()
+                self.g11.draw()
+                self.g12.draw()
+                self.stop = self.g13.draw()
+                
+                self.Introd.reiniciark()
+                
+            elif self.state == '2':
+                
+                self.diabox()
+                self.diabox2()
+                self.drawdp()
+            
+                #Subiré a la torre de Pisa y lanzare una roca y un poco de heno.
+                if self.stop == False :
+                    
+                    self.d2 = TextM('La intuición nos hizo pensar eso, veamos que hará Galileo.', (self.x100, self.y100), fontsize= self.f50, color='white')
+                    
+                    self.g2 = TextM('Voy a probarlo, para eso subiré a la torre de Pisa  ', (self.xdg, self.ydg), fontsize= self.f40, cfondo=(255, 255, 255))
+                    self.g21 = TextM('y dejaré caer a la vez una roca y un poco de heno. ', (self.xdg, self.ydg+self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
+                    #self.g22 = TextM('---', (self.xdg, self.ydg+2*self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
+                    #self.g23 = TextM('---', (self.xdg, self.ydg+3*self.f40), fontsize= self.f40, cfondo=(255, 255, 255))               
+                
+                self.d2.draw()
+                self.g2.draw()
+                #self.g21.draw()
+                #self.g22.draw()
+                self.stop = self.g21.draw()
+                     
+                self.Introd.reiniciark()
+                
+            elif self.state == '3':
+                
+                self.diabox()
+                self.diabox2()
+                self.drawdp()
+                
+                if self.stop == False :
+                    
+                    self.d3 = TextM('Tal vez olvidé mencionarlo, pero Galileo tiene un genio bastante  .  .  .     ', (self.x100, self.y100), fontsize= self.f50, color='white')
+                    self.d31 = TextM('particular.  ', (self.x100, self.y100+self.f50), fontsize= self.f50, color='white')
+                
+                
+                    self.g3 = TextM('Tiene que haber una forma de explicar por qué se ', (self.xdg, self.ydg), fontsize= self.f40, cfondo=(255, 255, 255))
+                    self.g31 = TextM('mueven las cosas. Tal vez por medio de la ', (self.xdg, self.ydg+self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
+                    self.g32 = TextM('matemática y la aritmética encuentre algo.  ', (self.xdg, self.ydg+2*self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
+                    #self.g33 = Text('--', (self.xdg, self.ydg+3*self.f40), fontsize= self.f40)    
+                
+                         
+                self.d3.draw()
+                self.d31.draw()
+                self.g3.draw()
+                self.g31.draw()
+                self.stop = self.g32.draw()
+              
+                self.Introd.reiniciark()
+            
+            elif self.state == '4':
+                
+                self.diabox()
+                self.diabox2()
+                self.drawdp()
+                
+                if self.stop == False:
+                    self.d4 = TextM('Presta atención, aquí es donde, según Einstein, Galileo prende la antorcha ',  (self.x100, self.y100), fontsize= self.f50, color='white')
+                    self.d41 = TextM('de la física moderna. ',  (self.x100, self.y100+self.f50), fontsize= self.f50, color='white')
+                
+                
+                    self.g4 = TextM('He visto que una bala de cañón aumenta su velocidad ', (self.xdg, self.ydg), fontsize= self.f40, cfondo=(255, 255, 255))
+                    self.g41 = TextM('a medida que cae por una colina. Revisaré primero ', (self.xdg, self.ydg+self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
+                    self.g42 = TextM('si esa velocidad es generada por su peso.   ', (self.xdg, self.ydg+2*self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
+                    #self.g43 = Text('--', self.xdg, self.ydg+3*self.f40), fontsize= self.f40)    
+                
+                         
+                self.d4.draw()
+                self.d41.draw()
+                self.g4.draw()
+                self.g41.draw()
+                self.stop = self.g42.draw()
+                
+                self.Introd.reiniciark()  
+            
+            
+            elif self.state == 'Juego':
+                self.Introd.reiniciark()
+                self.Introd.curr_diag = self.Introd.diag3p
+                self.rundisplay = False
+    
+            
+    def checkstate(self):
+        
+        if self.Introd.esc:
+            self.Introd.running = False
+            self.rundisplay = False
+        
+        elif self.Introd.enter:
+            if self.state == '1':
+                self.state = '2'
+                self.stop = False
+            elif self.state == '2':
+                self.state = '3'
+                self.stop = False
+            elif self.state == '3':
+                self.state = '4'
+                self.stop = False
+            elif self.state == '4':
+                self.state = 'Juego'
+                self.stop = False
+                
+        elif self.Introd.borrar:
+            if self.state == 'Juego':
+                self.state = '4'
+                self.stop = False
+            elif self.state == '4':
+                self.state == '3'
+                self.stop = False
+            elif self.state == '3':
+                self.state = '2'
+                self.stop = False
+            elif self.state == '2':
+                self.state = '1'
+                self.stop = False
+            
+#------------------------------------------------------------------------------------#
 
 class Dial_3p(Dialogos):
     
@@ -482,7 +670,7 @@ class Dial_3p(Dialogos):
             self.Introd.events()
             self.checkstate()
             
-            if self.state == '1':
+            if self.state == '7':
                 
                 self.diabox()
                 self.diabox2()
@@ -604,7 +792,7 @@ class Dial_3p(Dialogos):
                      
                 self.Introd.reiniciark()
                 
-            elif self.state == '6':
+            elif self.state == '1':
                 
                 self.Introd.screen.blit(fondo4, f4rect)
                 self.diaboxPI()
@@ -707,7 +895,8 @@ class Introd():
         self.diag1p = Dial_1p(self)
         self.diag2p = Dial_2p(self)
         self.diag3p = Dial_3p(self)
-        self.curr_diag = self.diag2p #parte de diálogos actual
+        self.diag4p = Dial_4p(self)
+        self.curr_diag = self.diag3p #parte de diálogos actual
     
     
     def juego(self):
