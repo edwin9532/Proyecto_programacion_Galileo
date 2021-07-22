@@ -75,11 +75,10 @@ class TextM:
                 a.screen.blit(self.img, self.rect)
                 pygame.display.update()
                 pygame.time.wait(self.time)
-        #self.tfin()        
-        
-        
+                
         
 #-----------------------------------------------------------------------------------#
+
 
 class Dialogos():
     
@@ -132,6 +131,7 @@ class Dialogos():
         self.Introd.screen.blit(self.Introd.display, (0,0))
         pygame.display.update()
         self.Introd.reiniciark()
+
 
 #-----------------------------------------------------------------------------------#
 
@@ -822,8 +822,7 @@ class Dial_4p(Dialogos):
             elif self.state == '1.5':
                 self.state = '1'
                 self.stop = False
-            
-            
+                        
 #------------------------------------------------------------------------------------#
 
 class Introd():
@@ -846,7 +845,7 @@ class Introd():
         self.diag2p = Dial_2p(self)
         self.diag3p = Dial_3p(self)
         self.diag4p = Dial_4p(self)
-        self.curr_diag = self.diag1p #parte de diálogos actual
+        self.curr_diag = self.diag4p #parte de diálogos actual
     
     
     def juego(self):
