@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Tue May 18 16:19:17 2021
+Created on Mon Aug  2 08:57:37 2021
 
 @author: lizeth
 """
@@ -30,16 +30,62 @@ class Text:
         self.rect.center = self.pos         
 
     def draw(self):
-        a.window.blit(self.img, self.rect)
+        a.screen.blit(self.img, self.rect)
  
 
 #-----------------------------------------------------------------------------#
 
-class Menu():
+class TextM:
 
-    def __init__(self, App):
+    def __init__(self, text, pos, fontsize=90, fontname='BebasNeue.otf', color='black', cfondo=(61, 64, 70), time=55):
+        self.text = text
+        self.len = len(self.text)+1
+        self.pos = pos
+        self.cfondo = cfondo
+        self.time = time
+        self.fontname = fontname
+        self.fontsize = fontsize
+        self.fontcolor = Color(color)
+        self.set_font()
+        self.move = True
+        #self.render()
+            
+    def set_font(self):
+        self.font = pygame.font.Font(self.fontname, self.fontsize)
         
-        self.App = App
+    def tfin(self):
+        self.img = self.font.render(self.text, True, self.fontcolor)
+        self.rect = self.img.get_rect()
+        self.rect.topleft = self.pos
+        R=Rect(self.rect.topleft, (self.rect.width, self.rect.height))
+        pygame.draw.rect(a.screen, (229,190,1), R)
+        a.screen.blit(self.img, self.rect)
+        pygame.display.update()
+        
+    def draw(self):
+        while self.move:
+            for n in range(0, self.len+1): 
+                if n == self.len:
+                    self.move = False
+                    return True
+                self.img = self.font.render(self.text[0:n], True, self.fontcolor)
+                self.rect = self.img.get_rect()
+                self.rect.topleft = self.pos
+                R=Rect(self.rect.topleft, (self.rect.width, self.rect.height))
+                pygame.draw.rect(a.screen, self.cfondo, R)
+                a.screen.blit(self.img, self.rect)
+                pygame.display.update()
+                pygame.time.wait(self.time)
+                
+        
+#-----------------------------------------------------------------------------------#
+
+
+class Preguntas():
+
+    def __init__(self, Preg):
+        
+        self.Preg = Preg
         self.mw, self.mh = self.App.w/2, self.App.h/2
         
         self.rundisplay = True
@@ -50,32 +96,40 @@ class Menu():
         self.cursorr = Text('*', pos=(self.cursorrect.x, self.cursorrect.y))
         self.cursorr.draw()
         
+    def resp_correcta(self):
+        self.bien = Text('Correcto',(self.Preg.w*0.6, self.Preg.h*0.7), color='green')
+        self.bien.draw()
+        
+    def resp_incorrecta(self):    
+        self.mal = Text('Incorrecto',(self.Preg.w*0.6, self.Preg.h*0.7), color='red')
+        self.mal.draw()
+            
     def blit_screen(self):
-        self.App.window.blit(self.App.display, (0,0))
+        self.Preg.screen.blit(self.Preg.display, (0,0))
         pygame.display.update()
-        self.App.reiniciark()
+        self.Preg.reiniciark()
         
 #-----------------------------------------------------------------------------#
 
-class MainMenu(Menu):
+class Preguntas1(Preguntas):
     
     def __init__(self, App):
-        Menu.__init__(self, App)
+        Preguntas.__init__(self, Preg)
         
-        self.state = 'Empezar Aventura'
+        self.state = 'A'
         self.cursorrect.midtop = (self.mw + self.offset, self.mh+110)
     
-    def displaymenu(self):
+    def displaypreg(self):
         
         fondo = pygame.image.load("fondo.png")
-        fondo = pygame.transform.scale(fondo,(self.App.w, self.App.h))
+        fondo = pygame.transform.scale(fondo,(self.Preg.w, self.Preg.h))
         frect = fondo.get_rect()
         
         self.rundisplay = True
         while self.rundisplay:
-            self.App.events()
+            self.Preg.events()
             self.checkstate()
-            self.App.window.blit(fondo, frect)
+            self.Preg.screen.blit(fondo, frect)
             
             self.t = Text('Mente Brillante', pos=(self.mw, self.mh-140), fontsize=180)
             self.tt = Text('Mente Brillante', pos=(self.mw, self.mh-140), fontsize=185, color='black')
@@ -124,9 +178,9 @@ class MainMenu(Menu):
             
     def checkstate(self):
         self.cursor()
-        if self.App.enter:
-            if self.state == 'Empezar Aventura':
-                self.App.playing = True
+        if self.Preg.enter:
+            if self.state == 'A':
+                self.
             elif self.state == 'Opciones':
                 self.App.curr_menu = self.App.options
             elif self.state == 'Salir':
@@ -162,13 +216,13 @@ class OptionsMenu(Menu):
             
 #-----------------------------------------------------------------------------#   
 
-class App():
+class Preg():
     
     def __init__(self):
         pygame.init()
         
-        pygame.mixer.music.load("audio1.mp3")
-        pygame.mixer.music.play(3)
+        #pygame.mixer.music.load("audio1.mp3")
+        #pygame.mixer.music.play(3)
         
         self.running = True
         self.playing = False
@@ -176,29 +230,25 @@ class App():
         self.fabajo, self.farriba, self.enter, self.atras = False, False, False, False
         
         self.display = pygame.Surface((0,0))
-        self.window = pygame.display.set_mode((0,0), FULLSCREEN)
-        self.w, self.h = self.window.get_width(), self.window.get_height()
+        self.screen = pygame.display.set_mode((0,0), FULLSCREEN)
+        self.w, self.h = self.screen.get_width(), self.screen.get_height()
         
-        pygame.display.set_caption("hm")
-        ic = pygame.image.load("Imagenes/Icono.png")
-        pygame.display.set_icon(ic)
+        #pygame.display.set_caption("hm")
+        #ic = pygame.image.load("Imagenes/Icono.png")
+        #pygame.display.set_icon(ic)
               
-        self.mainmenu = MainMenu(self)
-        self.options = OptionsMenu(self)
-        self.curr_menu = self.mainmenu #Menú actual
+        self.preg1 = Preguntas1(self)
+        self.preg2 = Preguntas2(self)
+        self.curr_preg = self.preg1 # Sección de preguntas actual
         
     def juego(self):
-        
         while self.playing:
-            pygame.mixer.music.stop()
             
-            #self.events()
-            #if self.enter or self.atras:
-            #    self.playing = False
-            
-            self.playing = PlanoInclinado.main()
-            self.reiniciark()
-            pygame.mixer.music.play(4)
+            self.screen.fill(Color(71, 75, 78))
+            self.asd = Text('aquí va la simulación', (self.w/2, self.h/2))
+            self.asd.draw()
+            pygame.display.update()
+            self.events()
             
     
     def events(self):
@@ -206,7 +256,7 @@ class App():
             if event.type == QUIT:
                 self.running = False
                 self.playing = False
-                self.curr_menu.rundisplay = False
+                self.curr_preg.rundisplay = False
             if event.type == KEYDOWN:
                 if event.key == K_DOWN:
                     self.fabajo = True
@@ -222,9 +272,9 @@ class App():
 
 #-----------------------------------------------------------------------------#  
 
-a = App()
+a = Preg()
 
 while a.running:
-    a.curr_menu.displaymenu()
+    a.curr_menu.displaypreg()
     a.juego()
     
