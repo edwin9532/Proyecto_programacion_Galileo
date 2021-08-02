@@ -6,7 +6,7 @@ Created on Mon Aug  2 08:57:37 2021
 @author: lizeth
 """
 
-import pygame , PlanoInclinado
+import pygame 
 from pygame.locals import *
 import sys
 
@@ -86,7 +86,7 @@ class Preguntas():
     def __init__(self, Preg):
         
         self.Preg = Preg
-        self.mw, self.mh = self.App.w/2, self.App.h/2
+        self.mw, self.mh = self.Preg.w/2, self.Preg.h/2
         
         self.rundisplay = True
         self.cursorrect= pygame.Rect(0, 0, 90, 90)
@@ -127,26 +127,27 @@ class Preguntas1(Preguntas):
         
         self.rundisplay = True
         while self.rundisplay:
+            
             self.Preg.events()
             self.checkstate()
             self.Preg.screen.blit(fondo, frect)
             
-            self.t = Text('Mente Brillante', pos=(self.mw, self.mh-140), fontsize=180)
-            self.tt = Text('Mente Brillante', pos=(self.mw, self.mh-140), fontsize=185, color='black')
-            self.t1 = Text('Empezar Aventura', pos=(self.mw, self.mh+100))
-            self.tt1 = Text('Empezar Aventura', pos=(self.mw, self.mh+100), fontsize=93, color='black')
-            self.t2 = Text('Opciones', pos=(self.mw, self.mh+200))
-            self.tt2 = Text('Opciones', pos=(self.mw, self.mh+200), fontsize=97, color='black')
-            self.t3 = Text('Salir', pos=(self.mw, self.mh+300))
-            self.tt3 = Text('Salir', pos=(self.mw, self.mh+300), fontsize=97, color='black')
+            self.t = Text('Pregunta Número 1', pos=(self.mw, self.mh-140), fontsize=180)
+            #self.tt = Text('Mente Brillante', pos=(self.mw, self.mh-140), fontsize=185, color='black')
+            self.t1 = Text('Opción 1', pos=(self.mw, self.mh+100))
+            #self.tt1 = Text('Empezar Aventura', pos=(self.mw, self.mh+100), fontsize=93, color='black')
+            self.t2 = Text('Opción 2', pos=(self.mw, self.mh+200))
+            #self.tt2 = Text('Opciones', pos=(self.mw, self.mh+200), fontsize=97, color='black')
+            self.t3 = Text('Opción 3', pos=(self.mw, self.mh+300))
+            #self.tt3 = Text('Salir', pos=(self.mw, self.mh+300), fontsize=97, color='black')
             
-            self.tt.draw()
+            #self.tt.draw()
             self.t.draw()
-            self.tt1.draw()
+            #self.tt1.draw()
             self.t1.draw()
-            self.tt2.draw()
+            #self.tt2.draw()
             self.t2.draw()
-            self.tt3.draw()
+            #self.tt3.draw()
             self.t3.draw()
             self.draw_cursor()
             
@@ -154,63 +155,43 @@ class Preguntas1(Preguntas):
             
             
     def cursor(self):
-        if self.App.fabajo:
-            if self.state=='Empezar Aventura':
+        if self.Preg.fabajo:
+            if self.state=='A':
                 self.cursorrect.midtop = (self.mw + self.offset, self.mh+210)
-                self.state='Opciones'
-            elif self.state=='Opciones':
+                self.state='B'
+            elif self.state=='B':
                 self.cursorrect.midtop = (self.mw + self.offset, self.mh+310)
-                self.state='Salir'
-            elif self.state=='Salir':
+                self.state='C'
+            elif self.state=='C':
                 self.cursorrect.midtop = (self.mw + self.offset, self.mh+110)
-                self.state='Empezar Aventura'
-        elif self.App.farriba:
-            if self.state=='Salir':
+                self.state='A'
+        elif self.Preg.farriba:
+            if self.state=='C':
                 self.cursorrect.midtop = (self.mw + self.offset, self.mh+210)
-                self.state='Opciones'
-            elif self.state=='Opciones':
+                self.state='B'
+            elif self.state=='B':
                 self.cursorrect.midtop = (self.mw + self.offset, self.mh+110)
-                self.state='Empezar Aventura'
-            elif self.state=='Empezar Aventura':
+                self.state='A'
+            elif self.state=='A':
                 self.cursorrect.midtop = (self.mw + self.offset, self.mh+310)
-                self.state='Salir'
+                self.state='C'
             
             
     def checkstate(self):
         self.cursor()
         if self.Preg.enter:
             if self.state == 'A':
-                self.
-            elif self.state == 'Opciones':
-                self.App.curr_menu = self.App.options
-            elif self.state == 'Salir':
-                self.App.running = False
-            self.rundisplay = False
+                self.resp_incorrecta()
+            elif self.state == 'B':
+                self.resp_correcta()
+            elif self.state == 'C':
+                self.resp_incorrecta()
 
+        if self.Preg.esc:
+            self.Preg.running = False
+            self.rundisplay = False
 #-----------------------------------------------------------------------------#   
 
-class OptionsMenu(Menu):
-    
-    def __init__(self, App):
-        Menu.__init__(self, App)
-        
-    def displaymenu(self):
-        
-        fondo = pygame.image.load("fondo.png")
-        fondo = pygame.transform.scale(fondo,(self.App.w, self.App.h))
-        frect = fondo.get_rect()
-        
-        self.rundisplay = True
-        while self.rundisplay:
-            self.App.events()
-            if self.App.enter or self.App.atras:
-                self.App.curr_menu = self.App.mainmenu
-                self.rundisplay = False
-                
-            self.App.window.blit(fondo, frect)
-            self.t6 = Text('Opciones', pos=(self.mw, self.mh-220), fontsize=120)
-            self.t6.draw()
-            self.blit_screen()
 
 
             
@@ -227,11 +208,11 @@ class Preg():
         self.running = True
         self.playing = False
         
-        self.fabajo, self.farriba, self.enter, self.atras = False, False, False, False
+        self.fabajo, self.farriba, self.enter, self.atras, self.esc = False, False, False, False, False
         
         self.display = pygame.Surface((0,0))
         self.screen = pygame.display.set_mode((0,0), FULLSCREEN)
-        self.w, self.h = self.screen.get_width(), self.screen.get_height()
+        self.w , self.h = self.screen.get_width(), self.screen.get_height()
         
         #pygame.display.set_caption("hm")
         #ic = pygame.image.load("Imagenes/Icono.png")
@@ -258,6 +239,9 @@ class Preg():
                 self.playing = False
                 self.curr_preg.rundisplay = False
             if event.type == KEYDOWN:
+                if event.key == K_ESCAPE:
+                    self.esc = True
+                    self.running = False
                 if event.key == K_DOWN:
                     self.fabajo = True
                 if event.key == K_UP:
@@ -268,7 +252,7 @@ class Preg():
                     self.atras = True
 
     def reiniciark(self):
-        self.fabajo, self.farriba, self.enter, self.atras = False, False, False, False
+        self.fabajo, self.farriba, self.enter, self.atras, self.esc = False, False, False, False, False
 
 #-----------------------------------------------------------------------------#  
 
