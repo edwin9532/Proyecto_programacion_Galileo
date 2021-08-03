@@ -88,10 +88,18 @@ class Preguntas():
         self.Preg = Preg
         self.w , self.h = self.Preg.w , self.Preg.h
         self.mw, self.mh = self.Preg.w/2 , self.Preg.h/2
-        self.x100 = self.w*0.069
-        self.y100 = self.h*0.11
-        self.f50 = round(self.w*0.05)
         
+        #Coor. Enunciado
+        self.Ex = self.w*0.069
+        self.Ey = self.h*0.11
+        self.El = round(self.w*0.05)
+        
+        #Coor. Respuestas
+        self.rx = self.w*0.15
+        self.ry1 =self.h*0.5
+        self.ry2 =self.h*0.62
+        self.ry3 =self.h*0.74
+        self.rl =round(self.w*0.05)
         
         self.rundisplay = True
         self.cursorrect= pygame.Rect(0, 0, 90, 90)
@@ -112,12 +120,12 @@ class Preguntas():
         
         
     def resp_correcta(self):
-        self.bien = Text('Correcto',(self.w*0.6, self.h*0.7), color='green')
+        self.bien = Text('Correcto',(self.w*0.75, self.h*0.85), color='green')
         self.bien.draw()
         pygame.display.update()
         
     def resp_incorrecta(self):    
-        self.mal = Text('Incorrecto',(self.w*0.6, self.h*0.7), color='red')
+        self.mal = Text('Incorrecto',(self.w*0.75, self.h*0.85), color='red')
         self.mal.draw()
         pygame.display.update()
         
@@ -139,7 +147,7 @@ class Preguntas1(Preguntas):
         
         self.state = 'A'
         self.Preg.var1 = 0
-        self.cursorrect.midtop = (self.x100 , self.h*0.5)
+        self.cursorrect.midtop = (self.Ex , self.ry1)
     
     def displaypreg(self):
         
@@ -155,13 +163,13 @@ class Preguntas1(Preguntas):
             self.checkstate()
             self.Preg.screen.blit(fondo, frect)
             
-            self.t = Text('Pregunta Número 1', (self.x100, self.y100), self.f50)
+            self.t = Text('Pregunta Número 1', (self.Ex, self.Ey), self.El)
             #self.tt = Text('Mente Brillante', pos=(self.mw, self.mh-140), fontsize=185, color='black')
-            self.t1 = Text('Opción 1', (self.w*0.2, self.h*0.5))
+            self.t1 = Text('Opción 1', (self.rx, self.ry1))
             #self.tt1 = Text('Empezar Aventura', pos=(self.mw, self.mh+100), fontsize=93, color='black')
-            self.t2 = Text('Opción 2', (self.w*0.2, self.h*0.6))
+            self.t2 = Text('Opción 2', (self.rx, self.ry2))
             #self.tt2 = Text('Opciones', pos=(self.mw, self.mh+200), fontsize=97, color='black')
-            self.t3 = Text('Opción 3', (self.w*0.2, self.h*0.7))
+            self.t3 = Text('Opción 3', (self.rx, self.ry3))
             #self.tt3 = Text('Salir', pos=(self.mw, self.mh+300), fontsize=97, color='black')
             
             #self.tt.draw()
@@ -181,23 +189,23 @@ class Preguntas1(Preguntas):
     def cursor(self):
         if self.Preg.fabajo:
             if self.state=='A':
-                self.cursorrect.midtop = (self.x100 , self.h*0.6)
+                self.cursorrect.midtop = (self.Ex , self.ry2)
                 self.state='B'
             elif self.state=='B':
-                self.cursorrect.midtop = (self.x100 , self.h*0.7)
+                self.cursorrect.midtop = (self.Ex  , self.ry3)
                 self.state='C'
             elif self.state=='C':
-                self.cursorrect.midtop = (self.x100 , self.h*0.5)
+                self.cursorrect.midtop = (self.Ex  , self.ry1)
                 self.state='A'
         elif self.Preg.farriba:
             if self.state=='C':
-                self.cursorrect.midtop = (self.x100 , self.h*0.6)
+                self.cursorrect.midtop = (self.Ex  , self.ry2)
                 self.state='B'
             elif self.state=='B':
-                self.cursorrect.midtop = (self.x100 , self.h*0.5)
+                self.cursorrect.midtop = (self.Ex  , self.ry1)
                 self.state='A'
             elif self.state=='A':
-                self.cursorrect.midtop = (self.x100 , self.h*0.7)
+                self.cursorrect.midtop = (self.Ex  , self.ry3)
                 self.state='C'
             
             
