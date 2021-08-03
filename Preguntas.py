@@ -27,11 +27,11 @@ class Text:
     def render(self):
         self.img = self.font.render(self.text, True, self.fontcolor)
         self.rect = self.img.get_rect()
-        self.rect.center = self.pos         
+        self.rect.topleft = self.pos         
 
     def draw(self):
         a.screen.blit(self.img, self.rect)
- 
+    
 
 #-----------------------------------------------------------------------------#
 
@@ -86,7 +86,12 @@ class Preguntas():
     def __init__(self, Preg):
         
         self.Preg = Preg
-        self.mw, self.mh = self.Preg.w/2, self.Preg.h/2
+        self.w , self.h = self.Preg.w , self.Preg.h
+        self.mw, self.mh = self.Preg.w/2 , self.Preg.h/2
+        self.x100 = self.w*0.069
+        self.y100 = self.h*0.11
+        self.f50 = round(self.w*0.05)
+        
         
         self.rundisplay = True
         self.cursorrect= pygame.Rect(0, 0, 90, 90)
@@ -95,35 +100,53 @@ class Preguntas():
     def draw_cursor(self):
         self.cursorr = Text('*', pos=(self.cursorrect.x, self.cursorrect.y))
         self.cursorr.draw()
+     
+    def draw_answer(self):
+        
+        if self.Preg.var1 == 0:
+            pass
+        elif self.Preg.var1 == 1:
+            self.resp_correcta()
+        elif self.Preg.var1 == 2:
+            self.resp_incorrecta()
+        
         
     def resp_correcta(self):
-        self.bien = Text('Correcto',(self.Preg.w*0.6, self.Preg.h*0.7), color='green')
+        self.bien = Text('Correcto',(self.w*0.6, self.h*0.7), color='green')
         self.bien.draw()
+        pygame.display.update()
         
     def resp_incorrecta(self):    
-        self.mal = Text('Incorrecto',(self.Preg.w*0.6, self.Preg.h*0.7), color='red')
+        self.mal = Text('Incorrecto',(self.w*0.6, self.h*0.7), color='red')
         self.mal.draw()
-            
+        pygame.display.update()
+        
     def blit_screen(self):
         self.Preg.screen.blit(self.Preg.display, (0,0))
         pygame.display.update()
         self.Preg.reiniciark()
+    
+    
+        
+        
         
 #-----------------------------------------------------------------------------#
 
 class Preguntas1(Preguntas):
     
-    def __init__(self, App):
+    def __init__(self, Preg):
         Preguntas.__init__(self, Preg)
         
         self.state = 'A'
-        self.cursorrect.midtop = (self.mw + self.offset, self.mh+110)
+        self.Preg.var1 = 0
+        self.cursorrect.midtop = (self.x100 , self.h*0.5)
     
     def displaypreg(self):
         
         fondo = pygame.image.load("fondo.png")
         fondo = pygame.transform.scale(fondo,(self.Preg.w, self.Preg.h))
         frect = fondo.get_rect()
+        
         
         self.rundisplay = True
         while self.rundisplay:
@@ -132,13 +155,13 @@ class Preguntas1(Preguntas):
             self.checkstate()
             self.Preg.screen.blit(fondo, frect)
             
-            self.t = Text('Pregunta Número 1', pos=(self.mw, self.mh-140), fontsize=180)
+            self.t = Text('Pregunta Número 1', (self.x100, self.y100), self.f50)
             #self.tt = Text('Mente Brillante', pos=(self.mw, self.mh-140), fontsize=185, color='black')
-            self.t1 = Text('Opción 1', pos=(self.mw, self.mh+100))
+            self.t1 = Text('Opción 1', (self.w*0.2, self.h*0.5))
             #self.tt1 = Text('Empezar Aventura', pos=(self.mw, self.mh+100), fontsize=93, color='black')
-            self.t2 = Text('Opción 2', pos=(self.mw, self.mh+200))
+            self.t2 = Text('Opción 2', (self.w*0.2, self.h*0.6))
             #self.tt2 = Text('Opciones', pos=(self.mw, self.mh+200), fontsize=97, color='black')
-            self.t3 = Text('Opción 3', pos=(self.mw, self.mh+300))
+            self.t3 = Text('Opción 3', (self.w*0.2, self.h*0.7))
             #self.tt3 = Text('Salir', pos=(self.mw, self.mh+300), fontsize=97, color='black')
             
             #self.tt.draw()
@@ -150,6 +173,7 @@ class Preguntas1(Preguntas):
             #self.tt3.draw()
             self.t3.draw()
             self.draw_cursor()
+            self.draw_answer()
             
             self.blit_screen()
             
@@ -157,23 +181,23 @@ class Preguntas1(Preguntas):
     def cursor(self):
         if self.Preg.fabajo:
             if self.state=='A':
-                self.cursorrect.midtop = (self.mw + self.offset, self.mh+210)
+                self.cursorrect.midtop = (self.x100 , self.h*0.6)
                 self.state='B'
             elif self.state=='B':
-                self.cursorrect.midtop = (self.mw + self.offset, self.mh+310)
+                self.cursorrect.midtop = (self.x100 , self.h*0.7)
                 self.state='C'
             elif self.state=='C':
-                self.cursorrect.midtop = (self.mw + self.offset, self.mh+110)
+                self.cursorrect.midtop = (self.x100 , self.h*0.5)
                 self.state='A'
         elif self.Preg.farriba:
             if self.state=='C':
-                self.cursorrect.midtop = (self.mw + self.offset, self.mh+210)
+                self.cursorrect.midtop = (self.x100 , self.h*0.6)
                 self.state='B'
             elif self.state=='B':
-                self.cursorrect.midtop = (self.mw + self.offset, self.mh+110)
+                self.cursorrect.midtop = (self.x100 , self.h*0.5)
                 self.state='A'
             elif self.state=='A':
-                self.cursorrect.midtop = (self.mw + self.offset, self.mh+310)
+                self.cursorrect.midtop = (self.x100 , self.h*0.7)
                 self.state='C'
             
             
@@ -181,11 +205,12 @@ class Preguntas1(Preguntas):
         self.cursor()
         if self.Preg.enter:
             if self.state == 'A':
-                self.resp_incorrecta()
+                self.Preg.var1 = 2
             elif self.state == 'B':
-                self.resp_correcta()
+                self.Preg.var1 = 1  
             elif self.state == 'C':
-                self.resp_incorrecta()
+                self.Preg.var1 = 2
+                
 
         if self.Preg.esc:
             self.Preg.running = False
@@ -208,6 +233,8 @@ class Preg():
         self.running = True
         self.playing = False
         
+        self.var1 = 0
+        
         self.fabajo, self.farriba, self.enter, self.atras, self.esc = False, False, False, False, False
         
         self.display = pygame.Surface((0,0))
@@ -219,7 +246,7 @@ class Preg():
         #pygame.display.set_icon(ic)
               
         self.preg1 = Preguntas1(self)
-        self.preg2 = Preguntas2(self)
+        #self.preg2 = Preguntas2(self)
         self.curr_preg = self.preg1 # Sección de preguntas actual
         
     def juego(self):
@@ -259,6 +286,6 @@ class Preg():
 a = Preg()
 
 while a.running:
-    a.curr_menu.displaypreg()
+    a.curr_preg.displaypreg()
     a.juego()
     
