@@ -92,7 +92,8 @@ class Preguntas():
         #Coor. Enunciado
         self.Ex = self.w*0.069
         self.Ey = self.h*0.11
-        self.El = round(self.w*0.05)
+        self.El = round(self.w*0.055)
+        self.El1 = round(self.w*0.042)
         
         #Coor. Respuestas
         self.rx = self.w*0.15
@@ -104,7 +105,11 @@ class Preguntas():
         self.rundisplay = True
         self.cursorrect= pygame.Rect(0, 0, 90, 90)
         self.offset= -260       
-        
+    
+    def diabox(self):
+        R = Rect((self.Preg.w*0.03 , self.Preg.h*0.075), (self.Preg.w*0.95, self.Preg.h*0.25))
+        pygame.draw.rect(self.Preg.screen, (61, 64, 70), R)
+    
     def draw_cursor(self):
         self.cursorr = Text('*', pos=(self.cursorrect.x, self.cursorrect.y))
         self.cursorr.draw()
@@ -140,6 +145,14 @@ class Preguntas():
         
 #-----------------------------------------------------------------------------#
 
+#- ¿Los cuerpos caen dependiendo de su masa ? ... NO
+#- Si hay una corriente de aire ¿Cae primero una roca que una pluma? ... SI
+#- Con tus conocimientos: ¿La tierra atrae a los objetos hacia el centro de la tierra y es por esto que caen? ... SI
+#- Si dejamos caer 2 objetos cualquiera y sabiendo que no hay resistencia al aire, ¿Los cuerpos caen dependiendo de su tamaño? ... NO
+#- ¿Cae primero una roca que un trozo de madera? ... NO
+#- Lo planteado por Aristoteles, sobre "...Que los cuerpos caen porque quieren estar pegados a la tierra..." es falso. ... SI
+
+
 class Preguntas1(Preguntas):
     
     def __init__(self, Preg):
@@ -162,29 +175,20 @@ class Preguntas1(Preguntas):
             self.Preg.events()
             self.checkstate()
             self.Preg.screen.blit(fondo, frect)
+            self.diabox()
             
-            self.t = Text('Pregunta Número 1', (self.Ex, self.Ey), self.El)
-            #self.tt = Text('Mente Brillante', pos=(self.mw, self.mh-140), fontsize=185, color='black')
-            self.t1 = Text('Opción 1', (self.rx, self.ry1))
-            #self.tt1 = Text('Empezar Aventura', pos=(self.mw, self.mh+100), fontsize=93, color='black')
-            self.t2 = Text('Opción 2', (self.rx, self.ry2))
-            #self.tt2 = Text('Opciones', pos=(self.mw, self.mh+200), fontsize=97, color='black')
-            self.t3 = Text('Opción 3', (self.rx, self.ry3))
-            #self.tt3 = Text('Salir', pos=(self.mw, self.mh+300), fontsize=97, color='black')
-            
-            #self.tt.draw()
+            self.t = Text('¿Los cuerpos caen dependiendo de su masa ?', (self.Ex, self.Ey), self.El)
+            self.t1 = Text('Sí', (self.rx, self.ry1))
+            self.t2 = Text('No', (self.rx, self.ry2))
+               
             self.t.draw()
-            #self.tt1.draw()
             self.t1.draw()
-            #self.tt2.draw()
             self.t2.draw()
-            #self.tt3.draw()
-            self.t3.draw()
+            
             self.draw_cursor()
             self.draw_answer()
             
-            self.blit_screen()
-            
+            self.blit_screen()       
             
     def cursor(self):
         if self.Preg.fabajo:
@@ -192,21 +196,21 @@ class Preguntas1(Preguntas):
                 self.cursorrect.midtop = (self.Ex , self.ry2)
                 self.state='B'
             elif self.state=='B':
-                self.cursorrect.midtop = (self.Ex  , self.ry3)
-                self.state='C'
-            elif self.state=='C':
                 self.cursorrect.midtop = (self.Ex  , self.ry1)
                 self.state='A'
+            #elif self.state=='C':
+                #self.cursorrect.midtop = (self.Ex  , self.ry1)
+                #self.state='A'
         elif self.Preg.farriba:
-            if self.state=='C':
-                self.cursorrect.midtop = (self.Ex  , self.ry2)
-                self.state='B'
-            elif self.state=='B':
+            #if self.state=='C':
+                #self.cursorrect.midtop = (self.Ex  , self.ry2)
+                #self.state='B'
+            if self.state=='B':
                 self.cursorrect.midtop = (self.Ex  , self.ry1)
                 self.state='A'
             elif self.state=='A':
-                self.cursorrect.midtop = (self.Ex  , self.ry3)
-                self.state='C'
+                self.cursorrect.midtop = (self.Ex  , self.ry2)
+                self.state='B'
             
             
     def checkstate(self):
@@ -216,18 +220,400 @@ class Preguntas1(Preguntas):
                 self.Preg.var1 = 2
             elif self.state == 'B':
                 self.Preg.var1 = 1  
-            elif self.state == 'C':
-                self.Preg.var1 = 2
+            #elif self.state == 'C':
+                #self.Preg.var1 = 2
                 
-
         if self.Preg.esc:
             self.Preg.running = False
             self.rundisplay = False
 #-----------------------------------------------------------------------------#   
 
-
-
+class Preguntas2(Preguntas):
+    
+    def __init__(self, Preg):
+        Preguntas.__init__(self, Preg)
+        
+        self.state = 'A'
+        self.Preg.var1 = 0
+        self.cursorrect.midtop = (self.Ex , self.ry1)
+    
+    def displaypreg(self):
+        
+        fondo = pygame.image.load("fondo.png")
+        fondo = pygame.transform.scale(fondo,(self.Preg.w, self.Preg.h))
+        frect = fondo.get_rect()
+        
+        
+        self.rundisplay = True
+        while self.rundisplay:
             
+            self.Preg.events()
+            self.checkstate()
+            self.Preg.screen.blit(fondo, frect)
+            self.diabox()
+            
+            self.t = Text('Si hay una corriente de aire ¿Cae primero ', (self.Ex, self.Ey), self.El)
+            self.t01 = Text('una roca que una pluma?', (self.Ex, self.Ey+self.El), self.El)
+            self.t1 = Text('Sí', (self.rx, self.ry1))
+            self.t2 = Text('No', (self.rx, self.ry2))
+               
+            self.t.draw()
+            self.t01.draw()
+            self.t1.draw()
+            self.t2.draw()
+            
+            self.draw_cursor()
+            self.draw_answer()
+            
+            self.blit_screen()       
+            
+    def cursor(self):
+        if self.Preg.fabajo:
+            if self.state=='A':
+                self.cursorrect.midtop = (self.Ex , self.ry2)
+                self.state='B'
+            elif self.state=='B':
+                self.cursorrect.midtop = (self.Ex  , self.ry1)
+                self.state='A'
+            #elif self.state=='C':
+                #self.cursorrect.midtop = (self.Ex  , self.ry1)
+                #self.state='A'
+        elif self.Preg.farriba:
+            #if self.state=='C':
+                #self.cursorrect.midtop = (self.Ex  , self.ry2)
+                #self.state='B'
+            if self.state=='B':
+                self.cursorrect.midtop = (self.Ex  , self.ry1)
+                self.state='A'
+            elif self.state=='A':
+                self.cursorrect.midtop = (self.Ex  , self.ry2)
+                self.state='B'
+            
+            
+    def checkstate(self):
+        self.cursor()
+        if self.Preg.enter:
+            if self.state == 'A':
+                self.Preg.var1 = 1
+            elif self.state == 'B':
+                self.Preg.var1 = 2  
+            #elif self.state == 'C':
+                #self.Preg.var1 = 2
+                
+        if self.Preg.esc:
+            self.Preg.running = False
+            self.rundisplay = False
+
+class Preguntas3(Preguntas):
+    
+    def __init__(self, Preg):
+        Preguntas.__init__(self, Preg)
+        
+        self.state = 'A'
+        self.Preg.var1 = 0
+        self.cursorrect.midtop = (self.Ex , self.ry1)
+    
+    def displaypreg(self):
+        
+        fondo = pygame.image.load("fondo.png")
+        fondo = pygame.transform.scale(fondo,(self.Preg.w, self.Preg.h))
+        frect = fondo.get_rect()
+        
+        
+        self.rundisplay = True
+        while self.rundisplay:
+            
+            self.Preg.events()
+            self.checkstate()
+            self.Preg.screen.blit(fondo, frect)
+            self.diabox()
+            
+            self.t = Text('¿La tierra atrae a los objetos hacia el centro', (self.Ex, self.Ey), self.El)
+            self.t01 = Text('de la tierra y es por esto que caen?', (self.Ex, self.Ey+self.El), self.El)
+            self.t1 = Text('Sí', (self.rx, self.ry1))
+            self.t2 = Text('No', (self.rx, self.ry2))
+               
+            self.t.draw()
+            self.t01.draw()
+            self.t1.draw()
+            self.t2.draw()
+            
+            self.draw_cursor()
+            self.draw_answer()
+            
+            self.blit_screen()       
+            
+    def cursor(self):
+        if self.Preg.fabajo:
+            if self.state=='A':
+                self.cursorrect.midtop = (self.Ex , self.ry2)
+                self.state='B'
+            elif self.state=='B':
+                self.cursorrect.midtop = (self.Ex  , self.ry1)
+                self.state='A'
+            #elif self.state=='C':
+                #self.cursorrect.midtop = (self.Ex  , self.ry1)
+                #self.state='A'
+        elif self.Preg.farriba:
+            #if self.state=='C':
+                #self.cursorrect.midtop = (self.Ex  , self.ry2)
+                #self.state='B'
+            if self.state=='B':
+                self.cursorrect.midtop = (self.Ex  , self.ry1)
+                self.state='A'
+            elif self.state=='A':
+                self.cursorrect.midtop = (self.Ex  , self.ry2)
+                self.state='B'
+            
+            
+    def checkstate(self):
+        self.cursor()
+        if self.Preg.enter:
+            if self.state == 'A':
+                self.Preg.var1 = 1
+            elif self.state == 'B':
+                self.Preg.var1 = 2  
+            #elif self.state == 'C':
+                #self.Preg.var1 = 2
+                
+        if self.Preg.esc:
+            self.Preg.running = False
+            self.rundisplay = False
+
+class Preguntas4(Preguntas):
+    
+    def __init__(self, Preg):
+        Preguntas.__init__(self, Preg)
+        
+        self.state = 'A'
+        self.Preg.var1 = 0
+        self.cursorrect.midtop = (self.Ex , self.ry1)
+    
+    def displaypreg(self):
+        
+        fondo = pygame.image.load("fondo.png")
+        fondo = pygame.transform.scale(fondo,(self.Preg.w, self.Preg.h))
+        frect = fondo.get_rect()
+        
+        
+        self.rundisplay = True
+        while self.rundisplay:
+            
+            self.Preg.events()
+            self.checkstate()
+            self.Preg.screen.blit(fondo, frect)
+            self.diabox()
+            
+            self.t = Text('Si dejamos caer 2 objetos cualquiera y sabiendo que no hay', (self.Ex, self.Ey), self.El1)
+            self.t01 = Text('resistencia al aire, ¿Los cuerpos caen dependiendo de su ', (self.Ex, self.Ey+self.El1), self.El1)
+            self.t02 = Text('tamaño?', (self.Ex, self.Ey+2*self.El1), self.El1)
+            self.t1 = Text('Sí', (self.rx, self.ry1))
+            self.t2 = Text('No', (self.rx, self.ry2))
+               
+            self.t.draw()
+            self.t01.draw()
+            self.t02.draw()
+            self.t1.draw()
+            self.t2.draw()
+            
+            self.draw_cursor()
+            self.draw_answer()
+            
+            self.blit_screen()       
+            
+    def cursor(self):
+        if self.Preg.fabajo:
+            if self.state=='A':
+                self.cursorrect.midtop = (self.Ex , self.ry2)
+                self.state='B'
+            elif self.state=='B':
+                self.cursorrect.midtop = (self.Ex  , self.ry1)
+                self.state='A'
+            #elif self.state=='C':
+                #self.cursorrect.midtop = (self.Ex  , self.ry1)
+                #self.state='A'
+        elif self.Preg.farriba:
+            #if self.state=='C':
+                #self.cursorrect.midtop = (self.Ex  , self.ry2)
+                #self.state='B'
+            if self.state=='B':
+                self.cursorrect.midtop = (self.Ex  , self.ry1)
+                self.state='A'
+            elif self.state=='A':
+                self.cursorrect.midtop = (self.Ex  , self.ry2)
+                self.state='B'
+            
+            
+    def checkstate(self):
+        self.cursor()
+        if self.Preg.enter:
+            if self.state == 'A':
+                self.Preg.var1 = 2
+            elif self.state == 'B':
+                self.Preg.var1 = 1  
+            #elif self.state == 'C':
+                #self.Preg.var1 = 2
+                
+        if self.Preg.esc:
+            self.Preg.running = False
+            self.rundisplay = False
+ 
+class Preguntas5(Preguntas):
+    
+    def __init__(self, Preg):
+        Preguntas.__init__(self, Preg)
+        
+        self.state = 'A'
+        self.Preg.var1 = 0
+        self.cursorrect.midtop = (self.Ex , self.ry1)
+    
+    def displaypreg(self):
+        
+        fondo = pygame.image.load("fondo.png")
+        fondo = pygame.transform.scale(fondo,(self.Preg.w, self.Preg.h))
+        frect = fondo.get_rect()
+        
+        
+        self.rundisplay = True
+        while self.rundisplay:
+            
+            self.Preg.events()
+            self.checkstate()
+            self.Preg.screen.blit(fondo, frect)
+            self.diabox()
+            
+            self.t = Text('¿Cae primero una roca que un trozo de madera?', (self.Ex, self.Ey), self.El)
+            #self.t01 = Text('resistencia al aire, ¿Los cuerpos caen dependiendo de su ', (self.Ex, self.Ey+self.El1), self.El1)
+            #self.t02 = Text('tamaño?', (self.Ex, self.Ey+2*self.El1), self.El1)
+            self.t1 = Text('Sí', (self.rx, self.ry1))
+            self.t2 = Text('No', (self.rx, self.ry2))
+               
+            self.t.draw()
+            #self.t01.draw()
+            #self.t02.draw()
+            self.t1.draw()
+            self.t2.draw()
+            
+            self.draw_cursor()
+            self.draw_answer()
+            
+            self.blit_screen()       
+            
+    def cursor(self):
+        if self.Preg.fabajo:
+            if self.state=='A':
+                self.cursorrect.midtop = (self.Ex , self.ry2)
+                self.state='B'
+            elif self.state=='B':
+                self.cursorrect.midtop = (self.Ex  , self.ry1)
+                self.state='A'
+            #elif self.state=='C':
+                #self.cursorrect.midtop = (self.Ex  , self.ry1)
+                #self.state='A'
+        elif self.Preg.farriba:
+            #if self.state=='C':
+                #self.cursorrect.midtop = (self.Ex  , self.ry2)
+                #self.state='B'
+            if self.state=='B':
+                self.cursorrect.midtop = (self.Ex  , self.ry1)
+                self.state='A'
+            elif self.state=='A':
+                self.cursorrect.midtop = (self.Ex  , self.ry2)
+                self.state='B'
+            
+            
+    def checkstate(self):
+        self.cursor()
+        if self.Preg.enter:
+            if self.state == 'A':
+                self.Preg.var1 = 2
+            elif self.state == 'B':
+                self.Preg.var1 = 1  
+            #elif self.state == 'C':
+                #self.Preg.var1 = 2
+                
+        if self.Preg.esc:
+            self.Preg.running = False
+            self.rundisplay = False
+            
+class Preguntas6(Preguntas):
+    
+    def __init__(self, Preg):
+        Preguntas.__init__(self, Preg)
+        
+        self.state = 'A'
+        self.Preg.var1 = 0
+        self.cursorrect.midtop = (self.Ex , self.ry1)
+    
+    def displaypreg(self):
+        
+        fondo = pygame.image.load("fondo.png")
+        fondo = pygame.transform.scale(fondo,(self.Preg.w, self.Preg.h))
+        frect = fondo.get_rect()
+        
+        
+        self.rundisplay = True
+        while self.rundisplay:
+            
+            self.Preg.events()
+            self.checkstate()
+            self.Preg.screen.blit(fondo, frect)
+            self.diabox()
+            
+            self.t = Text('Lo planteado por Aristoteles, sobre "...Que los cuerpos', (self.Ex, self.Ey), self.El1)
+            self.t01 = Text('caen porque quieren estar pegados a la tierra..."', (self.Ex, self.Ey+self.El1), self.El1)
+            self.t02 = Text('¿Es falso?', (self.Ex, self.Ey+2*self.El1), self.El1)
+            self.t1 = Text('Sí', (self.rx, self.ry1))
+            self.t2 = Text('No', (self.rx, self.ry2))
+               
+            self.t.draw()
+            self.t01.draw()
+            self.t02.draw()
+            self.t1.draw()
+            self.t2.draw()
+            
+            self.draw_cursor()
+            self.draw_answer()
+            
+            self.blit_screen()       
+            
+    def cursor(self):
+        if self.Preg.fabajo:
+            if self.state=='A':
+                self.cursorrect.midtop = (self.Ex , self.ry2)
+                self.state='B'
+            elif self.state=='B':
+                self.cursorrect.midtop = (self.Ex  , self.ry1)
+                self.state='A'
+            #elif self.state=='C':
+                #self.cursorrect.midtop = (self.Ex  , self.ry1)
+                #self.state='A'
+        elif self.Preg.farriba:
+            #if self.state=='C':
+                #self.cursorrect.midtop = (self.Ex  , self.ry2)
+                #self.state='B'
+            if self.state=='B':
+                self.cursorrect.midtop = (self.Ex  , self.ry1)
+                self.state='A'
+            elif self.state=='A':
+                self.cursorrect.midtop = (self.Ex  , self.ry2)
+                self.state='B'
+            
+            
+    def checkstate(self):
+        self.cursor()
+        if self.Preg.enter:
+            if self.state == 'A':
+                self.Preg.var1 = 1
+            elif self.state == 'B':
+                self.Preg.var1 = 2  
+            #elif self.state == 'C':
+                #self.Preg.var1 = 2
+                
+        if self.Preg.esc:
+            self.Preg.running = False
+            self.rundisplay = False
+ 
 #-----------------------------------------------------------------------------#   
 
 class Preg():
@@ -254,8 +640,12 @@ class Preg():
         #pygame.display.set_icon(ic)
               
         self.preg1 = Preguntas1(self)
-        #self.preg2 = Preguntas2(self)
-        self.curr_preg = self.preg1 # Sección de preguntas actual
+        self.preg2 = Preguntas2(self)
+        self.preg3 = Preguntas3(self)
+        self.preg4 = Preguntas4(self)
+        self.preg5 = Preguntas5(self)
+        self.preg6 = Preguntas6(self)
+        self.curr_preg = self.preg6 # Sección de preguntas actual
         
     def juego(self):
         while self.playing:
