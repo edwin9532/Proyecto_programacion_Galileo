@@ -145,13 +145,6 @@ class Preguntas():
         
 #-----------------------------------------------------------------------------#
 
-#- ¿Los cuerpos caen dependiendo de su masa ? ... NO
-#- Si hay una corriente de aire ¿Cae primero una roca que una pluma? ... SI
-#- Con tus conocimientos: ¿La tierra atrae a los objetos hacia el centro de la tierra y es por esto que caen? ... SI
-#- Si dejamos caer 2 objetos cualquiera y sabiendo que no hay resistencia al aire, ¿Los cuerpos caen dependiendo de su tamaño? ... NO
-#- ¿Cae primero una roca que un trozo de madera? ... NO
-#- Lo planteado por Aristoteles, sobre "...Que los cuerpos caen porque quieren estar pegados a la tierra..." es falso. ... SI
-
 
 class Preguntas1(Preguntas):
     
@@ -226,7 +219,6 @@ class Preguntas1(Preguntas):
         if self.Preg.esc:
             self.Preg.running = False
             self.rundisplay = False
-#-----------------------------------------------------------------------------#   
 
 class Preguntas2(Preguntas):
     
