@@ -402,7 +402,6 @@ class Dial_1p(Dialogos):
                 self.state = '1'
                 self.stop = False
 
-
 class Dial_2p(Dialogos):
     
     def __init__(self, App):   
@@ -576,8 +575,7 @@ class Dial_2p(Dialogos):
                 self.stop = False
             elif self.state == '2':
                 self.state = '1'
-                self.stop = False
-            
+                self.stop = False      
 
 class Dial_3p(Dialogos):
     
@@ -887,8 +885,6 @@ class Dial_4p(Dialogos):
             elif self.state == '2':
                 self.state == '1'
                 self.stop = False
-            
-                           
      
 class Dial_5p(Dialogos):
     
@@ -1149,7 +1145,6 @@ class Dial_5p(Dialogos):
                 self.state = '1'
                 self.stop = False
                         
- 
 class Dial_6p(Dialogos):
     
     def __init__(self, App):   
@@ -1277,8 +1272,6 @@ class Dial_6p(Dialogos):
                 self.state == '1'
                 self.stop = False
             
-                                               
- 
 #-----------------------------------------------------------------------------#   
 
 class Preguntas():
@@ -1309,6 +1302,18 @@ class Preguntas():
     def diabox(self):
         R = Rect((self.App.w*0.03 , self.App.h*0.075), (self.App.w*0.95, self.App.h*0.25))
         pygame.draw.rect(self.App.screen, (61, 64, 70), R)
+    
+    def drawdcp(self): #muestra el mensaje presione enter para continuar
+        self.msj = Text('Presione \'C\' para ir a la siguiente pregunta', (self.mw*1.35 , self.mh*0.68), fontsize=round(self.App.w*0.021))
+        Re = Rect((self.msj.pos[0]-20, self.msj.pos[1]-10),(self.msj.rect.width+40, self.msj.rect.height+14))
+        pygame.draw.rect(self.App.screen, (4, 0, 61), Re)
+        self.msj.draw()
+    
+    def drawdcp6(self): #muestra el mensaje presione enter para continuar
+        self.msj = Text('Presione \'C\' para continuar', (self.mw*1.4 , self.mh*0.68), fontsize=round(self.App.w*0.023))
+        Re = Rect((self.msj.pos[0]-20, self.msj.pos[1]-10),(self.msj.rect.width+40, self.msj.rect.height+14))
+        pygame.draw.rect(self.App.screen, (4, 0, 61), Re)
+        self.msj.draw()
     
     def draw_cursor(self):
         self.cursorr = Text('*', pos=(self.cursorrect.x, self.cursorrect.y))
@@ -1365,6 +1370,7 @@ class Preguntas1(Preguntas):
             self.checkstate()
             self.App.screen.blit(fondo, frect)
             self.diabox()
+            self.drawdcp()
             
             self.t = Text('¿Los cuerpos caen dependiendo de su masa ?', (self.Ex, self.Ey), self.El)
             self.t1 = Text('Sí', (self.rx, self.ry1))
@@ -1441,6 +1447,7 @@ class Preguntas2(Preguntas):
             self.checkstate()
             self.App.screen.blit(fondo, frect)
             self.diabox()
+            self.drawdcp()
             
             self.t = Text('Si hay una corriente de aire ¿Cae primero ', (self.Ex, self.Ey), self.El)
             self.t01 = Text('una roca que una pluma?', (self.Ex, self.Ey+self.El), self.El)
@@ -1490,6 +1497,10 @@ class Preguntas2(Preguntas):
             #elif self.state == 'C':
                 #self.Preg.var1 = 2
                 
+        if self.App.c:
+            self.rundisplay = False
+            self.App.curr_preg = self.App.preg3
+            
         if self.App.esc:
             self.rundisplay = False
 
@@ -1516,6 +1527,7 @@ class Preguntas3(Preguntas):
             self.checkstate()
             self.App.screen.blit(fondo, frect)
             self.diabox()
+            self.drawdcp()
             
             self.t = Text('¿La tierra atrae a los objetos hacia el centro', (self.Ex, self.Ey), self.El)
             self.t01 = Text('de la tierra y es por esto que caen?', (self.Ex, self.Ey+self.El), self.El)
@@ -1564,6 +1576,9 @@ class Preguntas3(Preguntas):
                 self.App.var1 = 2  
             #elif self.state == 'C':
                 #self.Preg.var1 = 2
+        if self.App.c:
+            self.rundisplay = False
+            self.App.curr_preg = self.App.preg4
                 
         if self.App.esc:
             self.rundisplay = False
@@ -1591,6 +1606,7 @@ class Preguntas4(Preguntas):
             self.checkstate()
             self.App.screen.blit(fondo, frect)
             self.diabox()
+            self.drawdcp()
             
             self.t = Text('Si dejamos caer 2 objetos cualquiera y sabiendo que no hay', (self.Ex, self.Ey), self.El1)
             self.t01 = Text('resistencia al aire, ¿Los cuerpos caen dependiendo de su ', (self.Ex, self.Ey+self.El1), self.El1)
@@ -1641,7 +1657,11 @@ class Preguntas4(Preguntas):
                 self.App.var1 = 1  
             #elif self.state == 'C':
                 #self.Preg.var1 = 2
-                
+        
+        if self.App.c:
+            self.rundisplay = False
+            self.App.curr_preg = self.App.preg5
+                        
         if self.App.esc:
             self.rundisplay = False
  
@@ -1668,6 +1688,7 @@ class Preguntas5(Preguntas):
             self.checkstate()
             self.App.screen.blit(fondo, frect)
             self.diabox()
+            self.drawdcp()
             
             self.t = Text('¿Cae primero una roca que un trozo de madera?', (self.Ex, self.Ey), self.El)
             #self.t01 = Text('resistencia al aire, ¿Los cuerpos caen dependiendo de su ', (self.Ex, self.Ey+self.El1), self.El1)
@@ -1718,7 +1739,11 @@ class Preguntas5(Preguntas):
                 self.App.var1 = 1  
             #elif self.state == 'C':
                 #self.Preg.var1 = 2
-                
+        
+        if self.App.c:
+            self.rundisplay = False
+            self.App.curr_preg = self.App.preg6
+                        
         if self.App.esc:
             self.rundisplay = False
             
@@ -1745,6 +1770,7 @@ class Preguntas6(Preguntas):
             self.checkstate()
             self.App.screen.blit(fondo, frect)
             self.diabox()
+            self.drawdcp6()
             
             self.t = Text('Lo planteado por Aristoteles, sobre "...Que los cuerpos', (self.Ex, self.Ey), self.El1)
             self.t01 = Text('caen porque quieren estar pegados a la tierra..."', (self.Ex, self.Ey+self.El1), self.El1)
@@ -1836,7 +1862,7 @@ class App():
         self.diag4p = Dial_4p(self)
         self.diag5p = Dial_5p(self)
         self.diag6p = Dial_6p(self)
-        self.curr_diag = self.diag6p
+        self.curr_diag = self.diag5p
         
         self.var1 = 0
         self.preg1 = Preguntas1(self)
@@ -1860,10 +1886,16 @@ class App():
             pygame.mixer.music.stop()
             
             PlanoInclinado.main()
-            self.events()
-            if self.enter:
-                self.playing = False
+            self.playing = False
             
+        #self.curr_diag = self.diag4p
+        #self.dialoguing = True
+            
+            #self.events()
+            #if self.c:
+                #self.playing = False
+                #self.curr_diag = self.diag4p
+                #self.dialoguing = True
             
             
             #self.playing = PlanoInclinado.main()
@@ -1910,4 +1942,6 @@ a = App()
 while a.running:
     a.curr_menu.displaymenu()
     a.juego()
+    a.curr_diag = a.diag4p
+    a.curr_diag.displaydial()
     
