@@ -578,6 +578,7 @@ class Dial_2p(Dialogos):
 
 class Dial_3p(Dialogos):
     
+    
     def __init__(self, App):   
         Dialogos.__init__(self, App)
         
@@ -755,8 +756,186 @@ class Dial_3p(Dialogos):
                 self.state = '1'
                 self.stop = False
      
-                
 class Dial_4p(Dialogos):
+    
+    def __init__(self, App):   
+        Dialogos.__init__(self, App)
+        
+        self.state = '1'
+        self.stop = False
+        
+    def displaydial(self):
+        
+        
+        fondo = pygame.image.load("Imagenes/Escenario2.png")       
+        fondo = pygame.transform.scale(fondo,(self.App.w, round(self.App.h)))
+        frect = fondo.get_rect()
+        self.App.screen.blit(fondo, frect)
+        
+        galg = pygame.image.load("Imagenes/GalileoGa.gif")
+        #galg = pygame.transform.scale(galg, (round(self.Introd.w), round(self.Introd.h)))
+        ggrect = galg.get_rect()
+        
+        ggrect.topleft = (self.App.w*0.1, self.App.h*0.5)
+        #self.Introd.screen.blit(galg, ggrect)
+        
+        self.x100 = self.App.w*0.069
+        self.y100 = self.App.h*0.11
+        self.f50 = round(self.App.w*0.034)
+        
+        self.xdg = self.App.w*0.42
+        self.ydg = self.App.h*0.47
+        self.f40 = round(self.App.w*0.027)
+              
+        #Después de 3 simulaciones se le dará a siguiente.
+#-	Narrador: "Bien, veamos a que conclusiones llego Galileo."
+#-	Galileo: "Para mi sorpresa, la roca y el heno caen al mismo tiempo; y al probar con otros objetos con diferentes pesos pasa lo mismo, caen al mismo tiempo. Puedo concluir que los cuerpos caen independientemente de cuanta masa tienen."
+#-	Narrador: "Galileo tiempo después describió este movimiento algebraicamente, con lo cual quiso comprobar que también una pluma y una roca caen al mismo tiempo, pero esto es difícil de probar debido a la resistencia del aire en el medio."
+#-	Galileo: "Estoy convencido de que si no hubiese resistencia al aire una pluma y una roca caerán al mismo tiempo."
+
+    
+        self.rundisplay = True
+        while self.rundisplay:
+            
+            self.App.events()
+            self.checkstate()
+            
+            if self.state == '1':
+                
+                self.diabox()
+                self.diabox2()
+                self.drawdp()
+                
+                #ggrect.topleft = (self.Introd.w*0.1, self.Introd.h*0.5)
+                #self.Introd.screen.blit(galg, ggrect)
+                
+                if self.stop == False :
+                    
+                    self.d1 = TextM('Mira, ahí está Galileo, ¿puedes leer su mente?         ', (self.x100, self.y100), fontsize= self.f50, color='white')
+                    self.g1 = TextM('  .     .     .  ', (self.xdg, self.ydg), fontsize= self.f50, cfondo=(255, 255, 255))
+                
+                self.d1.draw()
+                self.stop = self.g1.draw()
+                
+                self.App.reiniciark()
+                
+            elif self.state == '2':
+                
+                self.diabox()
+                self.diabox2()
+                self.drawdp()
+                
+                self.d2 = Text('Mira, ahí está Galileo, ¿puedes leer su mente? ', (self.x100, self.y100), fontsize= self.f50)
+                
+                if self.stop == False :
+                    
+                    self.g2 = TextM('¡¿Cómo es posible que tal barbarie la sigamos creyendo ', (self.xdg, self.ydg), fontsize= self.f40, cfondo=(255, 255, 255))
+                    self.g21 = TextM('después de ya más de dos mil años?!  Es absurdo pensar ', (self.xdg, self.ydg+self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
+                    self.g22 = TextM('que \'los cuerpos se detienen porque se cansan\' y que ', (self.xdg, self.ydg+2*self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
+                    self.g23 = TextM('\'caen porque quieren estar pegados a la tierra\', ', (self.xdg, self.ydg+3*self.f40), fontsize= self.f40, cfondo=(255, 255, 255))               
+                
+                self.d2.draw()
+                self.g2.draw()
+                self.g21.draw()
+                self.g22.draw()
+                self.stop = self.g23.draw()
+                     
+                self.App.reiniciark()
+                
+            elif self.state == '3':
+                
+                self.diabox()
+                self.diabox2()
+                self.drawdp()
+                
+                if self.stop == False :
+                    
+                    self.d3 = TextM('Tal vez olvidé mencionarlo, pero Galileo tiene un genio bastante  .  .  .     ', (self.x100, self.y100), fontsize= self.f50, color='white')
+                    self.d31 = TextM('particular.  ', (self.x100, self.y100+self.f50), fontsize= self.f50, color='white')
+                
+                
+                    self.g3 = TextM('Tiene que haber una forma de explicar por qué se ', (self.xdg, self.ydg), fontsize= self.f40, cfondo=(255, 255, 255))
+                    self.g31 = TextM('mueven las cosas. Tal vez por medio de la ', (self.xdg, self.ydg+self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
+                    self.g32 = TextM('matemática y la aritmética encuentre algo.  ', (self.xdg, self.ydg+2*self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
+                    #self.g33 = Text('--', (self.xdg, self.ydg+3*self.f40), fontsize= self.f40)    
+                
+                         
+                self.d3.draw()
+                self.d31.draw()
+                self.g3.draw()
+                self.g31.draw()
+                self.stop = self.g32.draw()
+              
+                self.App.reiniciark()
+            
+            elif self.state == '4':
+                
+                self.diabox()
+                self.diabox2()
+                self.drawdp()
+                
+                if self.stop == False:
+                    self.d4 = TextM('Presta atención, aquí es donde, según Einstein, Galileo prende la antorcha ',  (self.x100, self.y100), fontsize= self.f50, color='white')
+                    self.d41 = TextM('de la física moderna. ',  (self.x100, self.y100+self.f50), fontsize= self.f50, color='white')
+                
+                
+                    self.g4 = TextM('He visto que una bala de cañón aumenta su velocidad ', (self.xdg, self.ydg), fontsize= self.f40, cfondo=(255, 255, 255))
+                    self.g41 = TextM('a medida que cae por una colina. Revisaré primero ', (self.xdg, self.ydg+self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
+                    self.g42 = TextM('si esa velocidad es generada por su peso.   ', (self.xdg, self.ydg+2*self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
+                    #self.g43 = Text('--', self.xdg, self.ydg+3*self.f40), fontsize= self.f40)    
+                
+                         
+                self.d4.draw()
+                self.d41.draw()
+                self.g4.draw()
+                self.g41.draw()
+                self.stop = self.g42.draw()
+                
+                self.App.reiniciark()  
+            
+            
+            elif self.state == 'Juego':
+                self.App.reiniciark()
+                self.App.curr_diag = self.App.diag3p
+                self.rundisplay = False
+    
+            
+    def checkstate(self):
+        
+        if self.App.esc:
+            #self.App.running = False
+            self.rundisplay = False
+        
+        elif self.App.enter:
+            if self.state == '1':
+                self.state = '2'
+                self.stop = False
+            elif self.state == '2':
+                self.state = '3'
+                self.stop = False
+            elif self.state == '3':
+                self.state = '4'
+                self.stop = False
+            elif self.state == '4':
+                self.state = 'Juego'
+                self.stop = False
+                
+        elif self.App.borrar:
+            if self.state == 'Juego':
+                self.state = '4'
+                self.stop = False
+            elif self.state == '4':
+                self.state == '3'
+                self.stop = False
+            elif self.state == '3':
+                self.state = '2'
+                self.stop = False
+            elif self.state == '2':
+                self.state = '1'
+                self.stop = False
+                           
+     
+class Dial_5p(Dialogos):
     
     def __init__(self, App):   
         Dialogos.__init__(self, App)
@@ -1567,7 +1746,8 @@ class App():
         self.diag2p = Dial_2p(self)
         self.diag3p = Dial_3p(self)
         self.diag4p = Dial_4p(self)
-        self.curr_diag = self.diag3p
+        self.diag5p = Dial_5p(self)
+        self.curr_diag = self.diag4p
         
         self.var1 = 0
         self.preg1 = Preguntas1(self)
