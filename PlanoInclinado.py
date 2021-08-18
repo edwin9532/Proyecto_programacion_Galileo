@@ -198,7 +198,7 @@ def main():
             if event.type == pygame.QUIT: running = False
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE: running = False
-                if event.key == pygame.K_c: running = False
+                if event.key == pygame.K_x: running = False
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 s_pos = pygame.mouse.get_pos()
                 for s in slides:
@@ -325,4 +325,4 @@ def main():
         #print(ms)
     return False
 
-main()
+#main()

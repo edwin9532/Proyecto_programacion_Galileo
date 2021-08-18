@@ -692,7 +692,7 @@ class Dial_3p(Dialogos):
                 self.App.reiniciark()    
             
             elif self.state == 'scl':
-                self.App.playing = True
+                self.App.playing1 = True
                 self.rundisplay = False
                 self.App.dialoguing = False
                 self.App.reiniciark()
@@ -933,7 +933,7 @@ class Dial_4p(Dialogos):
                 self.App.reiniciark()    
             
             elif self.state == 'spi':
-                self.App.playing = True
+                self.App.playing2 = True
                 self.rundisplay = False
                 self.App.dialoguing = False
                 self.App.reiniciark()
@@ -1800,7 +1800,7 @@ class App():
         self.diag3p = Dial_3p(self)
         self.diag4p = Dial_4p(self)
         self.diag5p = Dial_5p(self)
-        self.curr_diag = self.diag3p
+        self.curr_diag = self.diag1p
         
         self.var1 = 0
         self.preg1 = Preguntas1(self)
@@ -1841,7 +1841,7 @@ class App():
             
             PlanoInclinado.main()
            
-            self.curr_diag = self.diag4p
+            self.curr_diag = self.diag5p
             self.dialoguing = True
             self.playing2 = False
         
