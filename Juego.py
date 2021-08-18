@@ -6,7 +6,7 @@ Created on Wed Aug 11 10:17:54 2021
 @author: lizeth
 """
 
-import pygame , PlanoInclinado, hola
+import pygame , PlanoInclinado
 from pygame.locals import *
 import sys
 
@@ -345,7 +345,7 @@ class Dial_1p(Dialogos):
         
         if self.App.esc:
             #self.App.running = False
-            self.App.curr_menu = self.App.mainmenu
+            #self.App.curr_menu = self.App.mainmenu
             self.rundisplay = False
             self.App.dialoguing = False
             self.App.reiniciark()
@@ -1064,11 +1064,11 @@ class Dial_5p(Dialogos):
                 #ggrect.topleft = (self.Introd.w*0.1, self.Introd.h*0.5)
                 #self.Introd.screen.blit(galg, ggrect)
                 
-                self.d2 = TextM('Bien, veamos a que conclusiones llegó Galileo.             ', (self.x100, self.y100), fontsize= self.f50, color='white')
+                self.d2 = Text('Bien, veamos a que conclusiones llegó Galileo.             ', (self.x100, self.y100), fontsize= self.f50, color='white')
                 if self.stop == False :
                     
                     
-                    self.g2 = TextM('Además, para el mismo ángulo de inclinación, objetos', (self.xd, self.ydg), fontsize= self.f40, cfondo=(255, 255, 255))
+                    self.g2 = TextM('Además, para el mismo ángulo de inclinación, objetos', (self.xdg, self.ydg), fontsize= self.f40, cfondo=(255, 255, 255))
                     self.g21 = TextM('de diferente masa tardan el mismo tiempo en caer por', (self.xdg, self.ydg+self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
                     self.g22 = TextM('el plano. Puedo concluir que los cuerpos caen ', (self.xdg, self.ydg+2*self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
                     self.g23 = TextM('independientemente de su masa.', (self.xdg, self.ydg+3*self.f40), fontsize= self.f40, cfondo=(255, 255, 255))   
@@ -1131,24 +1131,23 @@ class Dial_5p(Dialogos):
                     #self.g13 = TextM('cuerpos caen independientemente de su masa.', (self.xdg, self.ydg+3*self.f40), fontsize= self.f40, cfondo=(255, 255, 255))   
                    
                 self.d1.draw()
-                self.g1.draw()
-                self.g11.draw()
-                self.g12.draw()
-                self.stop = self.g13.draw()
+                self.g2.draw()
+                self.g21.draw()
+                self.stop = self.g22.draw()
                 
                 self.App.reiniciark()
             
             if self.state == '5':
                 
                 #self.App.screen.fill(Color(71, 75, 78))
-                
+                self.App.screen.blit(fondo, frect)
                 self.diabox()
                 self.drawdp()
                 
                 if self.stop == False:
                 
                     self.d1 = TextM('Ahora que ya entiendes como caen los objetos tendrás unas preguntas para ', (self.x100, self.y100), fontsize= self.f50, color='white')
-                    self.d12 = TextM('repsonder. ¡Buena suerte!', (self.x100, self.y100+self.f50), fontsize= self.f50, color='white')
+                    self.d12 = TextM('responder. ¡Buena suerte!', (self.x100, self.y100+self.f50), fontsize= self.f50, color='white')
                 
                 self.d1.draw()
                 self.stop = self.d12.draw()
@@ -1358,6 +1357,8 @@ class Preguntas1(Preguntas):
             
         if self.App.esc:
             self.rundisplay = False
+            self.App.preguntass = False
+            self.App.reiniciark()
 
 class Preguntas2(Preguntas):
     
@@ -1880,7 +1881,7 @@ class App():
 a = App()
 
 while a.running:
-    hola
+    #hola
     a.curr_menu.displaymenu()
     a.juego()
     a.juego()
