@@ -1769,7 +1769,7 @@ class App():
         pygame.init()
         
         pygame.mixer.music.load("audio1.mp3")
-        pygame.mixer.music.play(3)
+        pygame.mixer.music.play(2)
         
         self.running = True
         self.playing = False
@@ -1820,7 +1820,7 @@ class App():
             pygame.mixer.music.stop()
             
             pygame.mixer.music.load("audio2.mp3")
-            pygame.mixer.music.play(3)
+            pygame.mixer.music.play(2)
             
             
             PlanoInclinado.main()
