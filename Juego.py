@@ -147,10 +147,9 @@ class MainMenu(Menu):
             self.tt = TextC('Mente Brillante', pos=(self.mw, self.mh-140), fontsize=185, color='black')
             self.t1 = TextC('Empezar Aventura', pos=(self.mw, self.mh+100))
             self.tt1 = TextC('Empezar Aventura', pos=(self.mw, self.mh+100), fontsize=93, color='black')
-            self.t2 = TextC('Opciones', pos=(self.mw, self.mh+200))
-            self.tt2 = TextC('Opciones', pos=(self.mw, self.mh+200), fontsize=97, color='black')
-            self.t3 = TextC('Salir', pos=(self.mw, self.mh+300))
-            self.tt3 = TextC('Salir', pos=(self.mw, self.mh+300), fontsize=97, color='black')
+            self.t2 = TextC('Salir', pos=(self.mw, self.mh+200))
+            self.tt2 = TextC('Salir', pos=(self.mw, self.mh+200), fontsize=97, color='black')
+            
             
             self.tt.draw()
             self.t.draw()
@@ -158,8 +157,6 @@ class MainMenu(Menu):
             self.t1.draw()
             self.tt2.draw()
             self.t2.draw()
-            self.tt3.draw()
-            self.t3.draw()
             self.draw_cursor()
             
             self.blit_screen()
@@ -169,23 +166,18 @@ class MainMenu(Menu):
         if self.App.fabajo:
             if self.state=='Empezar Aventura':
                 self.cursorrect.midtop = (self.mw + self.offset, self.mh+210)
-                self.state='Opciones'
-            elif self.state=='Opciones':
-                self.cursorrect.midtop = (self.mw + self.offset, self.mh+310)
                 self.state='Salir'
             elif self.state=='Salir':
                 self.cursorrect.midtop = (self.mw + self.offset, self.mh+110)
                 self.state='Empezar Aventura'
         elif self.App.farriba:
-            if self.state=='Salir':
+            if self.state=='Empezar Aventura':
                 self.cursorrect.midtop = (self.mw + self.offset, self.mh+210)
-                self.state='Opciones'
-            elif self.state=='Opciones':
+                self.state='Salir'
+            elif self.state=='Salir':
                 self.cursorrect.midtop = (self.mw + self.offset, self.mh+110)
                 self.state='Empezar Aventura'
-            elif self.state=='Empezar Aventura':
-                self.cursorrect.midtop = (self.mw + self.offset, self.mh+310)
-                self.state='Salir'
+    
             
             
     def checkstate(self):
@@ -194,34 +186,13 @@ class MainMenu(Menu):
             if self.state == 'Empezar Aventura':
                 self.App.playing = False
                 self.App.dialoguing = True
-            elif self.state == 'Opciones':
-                self.App.curr_menu = self.App.options
             elif self.state == 'Salir':
-                self.App.running = False
+                self.App.dialoguing = False
+                a.running = False
+                self.App.curr_diag.rundisplay = False
             self.rundisplay = False 
 
-class OptionsMenu(Menu):
-    
-    def __init__(self, App):
-        Menu.__init__(self, App)
-        
-    def displaymenu(self):
-        
-        fondo = pygame.image.load("fondo.png")
-        fondo = pygame.transform.scale(fondo,(self.App.w, self.App.h))
-        frect = fondo.get_rect()
-        
-        self.rundisplay = True
-        while self.rundisplay:
-            self.App.events()
-            if self.App.enter or self.App.borrar:
-                self.App.curr_menu = self.App.mainmenu
-                self.rundisplay = False
-                
-            self.App.screen.blit(fondo, frect)
-            self.t6 = TextC('Opciones', pos=(self.mw, self.mh-220), fontsize=120)
-            self.t6.draw()
-            self.blit_screen()
+
 
 #-----------------------------------------------------------------------------------#
 
@@ -1853,7 +1824,6 @@ class App():
         pygame.display.set_icon(ic)
               
         self.mainmenu = MainMenu(self)
-        self.options = OptionsMenu(self)
         self.curr_menu = self.mainmenu #Menú actual
         
         self.diag1p = Dial_1p(self)
@@ -1877,7 +1847,7 @@ class App():
     def juego(self):
         
         while self.dialoguing:
-            pygame.mixer.music.stop()
+            
             
             self.curr_diag.displaydial()
         
@@ -1885,9 +1855,16 @@ class App():
         while self.playing:
             pygame.mixer.music.stop()
             
-            PlanoInclinado.main()
-            self.playing = False
+            pygame.mixer.music.load("audio2.mp3")
+            pygame.mixer.music.play(3)
             
+            
+            PlanoInclinado.main()
+           
+            self.curr_diag = self.diag4p
+            self.dialoguing = True
+            self.playing = False
+        
         #self.curr_diag = self.diag4p
         #self.dialoguing = True
             
@@ -1942,6 +1919,7 @@ a = App()
 while a.running:
     a.curr_menu.displaymenu()
     a.juego()
-    a.curr_diag = a.diag4p
-    a.curr_diag.displaydial()
+    a.juego()
+    #a.curr_diag = a.diag4p
+    #a.curr_diag.displaydial()
     
