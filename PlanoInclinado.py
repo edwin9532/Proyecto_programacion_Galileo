@@ -189,6 +189,7 @@ def main():
     tiempo = 0
     fontcro = pygame.font.Font("Digital-7.ttf", 35)
     pulse = 0
+    ps = 0
     ini = True
     
     while running:
@@ -286,10 +287,11 @@ def main():
         if simulando:
             tiempo+=ms
             fontcro = pygame.font.Font("Digital-7.ttf", 35)
-            pulse,ps = 0,0
+            pulse = 0
+            ps = 0
             c_image=crono_p
-        elif not simulando: c_image=crono_
-        elif not simulando and not ini and ps<=10:
+        if not simulando: c_image=crono_
+        if not simulando and not ini and ps<=10:
             if pulse >= 10 and pulse <20:
                 fontcro = pygame.font.Font("Digital-7.ttf", 35)
                 pulse+=1
