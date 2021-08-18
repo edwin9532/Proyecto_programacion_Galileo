@@ -6,7 +6,7 @@ Created on Wed Aug 11 10:17:54 2021
 @author: lizeth
 """
 
-import pygame , PlanoInclinado 
+import pygame , PlanoInclinado, Caidalibre
 from pygame.locals import *
 import sys #, hola
 
@@ -1775,13 +1775,14 @@ class App():
         pygame.mixer.music.play(2)
         
         self.running = True
-        self.playing = False
+        self.playing1 = False
+        self.playing2 = False
         self.dialoguing = False
         self.preguntass = False
         
         
         self.fabajo, self.farriba, self.enter, self.borrar, self.esc = False, False, False, False, False
-        self.c = False
+        self.x = False
         
         self.display = pygame.Surface((0,0))
         self.screen = pygame.display.set_mode((0,0), FULLSCREEN)
@@ -1819,7 +1820,19 @@ class App():
             self.curr_diag.displaydial()
         
         
-        while self.playing:
+        while self.playing1:
+            pygame.mixer.music.stop()
+            
+            pygame.mixer.music.load("audio2.mp3")
+            pygame.mixer.music.play(2)
+            
+            Caidalibre.main()
+           
+            self.curr_diag = self.diag4p
+            self.dialoguing = True
+            self.playing1 = False
+        
+        while self.playing2:
             pygame.mixer.music.stop()
             
             pygame.mixer.music.load("audio2.mp3")
@@ -1830,12 +1843,8 @@ class App():
            
             self.curr_diag = self.diag4p
             self.dialoguing = True
-            self.playing = False
+            self.playing2 = False
         
-        
-        
-        
-            
            
         while self.preguntass:
             pygame.mixer.music.stop()
@@ -1864,11 +1873,11 @@ class App():
                     self.enter = True
                 if event.key == K_BACKSPACE:
                     self.borrar = True
-                if event.key == K_c:
-                    self.c = True
+                if event.key == K_x:
+                    self.x = True
 
     def reiniciark(self):
-        self.fabajo, self.farriba, self.enter, self.borrar, self.esc, self.c = False, False, False, False, False, False
+        self.fabajo, self.farriba, self.enter, self.borrar, self.esc, self.x = False, False, False, False, False, False
 
 #-----------------------------------------------------------------------------#  
 
