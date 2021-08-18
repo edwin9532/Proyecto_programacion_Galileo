@@ -6,7 +6,7 @@ Created on Wed Aug 11 10:17:54 2021
 @author: lizeth
 """
 
-import pygame , PlanoInclinado
+import pygame , PlanoInclinado, hola
 from pygame.locals import *
 import sys
 
@@ -1974,6 +1974,7 @@ class App():
 a = App()
 
 while a.running:
+    hola.video()
     a.curr_menu.displaymenu()
     a.juego()
     a.juego()
