@@ -1881,7 +1881,7 @@ class App():
 a = App()
 
 while a.running:
-    #hola.video()
+    hola.video()
     a.curr_menu.displaymenu()
     a.juego()
     a.juego()
