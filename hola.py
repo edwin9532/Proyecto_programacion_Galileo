@@ -23,4 +23,4 @@ def video():
     cv2.destroyAllWindows()
 
            
-    
+video()   

@@ -1880,7 +1880,9 @@ class App():
 a = App()
 
 while a.running:
-    hola.video()
+    pygame.mixer.music.load("audio1.mp3")
+    pygame.mixer.music.play(3)
+    hola
     a.curr_menu.displaymenu()
     a.juego()
     a.juego()
