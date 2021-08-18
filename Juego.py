@@ -1795,7 +1795,6 @@ class App():
         self.diag3p = Dial_3p(self)
         self.diag4p = Dial_4p(self)
         self.diag5p = Dial_5p(self)
-        self.diag6p = Dial_6p(self)
         self.curr_diag = self.diag5p
         
         self.var1 = 0
