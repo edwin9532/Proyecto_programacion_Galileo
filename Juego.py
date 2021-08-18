@@ -655,10 +655,10 @@ class Dial_3p(Dialogos):
                 
                 if self.stop == False :
                     
-                    self.d31 = TextM(' -               -               -                       -         ', (self.x100, self.y100), fontsize= self.f40, color='white')
-                    self.d32 = TextM(' -               -               -                       -         ', (self.x100, self.y100+self.f40), fontsize= self.f40, color='white')      
-                    self.d33 = TextM(' -               -               -                       -         ', (self.x100, self.y100+2*self.f40), fontsize= self.f40, color='white')
-                    self.d34 = TextM(' -               -               -                       -         ', (self.x100, self.y100+3*self.f40), fontsize= self.f40, color='white')
+                    self.d31 = TextM('Ésta es la simulación de caída libre, dando click sobre la pantalla', (self.x100, self.y100), fontsize= self.f40, color='white')
+                    self.d32 = TextM('se deja caer una esfera, la regla de la izquierda muestra la altura', (self.x100, self.y100+self.f40), fontsize= self.f40, color='white')      
+                    self.d33 = TextM('a la que se deja caer.    Además, se puede elegir el material de la', (self.x100, self.y100+2*self.f40), fontsize= self.f40, color='white')
+                    self.d34 = TextM('esfera, la madera es más liviana que la roca y que el metal.  ', (self.x100, self.y100+3*self.f40), fontsize= self.f40, color='white')
                 
                 self.d31.draw()
                 self.d32.draw()
@@ -676,15 +676,14 @@ class Dial_3p(Dialogos):
                 
                 if self.stop == False :
                     
-                    self.d41 = TextM(' -               -               -                       -         ', (self.x100, self.y100), fontsize= self.f40, color='white')
-                    self.d42 = TextM(' -               -               -                       -         ', (self.x100, self.y100+self.f40), fontsize= self.f40, color='white')      
-                    self.d43 = TextM(' -               -               -                       -         ', (self.x100, self.y100+2*self.f40), fontsize= self.f40, color='white')
-                    self.d44 = TextM(' -               -               -                       -         ', (self.x100, self.y100+3*self.f40), fontsize= self.f40, color='white')
+                    self.d41 = TextM('También hay un reloj que marca el tiempo que tarda en caer cada', (self.x100, self.y100), fontsize= self.f40, color='white')
+                    self.d42 = TextM('esfera. Presta atención a los tiempos de diferentes materiales ', (self.x100, self.y100+self.f40), fontsize= self.f40, color='white')      
+                    self.d43 = TextM('que caen de la misma altura. ¡Suerte! ', (self.x100, self.y100+2*self.f40), fontsize= self.f40, color='white')
+                    #self.d44 = TextM(' -               -               -                       -         ', (self.x100, self.y100+3*self.f40), fontsize= self.f40, color='white')
                 
                 self.d41.draw()
                 self.d42.draw()
-                self.d43.draw()
-                self.stop = self.d44.draw()
+                self.stop = self.d43.draw()
                      
                 self.App.reiniciark()    
             
