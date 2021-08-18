@@ -3,7 +3,7 @@
 import  cv2
 
 def video():
-    cap=cv2.VideoCapture('Imagenes/otrav0001-0500.mp4')
+    cap=cv2.VideoCapture('otrav0001-0500.mp4')
     
     
     if (cap.isOpened()== False):
