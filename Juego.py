@@ -1465,7 +1465,7 @@ class Preguntas2(Preguntas):
         
         self.state = 'A'
         self.App.var1 = 0
-        self.resp_c()
+        #self.resp_c()
         self.cursorrect.midtop = (self.Ex , self.ry1)
     
     def displaypreg(self):
@@ -1905,7 +1905,7 @@ class App():
         self.diag4p = Dial_4p(self)
         self.diag5p = Dial_5p(self)
         self.diag6p = Dial_6p(self)
-        self.curr_diag = self.diag5p
+        self.curr_diag = self.diag3p
         
         self.var1 = 0
         self.preg1 = Preguntas1(self)
