@@ -10,6 +10,7 @@ def main():
     space = pymunk.Space()
     space.gravity = 0, 500
     FPS = 80
+    ms = clock.tick(FPS)
     background = pygame.image.load("Imagenes/Fondo_11.jpg").convert()
      
 
@@ -110,22 +111,87 @@ def main():
             if not t: break
         
         
-        return t, tipo, escogido
+        return t, tipo, escogido, False
     
+    inicio = True
+    
+    tiempo = 0
+    fontcro = pygame.font.Font("Digital-7.ttf", 35)
+    pulse = 0
+    ps = 0
+    crono_p = pygame.image.load("Imagenes/Crono_p.png")
+    crono_ = pygame.image.load("Imagenes/Crono.png")
+    simulando = False
+    
+    
+    
+    dialogo1_0 = b.render("ALTURA DE LA TORRE: 57 m:", 1, (110,0,100))  
+    titulo = a.render("CAÍDA LIBRE",1,(0,100,0))
+    relog = c.render("El tiempo de caída es:",1,(0,0,0))
+    final = b.render("Presione X",1,(250,0,0))
+    final2 = b.render("para continuar",1,(250,0,0))
 
 
-    def game(t,escogido,image,inicio,bola_):
-        while True:
+
+
+
+
+    while True:
             for event in pygame.event.get():  #revisar lo ingresado
                 if event.type == pygame.QUIT:  #para cerrar el juego
                     return
+                elif event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_ESCAPE: return
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if (bola_._id in space._shapes): space.remove(bola_)
                     bola_ = crear(space,event.pos)
+                    simulando, tiempo = True, 0
                     inicio = False
         #display.fill((255,255,255))
-            start = time.time()
+            
+        
             display.blit(background, [-200,-55])    
+            
+            if (material.draw(display) or t):
+                # fondo                
+                t, tipo, escogido, simulando = Tipo()
+            else:
+                # fondo
+                if escogido:
+                    image = pygame.image.load(Tipos[tipo])
+                    image = pygame.transform.scale(image, (80,80))
+                    space.remove(bola_)
+                    escogido = False
+                    simulando = False
+            
+        
+            if inicio: fontcro = pygame.font.Font("Digital-7.ttf", 35)
+            if simulando:
+                tiempo+=ms
+                fontcro = pygame.font.Font("Digital-7.ttf", 35)
+                pulse = 0
+                ps = 0
+                c_image=crono_p
+            if not simulando: c_image=crono_
+            if not simulando and not inicio and ps<=10:
+                if pulse >= 10 and pulse <20:
+                    fontcro = pygame.font.Font("Digital-7.ttf", 35)
+                    pulse+=1
+                elif pulse <10:
+                    fontcro = pygame.font.Font("Digital-7.ttf", 38)
+                    pulse+=1
+                elif pulse == 20:
+                    pulse=0
+                    ps+=1
+        
+        
+            if bola_.body.position.y >= 661:
+                simulando, ini = False, False
+        
+        
+        
+        
+            start = time.time()
        # x, y = convert_coordinates(pos)
      #   pygame.draw.circle(display,(10,110,10),(int(x),int(y)),10)
         
@@ -138,16 +204,18 @@ def main():
             display.blit(final,(1010,540))
             display.blit(final2,(1010,565))
             
-            if (material.draw(display) or t):
-                # fondo                
-                t, tipo, escogido = Tipo()
-            else:
-                # fondo
-                if escogido:
-                    image = pygame.image.load(Tipos[tipo])
-                    image = pygame.transform.scale(image, (80,80))
-                    space.remove(bola_)
-                    escogido = False
+            
+            c_image = pygame.transform.scale(c_image, (int(c_image.get_width()*0.2),int(c_image.get_height()*0.2)))
+            c_rect = c_image.get_rect()
+            c_rect.center = (info.current_w-250+c_image.get_width()//2, 345) # Esto para cambiar posición del reloj
+            display.blit(c_image, (c_rect.x, c_rect.y))
+            
+            crono = fontcro.render(str(round(tiempo/1000,2)), 1, (57,255,20))
+            display.blit(crono, (info.current_w-250+c_image.get_width()//4, 335)) # Esto para cambiar posición de los números en el reloj
+            
+            
+            
+            
                 
             
             if bola_._id in space._shapes and not inicio and not t:
@@ -159,16 +227,13 @@ def main():
             
             
             stop = time.time()
-            print("El tiempo de caida es:", stop - start)
+            #print("El tiempo de caida es:", stop - start)
     
-    dialogo1_0 = b.render("ALTURA DE LA TORRE: 57 m:", 1, (110,0,100))  
-    titulo = a.render("CAÍDA LIBRE",1,(0,100,0))
-    relog = c.render("El tiempo de caída es:",1,(0,0,0))
-    final = b.render("Presione X",1,(250,0,0))
-    final2 = b.render("para continuar",1,(250,0,0))
+    
+    
+
     
   #  start = time.time()
-    game(t,escogido,image,True,bola_)
     #relog    
  #   stop = time.time()
    
