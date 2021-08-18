@@ -8,7 +8,7 @@ Created on Wed Aug 11 10:17:54 2021
 
 import pygame , PlanoInclinado
 from pygame.locals import *
-import sys
+import sys, hola
 
 #Texto centrado
 class TextC:
@@ -1064,7 +1064,7 @@ class Dial_5p(Dialogos):
                 #ggrect.topleft = (self.Introd.w*0.1, self.Introd.h*0.5)
                 #self.Introd.screen.blit(galg, ggrect)
                 
-                self.d2 = Text('Bien, veamos a que conclusiones llegó Galileo.             ', (self.x100, self.y100), fontsize= self.f50, color='white')
+                self.d2 = Text('Bien, veamos a qué conclusiones llegó Galileo.             ', (self.x100, self.y100), fontsize= self.f50, color='white')
                 if self.stop == False :
                     
                     
@@ -1146,7 +1146,7 @@ class Dial_5p(Dialogos):
                 
                 if self.stop == False:
                 
-                    self.d1 = TextM('Ahora que ya entiendes como caen los objetos tendrás unas preguntas para ', (self.x100, self.y100), fontsize= self.f50, color='white')
+                    self.d1 = TextM('Ahora que ya entiendes cómo caen los objetos tendrás unas preguntas para ', (self.x100, self.y100), fontsize= self.f50, color='white')
                     self.d12 = TextM('responder. ¡Buena suerte!', (self.x100, self.y100+self.f50), fontsize= self.f50, color='white')
                 
                 self.d1.draw()
@@ -1881,7 +1881,7 @@ class App():
 a = App()
 
 while a.running:
-    #hola
+    hola
     a.curr_menu.displaymenu()
     a.juego()
     a.juego()

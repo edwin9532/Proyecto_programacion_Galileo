@@ -127,9 +127,15 @@ def main():
     
     dialogo1_0 = b.render("ALTURA DE LA TORRE: 57 m:", 1, (110,0,100))  
     titulo = a.render("CAÍDA LIBRE",1,(0,100,0))
-    relog = c.render("El tiempo de caída es:",1,(0,0,0))
+    relog1 = b.render("El tiempo",1,(0,0,0))
+    relog2 = b.render("de caída es:",1,(0,0,0))
     final = b.render("Presione X",1,(250,0,0))
     final2 = b.render("para continuar",1,(250,0,0))
+    a1 = b.render("3 m",1,(0,0,0))
+    a2 = b.render("6 m",1,(0,0,0))
+    a3 = b.render("9 m",1,(0,0,0))
+    a4 = b.render("12 m",1,(0,0,0))
+    a5 = b.render("15 m",1,(0,0,0)) 
 
 
 
@@ -200,9 +206,17 @@ def main():
       
       #      display.blit(dialogo1_0,(360,450))
             display.blit(titulo,(470,10))
-            display.blit(relog,(470,550))
+            display.blit(relog1,(1010,265))
+            display.blit(relog2,(1010,290))
             display.blit(final,(1010,540))
             display.blit(final2,(1010,565))
+            
+            display.blit(a1,(300,573))
+            display.blit(a2,(300,460))
+            display.blit(a3,(300,347))
+            display.blit(a4,(290,225))
+            display.blit(a5,(290,110))            
+            
             
             
             c_image = pygame.transform.scale(c_image, (int(c_image.get_width()*0.2),int(c_image.get_height()*0.2)))
