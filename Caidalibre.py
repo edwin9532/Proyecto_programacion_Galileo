@@ -1,5 +1,5 @@
 
-import pygame, pymunk,time,Boton_#,relog
+import pygame, pymunk,time,Boton_,pygame.gfxdraw#,relog
 
 def main():
     pygame.init()
@@ -44,9 +44,9 @@ def main():
 
 
 #pygame.mixer.init()
-    a = pygame.font.Font(None, 60)
-    b = pygame.font.Font(None, 40)
-    c = pygame.font.Font(None, 20)
+    b = pygame.font.Font("BebasNeue.otf", 30)
+    c = pygame.font.Font("BebasNeue.otf", 40)
+    
     
     
     info = pygame.display.Info()
@@ -54,7 +54,7 @@ def main():
     B = pygame.image.load('Imagenes/Boton.png')
     Bp = pygame.image.load('Imagenes/Boton_p.png')
     
-    material = Boton_.Boton(info.current_w-80,365, B, Bp, 0.25,"Material")
+    material = Boton_.Boton(info.current_w-90,370, B, Bp, 0.25,"Material",font_size=27)
     
     t,escogido = False,False
     Tipos = ["Imagenes/Bola_Madera.png","Imagenes/Bola_Roca.png","Imagenes/Bola_Metal.png"]
@@ -62,7 +62,7 @@ def main():
     bola_= crear(space, (0,0))
     
     class Bola_T:
-        def __init__(self, tipo, i, tipo_n,font_name="BebasNeue.otf",font_size=33,pos=(info.current_w-330,550)):
+        def __init__(self, tipo, i, tipo_n,font_name="BebasNeue.otf",font_size=33,pos=(info.current_w-330,520)):
             self.pos_i = pos
             self.tipo = i
             self.pos = convert_coordinates((pos[0]+4*30*i,pos[1]+40))
@@ -124,21 +124,26 @@ def main():
     simulando = False
     
     
+    #Plano = pygame.image.load("Imagenes/Plano1.jpg")
+    #Plano = pygame.image.load("Imagenes/Plano2.jpg")
+    Plano = pygame.image.load("Imagenes/Plano3.jpg")
+    
     
     dialogo1_0 = b.render("ALTURA DE LA TORRE: 57 m:", 1, (110,0,100))  
-    titulo = a.render("CAÍDA LIBRE",1,(0,100,0))
     relog1 = b.render("El tiempo",1,(0,0,0))
     relog2 = b.render("de caída es:",1,(0,0,0))
-    final = b.render("Presione X",1,(250,0,0))
-    final2 = b.render("para continuar",1,(250,0,0))
+    final = c.render("Presione  X",1,(250,0,0))
+    final2 = c.render("para continuar",1,(250,0,0))
     a1 = b.render("3 m",1,(0,0,0))
     a2 = b.render("6 m",1,(0,0,0))
     a3 = b.render("9 m",1,(0,0,0))
     a4 = b.render("12 m",1,(0,0,0))
     a5 = b.render("15 m",1,(0,0,0)) 
 
-
-
+    cont=[0,0]
+    bc=0
+    sig = 0
+    fin = False
 
 
 
@@ -148,20 +153,28 @@ def main():
                     return
                 elif event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_ESCAPE: return
+                    if event.key == pygame.K_x:
+                        if final: return
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if (bola_._id in space._shapes): space.remove(bola_)
                     bola_ = crear(space,event.pos)
                     simulando, tiempo = True, 0
                     inicio = False
+                    cont[0]+=1
         #display.fill((255,255,255))
             
         
             display.blit(background, [-200,-55])    
             
+            
             if (material.draw(display) or t):
                 # fondo                
                 t, tipo, escogido, simulando = Tipo()
+                bc+=1
+                if bc==1:
+                    cont[0]-=1
             else:
+                bc=0
                 # fondo
                 if escogido:
                     image = pygame.image.load(Tipos[tipo])
@@ -169,7 +182,8 @@ def main():
                     space.remove(bola_)
                     escogido = False
                     simulando = False
-            
+                    cont[0]-=1
+                    cont[1]+=1
         
             if inicio: fontcro = pygame.font.Font("Digital-7.ttf", 35)
             if simulando:
@@ -201,15 +215,23 @@ def main():
        # x, y = convert_coordinates(pos)
      #   pygame.draw.circle(display,(10,110,10),(int(x),int(y)),10)
         
-            pygame.draw.line(display,(0,0,0),(0,710),(2000,710),20)
+            pygame.draw.line(display,(143, 37, 14),(0,710),(2000,710),20)
+            pygame.gfxdraw.textured_polygon(display, [(0,info.current_h),(0,705),(info.current_w,705),(info.current_w,info.current_h)],Plano,0,0)
         
       
       #      display.blit(dialogo1_0,(360,450))
-            display.blit(titulo,(470,10))
-            display.blit(relog1,(1010,265))
-            display.blit(relog2,(1010,290))
-            display.blit(final,(1010,540))
-            display.blit(final2,(1010,565))
+            display.blit(relog1,(info.current_w-140,200))
+            display.blit(relog2,(info.current_w-140,225))
+            
+            if sig != 2:
+                for co in cont:
+                    if co>=3: sig+=1
+                    else: sig = 0
+            if sig == 2:
+                fin = True
+                display.blit(final,(1145,500))
+                display.blit(final2,(1145,535))
+            else: sig=0
             
             display.blit(a1,(300,573))
             display.blit(a2,(300,460))
@@ -221,15 +243,14 @@ def main():
             
             c_image = pygame.transform.scale(c_image, (int(c_image.get_width()*0.2),int(c_image.get_height()*0.2)))
             c_rect = c_image.get_rect()
-            c_rect.center = (info.current_w-250+c_image.get_width()//2, 345) # Esto para cambiar posición del reloj
+            c_rect.center = (info.current_w-140+c_image.get_width()//2, 290) # Esto para cambiar posición del reloj
             display.blit(c_image, (c_rect.x, c_rect.y))
             
             crono = fontcro.render(str(round(tiempo/1000,2)), 1, (57,255,20))
-            display.blit(crono, (info.current_w-250+c_image.get_width()//4, 335)) # Esto para cambiar posición de los números en el reloj
+            display.blit(crono, (info.current_w-140+c_image.get_width()//4, 280)) # Esto para cambiar posición de los números en el reloj
             
             
-            
-            
+            #print(cont)
                 
             
             if bola_._id in space._shapes and not inicio and not t:
@@ -250,4 +271,4 @@ def main():
 
 #    print("El tiempo de caida es:", stop - start)
     pygame.quit()
-#main()
+main()
