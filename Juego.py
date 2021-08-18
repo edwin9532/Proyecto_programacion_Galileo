@@ -8,7 +8,7 @@ Created on Wed Aug 11 10:17:54 2021
 
 import pygame , PlanoInclinado, Caidalibre
 from pygame.locals import *
-import sys #, hola
+import sys, video2 #, hola
 
 #Texto centrado
 class TextC:
@@ -999,7 +999,7 @@ class Dial_5p(Dialogos):
     def __init__(self, App):   
         Dialogos.__init__(self, App)
         
-        self.state = '1'
+        self.state = '5'
         self.stop = False
         
     def displaydial(self):
@@ -1250,9 +1250,9 @@ class Dial_6p(Dialogos):
                 
                 if self.stop == False:
                 
-                    self.d1 = TextM('Felicidades, acompañaste a Galileo en sus descubrimientos más importantes y su', (self.x100, self.y100), fontsize= self.f50, color='white')
-                    self.d12 = TextM('aventura a llegado a su fin, pero la tuya apenas comienza.', (self.x100, self.y100+self.f50), fontsize= self.f50, color='white')
-                    self.d13 = TextM('                Nos veremos de nuevo...', (self.x100, self.y100+2*self.f50) , fontsize= self.f50, color='white')
+                    self.d1 = TextM('Felicidades, acompañaste a Galileo en sus descubrimientos más importantes ', (self.x100, self.y100), fontsize= self.f50, color='white')
+                    self.d12 = TextM('y su aventura a llegado a su fin, pero la tuya apenas comienza.', (self.x100, self.y100+self.f50), fontsize= self.f50, color='white')
+                    self.d13 = TextM('                 Nos veremos de nuevo .  .  . ', (self.x100, self.y100+2*self.f50) , fontsize= self.f50, color='white')
                 
                 
                 self.d1.draw()
@@ -1260,45 +1260,15 @@ class Dial_6p(Dialogos):
                 self.stop = self.d13.draw()
                 
                 self.App.reiniciark()
-                
-            elif self.state == '2':
-                
-                self.diabox()
-                self.drawdp()
-                
-                if self.stop == False:
-                
-                    self.d2 = TextM('Estás aquí gracias a tu curiosidad, y, bueno, porque te quedaste dormido ', (self.x100, self.y100) , fontsize= self.f50, color='white')
-                    self.d22 = TextM('en tu comedor mientras hacías la tarea de física y pensabas: ', (self.x100, self.y100+self.f50) , fontsize=self.f50, color='white')
-                    self.d23 = TextM('¿por qué los cuerpos caen?', (self.x100, self.y100+2*self.f50) , fontsize= self.f50, color='white')
-                
-                self.d2.draw()
-                self.d22.draw()
-                self.stop = self.d23.draw()
-                        
+                       
+            
+            elif self.state == 'f':
+                #video2.video2()
+                a.running = False
                 self.App.reiniciark()
-                
-            elif self.state == '3':
-                
-                self.diabox()
-                self.drawdp()
-                
-                if self.stop == False:
-                
-                    self.d3 = TextM('Tu deber es entender el razonamiento de Galileo sobre el movimiento de' , (self.x100, self.y100), fontsize= self.f50, color='white')
-                    self.d32 = TextM('los cuerpos, y tratar de convencer y, convencerte, de que lo que estás', (self.x100, self.y100+self.f50) , fontsize= self.f50, color='white')
-                    self.d33 = TextM('haciendo es correcto.    ¿Estás preparado?  ', (self.x100, self.y100+2*self.f50) , fontsize= self.f50, color='white')
-                
-                
-                self.d3.draw()
-                self.d32.draw()
-                self.stop = self.d33.draw()
-                
-                self.App.reiniciark()
-                
-            elif self.state == '2p':
-                self.App.reiniciark()
+                self.App.dialoguing = False
                 self.rundisplay = False
+                
     
             
     def checkstate(self):
@@ -1313,25 +1283,15 @@ class Dial_6p(Dialogos):
         
         elif self.App.enter:
             if self.state == '1':
-                self.state = '2'
+                self.state = 'f'
                 self.stop = False
-            elif self.state == '2':
-                self.state = '3'
-                self.stop = False
-            elif self.state == '3':
-                self.state = '2p'
-                self.stop = False
+            
                 
         elif self.App.borrar:
-            if self.state == '2p':
-                self.state == '3'
+            if self.state == 'f':
+                self.state == '1'
                 self.stop = False
-            elif self.state == '3':
-                self.state = '2'
-                self.stop = False
-            elif self.state == '2':
-                self.state = '1'
-                self.stop = False
+            
 
 
 
@@ -1367,13 +1327,13 @@ class Preguntas():
         pygame.draw.rect(self.App.screen, (61, 64, 70), R)
     
     def drawdcp(self): #muestra el mensaje presione enter para continuar
-        self.msj = Text('Presione \'C\' para ir a la siguiente pregunta', (self.mw*1.35 , self.mh*0.68), fontsize=round(self.App.w*0.021))
+        self.msj = Text('Presione \'X\' para ir a la siguiente pregunta', (self.mw*1.35 , self.mh*0.68), fontsize=round(self.App.w*0.021))
         Re = Rect((self.msj.pos[0]-20, self.msj.pos[1]-10),(self.msj.rect.width+40, self.msj.rect.height+14))
         pygame.draw.rect(self.App.screen, (4, 0, 61), Re)
         self.msj.draw()
     
     def drawdcp6(self): #muestra el mensaje presione enter para continuar
-        self.msj = Text('Presione \'C\' para continuar', (self.mw*1.4 , self.mh*0.68), fontsize=round(self.App.w*0.023))
+        self.msj = Text('Presione \'X\' para continuar', (self.mw*1.4 , self.mh*0.68), fontsize=round(self.App.w*0.023))
         Re = Rect((self.msj.pos[0]-20, self.msj.pos[1]-10),(self.msj.rect.width+40, self.msj.rect.height+14))
         pygame.draw.rect(self.App.screen, (4, 0, 61), Re)
         self.msj.draw()
@@ -1385,7 +1345,7 @@ class Preguntas():
     def draw_answer(self):
         
         if self.App.var1 == 0:
-            pass
+            self.resp_c()
         elif self.App.var1 == 1:
             self.resp_correcta()
         elif self.App.var1 == 2:
@@ -1393,13 +1353,22 @@ class Preguntas():
         
         
     def resp_correcta(self):
-        self.bien = Text('Correcto',(self.w*0.75, self.h*0.85), color='green')
+        self.bien = Text('Correcto', (self.w*0.75 , self.h*0.85), fontsize=round(self.App.w*0.06), color='green')
+        Re = Rect((self.bien.pos[0]-20, self.bien.pos[1]-10),(self.bien.rect.width+40, self.bien.rect.height+14))
+        pygame.draw.rect(self.App.screen, (4, 0, 61), Re)
         self.bien.draw()
         pygame.display.update()
         
     def resp_incorrecta(self):    
-        self.mal = Text('Incorrecto',(self.w*0.75, self.h*0.85), color='red')
+        self.mal = Text('Incorrecto', (self.w*0.75 , self.h*0.85), fontsize=round(self.App.w*0.06), color='red')
+        Re = Rect((self.mal.pos[0]-20, self.mal.pos[1]-10),(self.mal.rect.width+40, self.mal.rect.height+14))
+        pygame.draw.rect(self.App.screen, (4, 0, 61), Re)
         self.mal.draw()
+        pygame.display.update()
+     
+    def resp_c(self):
+        Re = Rect((self.w*0.75-20, self.h*0.85-10),(self.w*0.25, self.h*0.13))
+        pygame.draw.rect(self.App.screen, (4, 0, 61), Re)
         pygame.display.update()
         
     def blit_screen(self):
@@ -1480,7 +1449,7 @@ class Preguntas1(Preguntas):
                 self.App.var1 = 1  
             #elif self.state == 'C':
                #self.Preg.var1 = 2
-        if self.App.c:
+        if self.App.x:
             self.rundisplay = False
             self.App.curr_preg = self.App.preg2
             
@@ -1496,6 +1465,7 @@ class Preguntas2(Preguntas):
         
         self.state = 'A'
         self.App.var1 = 0
+        self.resp_c()
         self.cursorrect.midtop = (self.Ex , self.ry1)
     
     def displaypreg(self):
@@ -1513,6 +1483,7 @@ class Preguntas2(Preguntas):
             self.App.screen.blit(fondo, frect)
             self.diabox()
             self.drawdcp()
+            
             
             self.t = Text('Si hay una corriente de aire ¿Cae primero ', (self.Ex, self.Ey), self.El)
             self.t01 = Text('una roca que una pluma?', (self.Ex, self.Ey+self.El), self.El)
@@ -1562,7 +1533,7 @@ class Preguntas2(Preguntas):
             #elif self.state == 'C':
                 #self.Preg.var1 = 2
                 
-        if self.App.c:
+        if self.App.x:
             self.rundisplay = False
             self.App.curr_preg = self.App.preg3
             
@@ -1641,7 +1612,7 @@ class Preguntas3(Preguntas):
                 self.App.var1 = 2  
             #elif self.state == 'C':
                 #self.Preg.var1 = 2
-        if self.App.c:
+        if self.App.x:
             self.rundisplay = False
             self.App.curr_preg = self.App.preg4
                 
@@ -1723,7 +1694,7 @@ class Preguntas4(Preguntas):
             #elif self.state == 'C':
                 #self.Preg.var1 = 2
         
-        if self.App.c:
+        if self.App.x:
             self.rundisplay = False
             self.App.curr_preg = self.App.preg5
                         
@@ -1805,7 +1776,7 @@ class Preguntas5(Preguntas):
             #elif self.state == 'C':
                 #self.Preg.var1 = 2
         
-        if self.App.c:
+        if self.App.x:
             self.rundisplay = False
             self.App.curr_preg = self.App.preg6
                         
@@ -1886,6 +1857,13 @@ class Preguntas6(Preguntas):
                 self.App.var1 = 2  
             #elif self.state == 'C':
                 #self.Preg.var1 = 2
+        
+        if self.App.x:
+            self.App.curr_diag = self.App.diag6p
+            self.App.dialoguing = True
+            self.App.preguntass = False
+            self.rundisplay = False
+            
                 
         if self.App.esc:
             self.rundisplay = False
@@ -1926,7 +1904,8 @@ class App():
         self.diag3p = Dial_3p(self)
         self.diag4p = Dial_4p(self)
         self.diag5p = Dial_5p(self)
-        self.curr_diag = self.diag1p
+        self.diag6p = Dial_6p(self)
+        self.curr_diag = self.diag5p
         
         self.var1 = 0
         self.preg1 = Preguntas1(self)
