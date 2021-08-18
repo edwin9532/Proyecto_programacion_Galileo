@@ -689,9 +689,10 @@ class Dial_3p(Dialogos):
                 self.App.reiniciark()    
             
             elif self.state == 'scl':
-                self.App.reiniciark()
-                self.App.curr_diag = self.App.diag4p
+                self.App.playing = True
                 self.rundisplay = False
+                self.App.dialoguing = False
+                self.App.reiniciark()
     
             
     def checkstate(self):
@@ -990,7 +991,6 @@ class Dial_4p(Dialogos):
                 self.state = '1'
                 self.stop = False
                         
-
 class Dial_5p(Dialogos):
     
     def __init__(self, App):   
@@ -1138,10 +1138,29 @@ class Dial_5p(Dialogos):
                 
                 self.App.reiniciark()
             
-            elif self.state == '5p':
+            if self.state == '5':
+                
+                #self.App.screen.fill(Color(71, 75, 78))
+                
+                self.diabox()
+                self.drawdp()
+                
+                if self.stop == False:
+                
+                    self.d1 = TextM('Ahora que ya entiendes como caen los objetos tendrás unas preguntas para ', (self.x100, self.y100), fontsize= self.f50, color='white')
+                    self.d12 = TextM('repsonder. ¡Buena suerte!', (self.x100, self.y100+self.f50), fontsize= self.f50, color='white')
+                
+                self.d1.draw()
+                self.stop = self.d12.draw()
+                
                 self.App.reiniciark()
-                self.App.curr_diag = self.App.diag5p
+                
+            
+            elif self.state == 'p':
+                self.App.preguntass = True
                 self.rundisplay = False
+                self.App.dialoguing = False
+                self.App.reiniciark()
     
             
     def checkstate(self):
@@ -1158,148 +1177,36 @@ class Dial_5p(Dialogos):
                 self.state = '2'
                 self.stop = False
             elif self.state == '2':
-                self.state = '5p'
+                self.state = '3'
                 self.stop = False
-            
+            elif self.state == '3':
+                self.state = '4'
+                self.stop = False
+            elif self.state == '4':
+                self.state = '5'
+                self.stop = False
+            elif self.state == '5':
+                self.state = 'p'
+                self.stop = False 
                 
         elif self.App.borrar:
-            if self.state == '5p':
-                self.state = '2'
+            if self.state == 'p':
+                self.state = '5'
+                self.stop = False
+            elif self.state == '5':
+                self.state == '4'
+                self.stop = False
+            elif self.state == '4':
+                self.state == '3'
+                self.stop = False
+            elif self.state == '3':
+                self.state == '2'
                 self.stop = False
             elif self.state == '2':
                 self.state == '1'
                 self.stop = False
      
 
-
-
-class Dial_6p(Dialogos):
-    
-    def __init__(self, App):   
-        Dialogos.__init__(self, App)
-        
-        self.state = '1'
-        self.stop = False
-        
-    def displaydial(self):
-        
-        
-        fondo = pygame.image.load("Imagenes/Escenario2.png")       
-        fondo = pygame.transform.scale(fondo,(self.App.w, round(self.App.h)))
-        frect = fondo.get_rect()
-        self.App.screen.blit(fondo, frect)
-        
-        galg = pygame.image.load("Imagenes/GalileoGa.gif")
-        #galg = pygame.transform.scale(galg, (round(self.Introd.w), round(self.Introd.h)))
-        ggrect = galg.get_rect()
-        
-        ggrect.topleft = (self.App.w*0.1, self.App.h*0.5)
-        #self.Introd.screen.blit(galg, ggrect)
-        
-        self.x100 = self.App.w*0.069
-        self.y100 = self.App.h*0.11
-        self.f50 = round(self.App.w*0.034)
-        
-        self.xdg = self.App.w*0.42
-        self.ydg = self.App.h*0.47
-        self.f40 = round(self.App.w*0.027)
-              
-        
-        self.rundisplay = True
-        while self.rundisplay:
-            
-            self.App.events()
-            self.checkstate()
-            
-            if self.state == '1':
-                
-                self.diabox()
-                self.diabox2()
-                self.drawdp()
-                
-                #ggrect.topleft = (self.Introd.w*0.1, self.Introd.h*0.5)
-                #self.Introd.screen.blit(galg, ggrect)
-                
-            
-                if self.stop == False :
-                    
-                    self.d1 = TextM('Veamos ahora las conclusiones de Galileo.         ', (self.x100, self.y100), fontsize= self.f50, color='white')
-                    
-                    self.g1 = TextM('Para el mismo ángulo de inclinación, objetos de diferente', (self.xdg, self.ydg), fontsize= self.f40, cfondo=(255, 255, 255))
-                    self.g11 = TextM('masa tardan el mismo tiempo en caer por el plano. ', (self.xdg, self.ydg+self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
-                    self.g12 = TextM('Ésto confirma mi conclusión obtenida de antes.  ', (self.xdg, self.ydg+2*self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
-                    #self.g13 = TextM('', (self.xdg, self.ydg+3*self.f40), fontsize= self.f40, cfondo=(255, 255, 255))   
-                   
-                self.d1.draw()
-                self.g1.draw()
-                self.g11.draw()
-                #self.g12.draw()
-                self.stop = self.g12.draw()
-                
-                self.App.reiniciark()
-                
-            elif self.state == '2':
-                
-                self.diabox()
-                self.diabox2()
-                self.drawdp()
-                
-                #ggrect.topleft = (self.Introd.w*0.1, self.Introd.h*0.5)
-                #self.Introd.screen.blit(galg, ggrect)
-                
-                self.d2 = Text('Veamos ahora las conclusiones de Galileo.         ', (self.x100, self.y100), fontsize= self.f50, color='white')
-                
-                if self.stop == False :
-                    
-
-                    self.g2 = TextM('Además, pude notar que entre mayor es el ángulo al que', (self.xdg, self.ydg), fontsize= self.f40, cfondo=(255, 255, 255))
-                    self.g21 = TextM('se inclina el plano, menor es el tiempo en que tarda', (self.xdg, self.ydg+self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
-                    self.g22 = TextM('una esfera en caer. ', (self.xdg, self.ydg+2*self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
-                    #self.g13 = TextM('', (self.xdg, self.ydg+3*self.f40), fontsize= self.f40, cfondo=(255, 255, 255))   
-                   
-                   
-                self.d2.draw()
-                self.g2.draw()
-                self.g21.draw()
-                self.stop = self.g22.draw()
-                
-                self.App.reiniciark()
-            
-            
-            elif self.state == 'p':
-                
-                self.rundisplay = False
-                self.App.dialoguing = False
-                self.App.preguntass = True
-                self.App.reiniciark()
-    
-            
-    def checkstate(self):
-        
-        if self.App.esc:
-            #self.App.running = False
-            self.rundisplay = False
-            self.App.dialoguing = False
-            self.App.reiniciark()
-        
-        
-        elif self.App.enter:
-            if self.state == '1':
-                self.state = '2'
-                self.stop = False
-            elif self.state == '2':
-                self.state = 'p'
-                self.stop = False
-            
-                
-        elif self.App.borrar:
-            if self.state == 'p':
-                self.state = '2'
-                self.stop = False
-            elif self.state == '2':
-                self.state == '1'
-                self.stop = False
-            
 #-----------------------------------------------------------------------------#   
 
 class Preguntas():
