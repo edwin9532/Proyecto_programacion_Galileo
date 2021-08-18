@@ -1208,6 +1208,132 @@ class Dial_5p(Dialogos):
                 self.state == '1'
                 self.stop = False
      
+class Dial_6p(Dialogos):
+    
+    def __init__(self, App):   
+        Dialogos.__init__(self, App)
+        
+        self.state = '1'
+        self.stop = False
+        
+    def displaydial(self):
+        
+        fondo = pygame.image.load("Imagenes/Escenario2.png")       
+        fondo = pygame.transform.scale(fondo,(self.App.w, round(self.App.h)))
+        frect = fondo.get_rect()
+        self.App.screen.blit(fondo, frect)
+        
+        gal = pygame.image.load("Imagenes/Galileoc.png")
+        gal = pygame.transform.scale(gal,(round(self.App.w*0.13), round(self.App.h*0.47)))
+        grect = gal.get_rect()
+        
+        self.x100 = self.App.w*0.069
+        self.y100 = self.App.h*0.11
+        self.f50 = round(self.App.w*0.034)
+        
+        self.rundisplay = True
+        while self.rundisplay:
+            
+            self.App.events()
+            self.checkstate()
+            #print(self.state)
+            
+            grect.topleft = (self.App.w*0.1, self.App.h*0.5)
+            self.App.screen.blit(gal, grect)
+            
+            if self.state == '1':
+                
+                #self.App.screen.fill(Color(71, 75, 78))
+                
+                self.diabox()
+                self.drawdp()
+                
+                if self.stop == False:
+                
+                    self.d1 = TextM('Felicidades, acompañaste a Galileo en sus descubrimientos más importantes y su', (self.x100, self.y100), fontsize= self.f50, color='white')
+                    self.d12 = TextM('aventura a llegado a su fin, pero la tuya apenas comienza.', (self.x100, self.y100+self.f50), fontsize= self.f50, color='white')
+                    self.d13 = TextM('                Nos veremos de nuevo...', (self.x100, self.y100+2*self.f50) , fontsize= self.f50, color='white')
+                
+                
+                self.d1.draw()
+                self.d12.draw()
+                self.stop = self.d13.draw()
+                
+                self.App.reiniciark()
+                
+            elif self.state == '2':
+                
+                self.diabox()
+                self.drawdp()
+                
+                if self.stop == False:
+                
+                    self.d2 = TextM('Estás aquí gracias a tu curiosidad, y, bueno, porque te quedaste dormido ', (self.x100, self.y100) , fontsize= self.f50, color='white')
+                    self.d22 = TextM('en tu comedor mientras hacías la tarea de física y pensabas: ', (self.x100, self.y100+self.f50) , fontsize=self.f50, color='white')
+                    self.d23 = TextM('¿por qué los cuerpos caen?', (self.x100, self.y100+2*self.f50) , fontsize= self.f50, color='white')
+                
+                self.d2.draw()
+                self.d22.draw()
+                self.stop = self.d23.draw()
+                        
+                self.App.reiniciark()
+                
+            elif self.state == '3':
+                
+                self.diabox()
+                self.drawdp()
+                
+                if self.stop == False:
+                
+                    self.d3 = TextM('Tu deber es entender el razonamiento de Galileo sobre el movimiento de' , (self.x100, self.y100), fontsize= self.f50, color='white')
+                    self.d32 = TextM('los cuerpos, y tratar de convencer y, convencerte, de que lo que estás', (self.x100, self.y100+self.f50) , fontsize= self.f50, color='white')
+                    self.d33 = TextM('haciendo es correcto.    ¿Estás preparado?  ', (self.x100, self.y100+2*self.f50) , fontsize= self.f50, color='white')
+                
+                
+                self.d3.draw()
+                self.d32.draw()
+                self.stop = self.d33.draw()
+                
+                self.App.reiniciark()
+                
+            elif self.state == '2p':
+                self.App.reiniciark()
+                self.rundisplay = False
+    
+            
+    def checkstate(self):
+        
+        if self.App.esc:
+            #self.App.running = False
+            #self.App.curr_menu = self.App.mainmenu
+            self.rundisplay = False
+            self.App.dialoguing = False
+            self.App.reiniciark()
+        
+        
+        elif self.App.enter:
+            if self.state == '1':
+                self.state = '2'
+                self.stop = False
+            elif self.state == '2':
+                self.state = '3'
+                self.stop = False
+            elif self.state == '3':
+                self.state = '2p'
+                self.stop = False
+                
+        elif self.App.borrar:
+            if self.state == '2p':
+                self.state == '3'
+                self.stop = False
+            elif self.state == '3':
+                self.state = '2'
+                self.stop = False
+            elif self.state == '2':
+                self.state = '1'
+                self.stop = False
+
+
 
 #-----------------------------------------------------------------------------#   
 
@@ -1847,7 +1973,6 @@ class App():
         
            
         while self.preguntass:
-            pygame.mixer.music.stop()
             
             self.curr_preg.displaypreg()
             
@@ -1886,6 +2011,7 @@ a = App()
 while a.running:
     #hola
     a.curr_menu.displaymenu()
+    a.juego()
     a.juego()
     a.juego()
     #a.curr_diag = a.diag4p
