@@ -999,7 +999,7 @@ class Dial_5p(Dialogos):
     def __init__(self, App):   
         Dialogos.__init__(self, App)
         
-        self.state = '5'
+        self.state = '1'
         self.stop = False
         
     def displaydial(self):
@@ -1239,7 +1239,7 @@ class Dial_6p(Dialogos):
             #print(self.state)
             
             grect.topleft = (self.App.w*0.1, self.App.h*0.5)
-            self.App.screen.blit(gal, grect)
+            #self.App.screen.blit(gal, grect)
             
             if self.state == '1':
                 
@@ -1905,7 +1905,7 @@ class App():
         self.diag4p = Dial_4p(self)
         self.diag5p = Dial_5p(self)
         self.diag6p = Dial_6p(self)
-        self.curr_diag = self.diag3p
+        self.curr_diag = self.diag1p
         
         self.var1 = 0
         self.preg1 = Preguntas1(self)
