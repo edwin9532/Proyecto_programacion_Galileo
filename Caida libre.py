@@ -62,10 +62,10 @@ def main():
     bola_= crear(space, (0,0))
     
     class Bola_T:
-        def __init__(self, tipo, i, tipo_n,font_name="BebasNeue.otf",font_size=33,pos=(info.current_w//5,350)):
+        def __init__(self, tipo, i, tipo_n,font_name="BebasNeue.otf",font_size=33,pos=(info.current_w-330,550)):
             self.pos_i = pos
             self.tipo = i
-            self.pos = convert_coordinates((pos[0]+4*40*i,pos[1]+40))
+            self.pos = convert_coordinates((pos[0]+4*30*i,pos[1]+40))
             self.nombre = tipo_n
             self.font = pygame.font.SysFont(font_name, font_size, False)
             self.image = pygame.image.load(tipo)
