@@ -10,7 +10,7 @@ def main():
     space = pymunk.Space()
     space.gravity = 0, 500
     FPS = 80
-    background = pygame.image.load("Imagenes/Fondo_11.jpg").convert()
+    background = pygame.image.load("Imagenes/Fondo_12.jpg").convert()
      
 
     def convert_coordinates(point):
@@ -132,7 +132,7 @@ def main():
             pygame.draw.line(display,(0,0,0),(0,710),(2000,710),20)
         
       
-            display.blit(dialogo1_0,(360,450))
+      #      display.blit(dialogo1_0,(360,450))
             display.blit(titulo,(470,10))
             display.blit(relog,(470,550))
             display.blit(final,(1010,540))
@@ -161,7 +161,7 @@ def main():
             stop = time.time()
             print("El tiempo de caida es:", stop - start)
     
-    dialogo1_0 = b.render("ALTURA DE LA TORRE: 57 m:", 1, (110,0,100))  
+   # dialogo1_0 = b.render("ALTURA DE LA TORRE: 57 m:", 1, (110,0,100))  
     titulo = a.render("CAÍDA LIBRE",1,(0,100,0))
     relog = c.render("El tiempo de caída es:",1,(0,0,0))
     final = b.render("Presione X",1,(250,0,0))
