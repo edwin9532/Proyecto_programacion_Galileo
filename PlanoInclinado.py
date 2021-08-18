@@ -167,7 +167,7 @@ def main():
     start = Boton_.Boton(info.current_w-80,275, B, Bp, 0.25,"Simular")
     restart = Boton_.Boton(info.current_w-80,320, B, Bp, 0.25,"Reiniciar")
     material = Boton_.Boton(info.current_w-80,365, B, Bp, 0.25,"Material")
-    siguiente = Boton_.Boton(info.current_w-80, 445, B1, Bp1, 0.3, "Siguiente",font_size=30,font_color=(255,255,255)) # No sé si se vea mejor negro que blanco.
+    siguiente = Boton_.Boton(info.current_w-80, 445, B1, Bp1, 0.3, "Avanzar",font_size=30,font_color=(255,255,255)) # No sé si se vea mejor negro que blanco.
     
     # Objetos iniciales y de borde
     bola_ = bola(space,(rm,rm),rm,masa.val)
@@ -270,7 +270,7 @@ def main():
                 else: sig = 0
         if sig == 5:
             if siguiente.draw(screen) and not t:
-                print("Siguiente")
+                running = False
                 # Aquí pasaría al siguiente nivel. 
                 # Se activa el botón una vez se haya modificado mínimo 2 veces la masa, la altura, la longitud, y el material, y se haya simluado mínimo 2 veces.
         else: sig=0
@@ -325,4 +325,4 @@ def main():
         #print(ms)
     return False
 
-#main()
+#main()main()
