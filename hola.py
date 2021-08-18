@@ -22,5 +22,5 @@ def video():
     cap.release()
     cv2.destroyAllWindows()
 
-video()            
+           
     

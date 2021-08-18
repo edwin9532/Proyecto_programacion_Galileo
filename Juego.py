@@ -1051,7 +1051,7 @@ class Dial_5p(Dialogos):
                 self.g1.draw()
                 self.g11.draw()
                 self.g12.draw()
-                self.stop = self.g13.draw()
+                self.stop = self.g12.draw()
                 
                 self.App.reiniciark()
                 
