@@ -6,9 +6,9 @@ Created on Wed Aug 11 10:17:54 2021
 @author: lizeth
 """
 
-import pygame , PlanoInclinado
+import pygame , PlanoInclinado 
 from pygame.locals import *
-import sys, hola
+import sys #, hola
 
 #Texto centrado
 class TextC:
@@ -565,9 +565,13 @@ class Dial_3p(Dialogos):
         frect = fondo.get_rect()
         self.App.screen.blit(fondo, frect)
         
-        fondo1 = pygame.image.load("Imagenes/ftutcl1.jpeg")       # -----> para poner el fondo 
+        fondo1 = pygame.image.load("Imagenes/ftutcl1.png")       # -----> para poner el fondo 
         fondo1 = pygame.transform.scale(fondo1,(self.App.w, self.App.h))
         f1rect = fondo1.get_rect()
+        
+        fondo2 = pygame.image.load("Imagenes/ftutcl2.png")       # -----> para poner el fondo 
+        fondo2 = pygame.transform.scale(fondo2,(self.App.w, self.App.h))
+        f2rect = fondo2.get_rect()
         
     
         galg = pygame.image.load("Imagenes/GalileoGa.gif")
@@ -669,7 +673,7 @@ class Dial_3p(Dialogos):
                 
             elif self.state == '4':
                 
-                self.App.screen.blit(fondo1, f1rect)
+                self.App.screen.blit(fondo2, f2rect)
                 self.diaboxPI()
                 self.drawdpPI()
                 
@@ -1795,7 +1799,7 @@ class App():
         self.diag3p = Dial_3p(self)
         self.diag4p = Dial_4p(self)
         self.diag5p = Dial_5p(self)
-        self.curr_diag = self.diag5p
+        self.curr_diag = self.diag3p
         
         self.var1 = 0
         self.preg1 = Preguntas1(self)
@@ -1828,19 +1832,10 @@ class App():
             self.dialoguing = True
             self.playing = False
         
-        #self.curr_diag = self.diag4p
-        #self.dialoguing = True
+        
+        
+        
             
-            #self.events()
-            #if self.c:
-                #self.playing = False
-                #self.curr_diag = self.diag4p
-                #self.dialoguing = True
-            
-            
-            #self.playing = PlanoInclinado.main()
-            #self.reiniciark()
-            #pygame.mixer.music.play(4)
            
         while self.preguntass:
             pygame.mixer.music.stop()
@@ -1880,7 +1875,7 @@ class App():
 a = App()
 
 while a.running:
-    hola
+    #hola
     a.curr_menu.displaymenu()
     a.juego()
     a.juego()

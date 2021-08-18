@@ -250,4 +250,4 @@ def main():
 
 #    print("El tiempo de caida es:", stop - start)
     pygame.quit()
-main()
+#main()
