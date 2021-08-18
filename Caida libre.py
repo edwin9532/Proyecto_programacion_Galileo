@@ -11,7 +11,7 @@ def main():
     space.gravity = 0, 500
     FPS = 80
     ms = clock.tick(FPS)
-    background = pygame.image.load("Imagenes/Fondo_11.jpg").convert()
+    background = pygame.image.load("Imagenes/Fondo_12.jpg").convert()
      
 
     def convert_coordinates(point):
@@ -185,7 +185,7 @@ def main():
                     ps+=1
         
         
-            if bola_.body.position.y >= 661:
+            if bola_.body.position.y >= 660:
                 simulando, ini = False, False
         
         
@@ -198,7 +198,7 @@ def main():
             pygame.draw.line(display,(0,0,0),(0,710),(2000,710),20)
         
       
-            display.blit(dialogo1_0,(360,450))
+      #      display.blit(dialogo1_0,(360,450))
             display.blit(titulo,(470,10))
             display.blit(relog,(470,550))
             display.blit(final,(1010,540))
@@ -228,10 +228,6 @@ def main():
             
             stop = time.time()
             #print("El tiempo de caida es:", stop - start)
-    
-    
-    
-
     
   #  start = time.time()
     #relog    
