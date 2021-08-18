@@ -127,7 +127,8 @@ def main():
     
     dialogo1_0 = b.render("ALTURA DE LA TORRE: 57 m:", 1, (110,0,100))  
     titulo = a.render("CAÍDA LIBRE",1,(0,100,0))
-    relog = c.render("El tiempo de caída es:",1,(0,0,0))
+    relog1 = b.render("El tiempo",1,(0,0,0))
+    relog2 = b.render("de caída es:",1,(0,0,0))
     final = b.render("Presione X",1,(250,0,0))
     final2 = b.render("para continuar",1,(250,0,0))
     a1 = b.render("3 m",1,(0,0,0))
@@ -205,7 +206,8 @@ def main():
       
       #      display.blit(dialogo1_0,(360,450))
             display.blit(titulo,(470,10))
-            display.blit(relog,(470,550))
+            display.blit(relog1,(1010,265))
+            display.blit(relog2,(1010,290))
             display.blit(final,(1010,540))
             display.blit(final2,(1010,565))
             
