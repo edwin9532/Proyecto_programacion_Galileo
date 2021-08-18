@@ -741,132 +741,6 @@ class Dial_4p(Dialogos):
         
     def displaydial(self):
         
-        
-        fondo = pygame.image.load("Imagenes/Escenario2.png")       
-        fondo = pygame.transform.scale(fondo,(self.App.w, round(self.App.h)))
-        frect = fondo.get_rect()
-        self.App.screen.blit(fondo, frect)
-        
-        galg = pygame.image.load("Imagenes/GalileoGa.gif")
-        #galg = pygame.transform.scale(galg, (round(self.Introd.w), round(self.Introd.h)))
-        ggrect = galg.get_rect()
-        
-        ggrect.topleft = (self.App.w*0.1, self.App.h*0.5)
-        #self.Introd.screen.blit(galg, ggrect)
-        
-        self.x100 = self.App.w*0.069
-        self.y100 = self.App.h*0.11
-        self.f50 = round(self.App.w*0.034)
-        
-        self.xdg = self.App.w*0.42
-        self.ydg = self.App.h*0.47
-        self.f40 = round(self.App.w*0.027)
-              
-        
-        self.rundisplay = True
-        while self.rundisplay:
-            
-            self.App.events()
-            self.checkstate()
-            
-            if self.state == '1':
-                
-                self.diabox()
-                self.diabox2()
-                self.drawdp()
-                
-                #ggrect.topleft = (self.Introd.w*0.1, self.Introd.h*0.5)
-                #self.Introd.screen.blit(galg, ggrect)
-                
-                if self.stop == False :
-                    
-                    self.d1 = TextM('Bien, veamos a que conclusiones llegó Galileo.         ', (self.x100, self.y100), fontsize= self.f50, color='white')
-                    
-                    self.g1 = TextM('Para mi sorpresa, la roca y la madera caen a la vez y', (self.xdg, self.ydg), fontsize= self.f40, cfondo=(255, 255, 255))
-                    self.g11 = TextM('al probar con otros objetos con diferentes pesos ocurre', (self.xdg, self.ydg+self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
-                    self.g12 = TextM('lo mismo: caen al mismo tiempo. Puedo concluir que los ', (self.xdg, self.ydg+2*self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
-                    self.g13 = TextM('cuerpos caen independientemente de su masa.', (self.xdg, self.ydg+3*self.f40), fontsize= self.f40, cfondo=(255, 255, 255))   
-                   
-                self.d1.draw()
-                self.g1.draw()
-                self.g11.draw()
-                self.g12.draw()
-                self.stop = self.g13.draw()
-                
-                self.App.reiniciark()
-                
-            elif self.state == '2':
-                
-                self.diabox()
-                self.diabox2()
-                self.drawdp()
-                
-                #ggrect.topleft = (self.Introd.w*0.1, self.Introd.h*0.5)
-                #self.Introd.screen.blit(galg, ggrect)
-                
-
-                if self.stop == False :
-                    
-                    
-                    self.d2 = TextM('Tiempo después Galileo describió este movimiento algebraicamente, con lo ', (self.x100, self.y100) , fontsize= self.f50, color='white')
-                    self.d22 = TextM('cual quiso mostrar que también una pluma y una roca caerían a la vez. ', (self.x100, self.y100+self.f50) , fontsize=self.f50, color='white')
-                    self.d23 = TextM('Aún así, esto es difícil de probar debido a la presencia del aire. ', (self.x100, self.y100+2*self.f50) , fontsize= self.f50, color='white')
-                    
-                    self.g2 = TextM('Estoy convencido de que si no hubiese resistencia al aire', (self.xdg, self.ydg), fontsize= self.f40, cfondo=(255, 255, 255))
-                    self.g21 = TextM('una pluma y una roca caerían al mismo tiempo.', (self.xdg, self.ydg+self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
-            
-                   
-                self.d2.draw()
-                self.d22.draw()
-                self.d23.draw()
-                self.g2.draw()
-                self.stop = self.g21.draw()
-                
-                self.App.reiniciark()
-            
-            
-            elif self.state == '5p':
-                self.App.reiniciark()
-                self.App.curr_diag = self.App.diag5p
-                self.rundisplay = False
-    
-            
-    def checkstate(self):
-        
-        if self.App.esc:
-            #self.App.running = False
-            self.rundisplay = False
-            self.App.dialoguing = False
-            self.App.reiniciark()
-        
-        
-        elif self.App.enter:
-            if self.state == '1':
-                self.state = '2'
-                self.stop = False
-            elif self.state == '2':
-                self.state = '5p'
-                self.stop = False
-            
-                
-        elif self.App.borrar:
-            if self.state == '5p':
-                self.state = '2'
-                self.stop = False
-            elif self.state == '2':
-                self.state == '1'
-                self.stop = False
-     
-class Dial_5p(Dialogos):
-    
-    def __init__(self, App):   
-        Dialogos.__init__(self, App)
-        
-        self.state = '1'
-        self.stop = False
-        
-    def displaydial(self):
-        
         fondo1 = pygame.image.load("Imagenes/ftutpi.png")       # -----> para poner el fondo 
         fondo1 = pygame.transform.scale(fondo1,(self.App.w, self.App.h))
         f1rect = fondo1.get_rect()
@@ -1116,6 +990,189 @@ class Dial_5p(Dialogos):
                 self.state = '1'
                 self.stop = False
                         
+
+class Dial_5p(Dialogos):
+    
+    def __init__(self, App):   
+        Dialogos.__init__(self, App)
+        
+        self.state = '1'
+        self.stop = False
+        
+    def displaydial(self):
+        
+        
+        fondo = pygame.image.load("Imagenes/Escenario2.png")       
+        fondo = pygame.transform.scale(fondo,(self.App.w, round(self.App.h)))
+        frect = fondo.get_rect()
+        self.App.screen.blit(fondo, frect)
+        
+        galg = pygame.image.load("Imagenes/GalileoGa.gif")
+        #galg = pygame.transform.scale(galg, (round(self.Introd.w), round(self.Introd.h)))
+        ggrect = galg.get_rect()
+        
+        ggrect.topleft = (self.App.w*0.1, self.App.h*0.5)
+        #self.Introd.screen.blit(galg, ggrect)
+        
+        self.x100 = self.App.w*0.069
+        self.y100 = self.App.h*0.11
+        self.f50 = round(self.App.w*0.034)
+        
+        self.xdg = self.App.w*0.42
+        self.ydg = self.App.h*0.47
+        self.f40 = round(self.App.w*0.027)
+              
+        
+        self.rundisplay = True
+        while self.rundisplay:
+            
+            self.App.events()
+            self.checkstate()
+            
+            if self.state == '1':
+                
+                self.diabox()
+                self.diabox2()
+                self.drawdp()
+                
+                #ggrect.topleft = (self.Introd.w*0.1, self.Introd.h*0.5)
+                #self.Introd.screen.blit(galg, ggrect)
+                
+                if self.stop == False :
+                    
+                    self.d1 = TextM('Bien, veamos a que conclusiones llegó Galileo.         ', (self.x100, self.y100), fontsize= self.f50, color='white')
+                    
+                    self.g1 = TextM('Para mi sorpresa, la roca y la madera caen a la vez y', (self.xdg, self.ydg), fontsize= self.f40, cfondo=(255, 255, 255))
+                    self.g11 = TextM('al probar con otros objetos con diferentes pesos ocurre', (self.xdg, self.ydg+self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
+                    self.g12 = TextM('lo mismo: caen al mismo tiempo.  ', (self.xdg, self.ydg+2*self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
+                    #self.g13 = TextM('cuerpos caen independientemente de su masa.', (self.xdg, self.ydg+3*self.f40), fontsize= self.f40, cfondo=(255, 255, 255))   
+                   
+                self.d1.draw()
+                self.g1.draw()
+                self.g11.draw()
+                self.g12.draw()
+                self.stop = self.g13.draw()
+                
+                self.App.reiniciark()
+                
+            elif self.state == '2':
+                
+                self.diabox()
+                self.diabox2()
+                self.drawdp()
+                
+                #ggrect.topleft = (self.Introd.w*0.1, self.Introd.h*0.5)
+                #self.Introd.screen.blit(galg, ggrect)
+                
+                self.d2 = TextM('Bien, veamos a que conclusiones llegó Galileo.             ', (self.x100, self.y100), fontsize= self.f50, color='white')
+                if self.stop == False :
+                    
+                    
+                    self.g2 = TextM('Además, para el mismo ángulo de inclinación, objetos', (self.xd, self.ydg), fontsize= self.f40, cfondo=(255, 255, 255))
+                    self.g21 = TextM('de diferente masa tardan el mismo tiempo en caer por', (self.xdg, self.ydg+self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
+                    self.g22 = TextM('el plano. Puedo concluir que los cuerpos caen ', (self.xdg, self.ydg+2*self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
+                    self.g23 = TextM('independientemente de su masa.', (self.xdg, self.ydg+3*self.f40), fontsize= self.f40, cfondo=(255, 255, 255))   
+                   
+                self.d2.draw()
+                self.g2.draw()
+                self.g21.draw()
+                self.g22.draw()
+                self.stop = self.g23.draw()
+                
+                self.App.reiniciark()
+            
+            
+            
+            elif self.state == '3':
+                
+                self.diabox()
+                self.diabox2()
+                self.drawdp()
+                
+                #ggrect.topleft = (self.Introd.w*0.1, self.Introd.h*0.5)
+                #self.Introd.screen.blit(galg, ggrect)
+                
+
+                if self.stop == False :
+                    
+                    
+                    self.d3 = TextM('Tiempo después Galileo describió este movimiento algebraicamente, con lo ', (self.x100, self.y100) , fontsize= self.f50, color='white')
+                    self.d32 = TextM('cual quiso mostrar que también una pluma y una roca caerían a la vez. ', (self.x100, self.y100+self.f50) , fontsize=self.f50, color='white')
+                    self.d33 = TextM('Aún así, esto es difícil de probar debido a la presencia del aire. ', (self.x100, self.y100+2*self.f50) , fontsize= self.f50, color='white')
+                    
+                    self.g3 = TextM('Estoy convencido de que si no hubiese resistencia al aire', (self.xdg, self.ydg), fontsize= self.f40, cfondo=(255, 255, 255))
+                    self.g31 = TextM('una pluma y una roca caerían al mismo tiempo.', (self.xdg, self.ydg+self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
+            
+                   
+                self.d3.draw()
+                self.d32.draw()
+                self.d33.draw()
+                self.g3.draw()
+                self.stop = self.g31.draw()
+                
+                self.App.reiniciark()
+            
+            elif self.state == '4':
+                
+                self.diabox()
+                self.diabox2()
+                self.drawdp()
+                
+                #ggrect.topleft = (self.Introd.w*0.1, self.Introd.h*0.5)
+                #self.Introd.screen.blit(galg, ggrect)
+                
+                if self.stop == False :
+                    
+                    self.d1 = TextM('Veamos su siguiente conclusión.         ', (self.x100, self.y100), fontsize= self.f50, color='white')
+                    
+                    self.g2 = TextM('Además, pude notar que entre mayor es el ángulo al que', (self.xdg, self.ydg), fontsize= self.f40, cfondo=(255, 255, 255))
+                    self.g21 = TextM('se inclina el plano, menor es el tiempo en que tarda', (self.xdg, self.ydg+self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
+                    self.g22 = TextM('una esfera en caer. ', (self.xdg, self.ydg+2*self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
+                    #self.g13 = TextM('cuerpos caen independientemente de su masa.', (self.xdg, self.ydg+3*self.f40), fontsize= self.f40, cfondo=(255, 255, 255))   
+                   
+                self.d1.draw()
+                self.g1.draw()
+                self.g11.draw()
+                self.g12.draw()
+                self.stop = self.g13.draw()
+                
+                self.App.reiniciark()
+            
+            elif self.state == '5p':
+                self.App.reiniciark()
+                self.App.curr_diag = self.App.diag5p
+                self.rundisplay = False
+    
+            
+    def checkstate(self):
+        
+        if self.App.esc:
+            #self.App.running = False
+            self.rundisplay = False
+            self.App.dialoguing = False
+            self.App.reiniciark()
+        
+        
+        elif self.App.enter:
+            if self.state == '1':
+                self.state = '2'
+                self.stop = False
+            elif self.state == '2':
+                self.state = '5p'
+                self.stop = False
+            
+                
+        elif self.App.borrar:
+            if self.state == '5p':
+                self.state = '2'
+                self.stop = False
+            elif self.state == '2':
+                self.state == '1'
+                self.stop = False
+     
+
+
+
 class Dial_6p(Dialogos):
     
     def __init__(self, App):   
