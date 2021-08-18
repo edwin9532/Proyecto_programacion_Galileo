@@ -1474,6 +1474,7 @@ class Preguntas2(Preguntas):
         fondo = pygame.transform.scale(fondo,(self.App.w, self.App.h))
         frect = fondo.get_rect()
         
+        self.App.var1 = 0
         
         self.rundisplay = True
         while self.rundisplay:
@@ -1555,6 +1556,7 @@ class Preguntas3(Preguntas):
         fondo = pygame.transform.scale(fondo,(self.App.w, self.App.h))
         frect = fondo.get_rect()
         
+        self.App.var1 = 0
         
         self.rundisplay = True
         while self.rundisplay:
@@ -1634,6 +1636,7 @@ class Preguntas4(Preguntas):
         fondo = pygame.transform.scale(fondo,(self.App.w, self.App.h))
         frect = fondo.get_rect()
         
+        self.App.var1 = 0
         
         self.rundisplay = True
         while self.rundisplay:
@@ -1716,6 +1719,7 @@ class Preguntas5(Preguntas):
         fondo = pygame.transform.scale(fondo,(self.App.w, self.App.h))
         frect = fondo.get_rect()
         
+        self.App.var1 = 0
         
         self.rundisplay = True
         while self.rundisplay:
@@ -1798,6 +1802,7 @@ class Preguntas6(Preguntas):
         fondo = pygame.transform.scale(fondo,(self.App.w, self.App.h))
         frect = fondo.get_rect()
         
+        self.App.var1 = 0
         
         self.rundisplay = True
         while self.rundisplay:
