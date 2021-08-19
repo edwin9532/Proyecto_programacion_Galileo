@@ -8,7 +8,7 @@ Created on Wed Aug 11 10:17:54 2021
 
 import pygame , PlanoInclinado, Caidalibre
 from pygame.locals import *
-import sys, video2 #, hola
+import sys, hola
 
 #Texto centrado
 class TextC:
@@ -2001,7 +2001,7 @@ class App():
 a = App()
 
 while a.running:
-    #hola
+    hola
     a.curr_menu.displaymenu()
     a.juego()
     a.juego()
