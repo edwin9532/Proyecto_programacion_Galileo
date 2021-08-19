@@ -389,13 +389,13 @@ class Dial_2p(Dialogos):
         frect = fondo.get_rect()
         self.App.screen.blit(fondo, frect)
         
-        galg = pygame.image.load("Imagenes/GalileoGa.gif")
-        #galg = pygame.transform.scale(galg, (round(self.Introd.w), round(self.Introd.h)))
-        ggrect = galg.get_rect()
+        gal = pygame.image.load("Imagenes/galg.png")
+        gal = pygame.transform.scale(gal,(round(self.App.w*0.23), round(self.App.h*0.52)))
+        grect = gal.get_rect()
         
-        ggrect.topleft = (self.App.w*0.1, self.App.h*0.5)
-        #self.Introd.screen.blit(galg, ggrect)
-        
+        grect.topleft = (self.App.w*0.1, self.App.h*0.5)
+        self.App.screen.blit(gal, grect)
+            
         self.x100 = self.App.w*0.069
         self.y100 = self.App.h*0.11
         self.f50 = round(self.App.w*0.034)
@@ -573,13 +573,13 @@ class Dial_3p(Dialogos):
         fondo2 = pygame.transform.scale(fondo2,(self.App.w, self.App.h))
         f2rect = fondo2.get_rect()
         
-    
-        galg = pygame.image.load("Imagenes/GalileoGa.gif")
-        #galg = pygame.transform.scale(galg, (round(self.Introd.w), round(self.Introd.h)))
-        ggrect = galg.get_rect()
+        gal = pygame.image.load("Imagenes/galg.png")
+        gal = pygame.transform.scale(gal,(round(self.App.w*0.23), round(self.App.h*0.52)))
+        grect = gal.get_rect()
         
-        ggrect.topleft = (self.App.w*0.1, self.App.h*0.5)
-        #self.Introd.screen.blit(galg, ggrect)
+        grect.topleft = (self.App.w*0.1, self.App.h*0.5)
+        self.App.screen.blit(gal, grect)
+    
         
         self.x100 = self.App.w*0.069
         self.y100 = self.App.h*0.11
@@ -766,6 +766,14 @@ class Dial_4p(Dialogos):
         fondo = pygame.transform.scale(fondo,(self.App.w, round(self.App.h)))
         frect = fondo.get_rect()
         self.App.screen.blit(fondo, frect)
+        
+        gal = pygame.image.load("Imagenes/galg.png")
+        gal = pygame.transform.scale(gal,(round(self.App.w*0.23), round(self.App.h*0.52)))
+        grect = gal.get_rect()
+        
+        grect.topleft = (self.App.w*0.1, self.App.h*0.5)
+        self.App.screen.blit(gal, grect)
+        
         
         self.x100 = self.App.w*0.069
         self.y100 = self.App.h*0.11
@@ -1010,12 +1018,12 @@ class Dial_5p(Dialogos):
         frect = fondo.get_rect()
         self.App.screen.blit(fondo, frect)
         
-        galg = pygame.image.load("Imagenes/GalileoGa.gif")
-        #galg = pygame.transform.scale(galg, (round(self.Introd.w), round(self.Introd.h)))
-        ggrect = galg.get_rect()
+        gal = pygame.image.load("Imagenes/galg.png")
+        gal = pygame.transform.scale(gal,(round(self.App.w*0.23), round(self.App.h*0.52)))
+        grect = gal.get_rect()
         
-        ggrect.topleft = (self.App.w*0.1, self.App.h*0.5)
-        #self.Introd.screen.blit(galg, ggrect)
+        grect.topleft = (self.App.w*0.1, self.App.h*0.5)
+        self.App.screen.blit(gal, grect)
         
         self.x100 = self.App.w*0.069
         self.y100 = self.App.h*0.11
@@ -1263,8 +1271,8 @@ class Dial_6p(Dialogos):
                        
             
             elif self.state == 'f':
-                video2.video2()
-                a.running = False
+                #video2.video2()
+                #a.running = False
                 self.App.reiniciark()
                 self.App.dialoguing = False
                 self.rundisplay = False
