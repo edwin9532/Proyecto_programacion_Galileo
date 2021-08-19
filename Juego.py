@@ -1263,7 +1263,7 @@ class Dial_6p(Dialogos):
                        
             
             elif self.state == 'f':
-                #video2.video2()
+                video2.video2()
                 a.running = False
                 self.App.reiniciark()
                 self.App.dialoguing = False
@@ -1995,6 +1995,7 @@ a = App()
 while a.running:
     #hola
     a.curr_menu.displaymenu()
+    a.juego()
     a.juego()
     a.juego()
     a.juego()
