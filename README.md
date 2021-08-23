@@ -6,3 +6,5 @@ Está escrito completamente en python y para su desarrollo se utilizaron las lib
 El instalable del juego puede ser descargado a través del siguiente enlace:
 
 https://drive.google.com/file/d/1sG2a_0pn_v3dMZjX8rMQhj5RfyfIb0HU/view?usp=sharing
+
+El proceso de instalación es completamente confiable, todas las advertencias que puedan llegar a aparecer son por no venir de un desarrollador registrado/confiable. Este instalable se generó con el archivo setup.py usando enteramente el código que se muestra en este repositorio. No se incluyó el archivo del instalable en el repositorio debido a su gran tamaño (104 Mb) y a las restricciones del tamaño de los archivos de GitHub. En caso de cualquier problema o complicación que se presente con el instalable comunicarse a elaverde@unal.edu.co.
