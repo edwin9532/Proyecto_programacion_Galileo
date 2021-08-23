@@ -13,7 +13,7 @@ import sys, hola
 #Texto centrado
 class TextC:
 
-    def __init__(self, text, pos, fontsize=90, fontname='BebasNeue.otf', color='white'):
+    def __init__(self, text, pos, fontsize=90, fontname='Fonts/BebasNeue.otf', color='white'):
         self.text = text
         self.pos = pos
         self.fontname = fontname
@@ -36,7 +36,7 @@ class TextC:
 #Texto esquina supizq
 class Text:
 
-    def __init__(self, text, pos, fontsize=90, fontname='BebasNeue.otf', color='white'):
+    def __init__(self, text, pos, fontsize=90, fontname='Fonts/BebasNeue.otf', color='white'):
         self.text = text
         self.pos = pos
         self.fontname = fontname
@@ -59,7 +59,7 @@ class Text:
 #Texto Movimiento
 class TextM:
 
-    def __init__(self, text, pos, fontsize=90, fontname='BebasNeue.otf', color='black', cfondo=(61, 64, 70), time=55):
+    def __init__(self, text, pos, fontsize=90, fontname='Fonts/BebasNeue.otf', color='black', cfondo=(61, 64, 70), time=55):
         self.text = text
         self.len = len(self.text)+1
         self.pos = pos
@@ -133,7 +133,7 @@ class MainMenu(Menu):
     
     def displaymenu(self):
         
-        fondo = pygame.image.load("fondo.png")
+        fondo = pygame.image.load("Imagenes/fondo.png")
         fondo = pygame.transform.scale(fondo,(self.App.w, self.App.h))
         frect = fondo.get_rect()
         
@@ -635,7 +635,7 @@ class Dial_3p(Dialogos):
                 #Subiré a la torre de Pisa y lanzare una roca y un poco de heno.
                 if self.stop == False :
                     
-                    self.d2 = TextM('La intuición nos hizo pensar eso, veamos que hará Galileo.', (self.x100, self.y100), fontsize= self.f50, color='white')
+                    self.d2 = TextM('La intuición nos hizo pensar eso, veamos qué hará Galileo.', (self.x100, self.y100), fontsize= self.f50, color='white')
                     
                     self.g2 = TextM('Voy a probarlo, para eso subiré a la torre de Pisa  ', (self.xdg, self.ydg), fontsize= self.f40, cfondo=(255, 255, 255))
                     self.g21 = TextM('y dejaré caer a la vez diferentes objetos. ', (self.xdg, self.ydg+self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
@@ -659,7 +659,7 @@ class Dial_3p(Dialogos):
                 
                 if self.stop == False :
                     
-                    self.d31 = TextM('Ésta es la simulación de caída libre, dando click sobre la pantalla', (self.x100, self.y100), fontsize= self.f40, color='white')
+                    self.d31 = TextM('Esta es la simulación de caída libre, dando click sobre la pantalla', (self.x100, self.y100), fontsize= self.f40, color='white')
                     self.d32 = TextM('se deja caer una esfera, la regla de la izquierda muestra la altura', (self.x100, self.y100+self.f40), fontsize= self.f40, color='white')      
                     self.d33 = TextM('a la que se deja caer.    Además, se puede elegir el material de la', (self.x100, self.y100+2*self.f40), fontsize= self.f40, color='white')
                     self.d34 = TextM('esfera, la madera es más liviana que la roca y que el metal.  ', (self.x100, self.y100+3*self.f40), fontsize= self.f40, color='white')
@@ -823,7 +823,7 @@ class Dial_4p(Dialogos):
                 self.diabox()
                 self.diabox2()
                 self.drawdp()
-                self.d1 = Text('Ahora Galileo realizará su segundo experimento    ', (self.x100, self.y100), fontsize= self.f50, color='white')   
+                self.d1 = Text('Ahora Galileo realizará su segundo experimento:    ', (self.x100, self.y100), fontsize= self.f50, color='white')   
                 self.d1.draw()
                 
                 if self.stop == False :
@@ -864,7 +864,7 @@ class Dial_4p(Dialogos):
                 
                 if self.stop == False :
                     
-                    self.g3 = TextM('¡He diseñado un plano inclinado! Éste me servirá  ', (self.x100, self.y100), fontsize= self.f40, cfondo=(255, 255, 255))
+                    self.g3 = TextM('¡He diseñado un plano inclinado! Este me servirá  ', (self.x100, self.y100), fontsize= self.f40, cfondo=(255, 255, 255))
                     self.g31 = TextM('para realizar mis experimentos ya que puedo ', (self.x100, self.y100+self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
                     self.g32 = TextM('cambiarle varias características. ', (self.x100, self.y100+2*self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
                     #self.g23 = TextM('\'caen porque quieren estar pegados a la tierra\', ', (self.x100, self.y100+3*self.f40), fontsize= self.f40, cfondo=(255, 255, 255))               
@@ -1051,7 +1051,7 @@ class Dial_5p(Dialogos):
                 
                 if self.stop == False :
                     
-                    self.d1 = TextM('Bien, veamos a que conclusiones llegó Galileo.         ', (self.x100, self.y100), fontsize= self.f50, color='white')
+                    self.d1 = TextM('Bien, veamos a qué conclusiones llegó Galileo.         ', (self.x100, self.y100), fontsize= self.f50, color='white')
                     
                     self.g1 = TextM('Para mi sorpresa, la roca y la madera caen a la vez y', (self.xdg, self.ydg), fontsize= self.f40, cfondo=(255, 255, 255))
                     self.g11 = TextM('al probar con otros objetos con diferentes pesos ocurre', (self.xdg, self.ydg+self.f40), fontsize= self.f40, cfondo=(255, 255, 255))
@@ -1259,7 +1259,7 @@ class Dial_6p(Dialogos):
                 if self.stop == False:
                 
                     self.d1 = TextM('Felicidades, acompañaste a Galileo en sus descubrimientos más importantes ', (self.x100, self.y100), fontsize= self.f50, color='white')
-                    self.d12 = TextM('y su aventura a llegado a su fin, pero la tuya apenas comienza.', (self.x100, self.y100+self.f50), fontsize= self.f50, color='white')
+                    self.d12 = TextM('y su aventura ha llegado a su fin, pero la tuya apenas comienza.', (self.x100, self.y100+self.f50), fontsize= self.f50, color='white')
                     self.d13 = TextM('                 Nos veremos de nuevo .  .  . ', (self.x100, self.y100+2*self.f50) , fontsize= self.f50, color='white')
                 
                 
@@ -1398,7 +1398,7 @@ class Preguntas1(Preguntas):
     
     def displaypreg(self):
         
-        fondo = pygame.image.load("fondo.png")
+        fondo = pygame.image.load("Imagenes/fondo.png")
         fondo = pygame.transform.scale(fondo,(self.App.w, self.App.h))
         frect = fondo.get_rect()
         
@@ -1478,7 +1478,7 @@ class Preguntas2(Preguntas):
     
     def displaypreg(self):
         
-        fondo = pygame.image.load("fondo.png")
+        fondo = pygame.image.load("Imagenes/fondo.png")
         fondo = pygame.transform.scale(fondo,(self.App.w, self.App.h))
         frect = fondo.get_rect()
         
@@ -1560,7 +1560,7 @@ class Preguntas3(Preguntas):
     
     def displaypreg(self):
         
-        fondo = pygame.image.load("fondo.png")
+        fondo = pygame.image.load("Imagenes/fondo.png")
         fondo = pygame.transform.scale(fondo,(self.App.w, self.App.h))
         frect = fondo.get_rect()
         
@@ -1640,7 +1640,7 @@ class Preguntas4(Preguntas):
     
     def displaypreg(self):
         
-        fondo = pygame.image.load("fondo.png")
+        fondo = pygame.image.load("Imagenes/fondo.png")
         fondo = pygame.transform.scale(fondo,(self.App.w, self.App.h))
         frect = fondo.get_rect()
         
@@ -1723,7 +1723,7 @@ class Preguntas5(Preguntas):
     
     def displaypreg(self):
         
-        fondo = pygame.image.load("fondo.png")
+        fondo = pygame.image.load("Imagenes/fondo.png")
         fondo = pygame.transform.scale(fondo,(self.App.w, self.App.h))
         frect = fondo.get_rect()
         
@@ -1806,7 +1806,7 @@ class Preguntas6(Preguntas):
     
     def displaypreg(self):
         
-        fondo = pygame.image.load("fondo.png")
+        fondo = pygame.image.load("Imagenes/fondo.png")
         fondo = pygame.transform.scale(fondo,(self.App.w, self.App.h))
         frect = fondo.get_rect()
         
@@ -1888,7 +1888,7 @@ class App():
     def __init__(self):
         pygame.init()
         
-        pygame.mixer.music.load("audio1.mp3")
+        pygame.mixer.music.load("Audios/audio1.mp3")
         pygame.mixer.music.play(2)
         
         self.running = True
@@ -1941,7 +1941,7 @@ class App():
         while self.playing1:
             pygame.mixer.music.stop()
             
-            pygame.mixer.music.load("audio2.mp3")
+            pygame.mixer.music.load("Audios/audio2.mp3")
             pygame.mixer.music.play(2)
             
             Caidalibre.main()
@@ -1953,7 +1953,7 @@ class App():
         while self.playing2:
             pygame.mixer.music.stop()
             
-            pygame.mixer.music.load("audio2.mp3")
+            pygame.mixer.music.load("Audios/audio2.mp3")
             pygame.mixer.music.play(2)
             
             

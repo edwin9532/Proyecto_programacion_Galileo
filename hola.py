@@ -3,7 +3,7 @@
 import  cv2
 
 def video():
-    cap=cv2.VideoCapture('video.mp4')
+    cap=cv2.VideoCapture('Imagenes/video.mp4')
     
     
     if (cap.isOpened()== False):
@@ -13,7 +13,7 @@ def video():
         if ret == True:
             cv2.namedWindow("window", cv2.WND_PROP_FULLSCREEN)
             cv2.setWindowProperty("window",cv2.WND_PROP_FULLSCREEN,cv2.WINDOW_FULLSCREEN)
-            cv2.imshow('frame', frame)
+            cv2.imshow('Cargando...', frame)
             
             if cv2.waitKey(25)==ord('q'):
                 break

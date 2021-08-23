@@ -3,7 +3,7 @@ import pygame
 # imagen= botón normal, imagen_p= Botón cuando mouse encima, scale= Factor para ajustar el tamaño de la imagen
 
 class Boton():
-    def __init__(self, x, y, imagen, imagen_p, scale, txt, font_name="BebasNeue.otf",font_size=25,font_color=(0,0,0)):
+    def __init__(self, x, y, imagen, imagen_p, scale, txt, font_name="Fonts/BebasNeue.otf",font_size=25,font_color=(0,0,0)):
         self.txt = txt
         self.font_name = font_name
         self.font_size = font_size

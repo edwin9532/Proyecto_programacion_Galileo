@@ -44,8 +44,8 @@ def main():
 
 
 #pygame.mixer.init()
-    b = pygame.font.Font("BebasNeue.otf", 30)
-    c = pygame.font.Font("BebasNeue.otf", 40)
+    b = pygame.font.Font("Fonts/BebasNeue.otf", 30)
+    c = pygame.font.Font("Fonts/BebasNeue.otf", 40)
     
     
     
@@ -62,7 +62,7 @@ def main():
     bola_= crear(space, (0,0))
     
     class Bola_T:
-        def __init__(self, tipo, i, tipo_n,font_name="BebasNeue.otf",font_size=33,pos=(info.current_w-330,520)):
+        def __init__(self, tipo, i, tipo_n,font_name="Fonts/BebasNeue.otf",font_size=33,pos=(info.current_w-330,520)):
             self.pos_i = pos
             self.tipo = i
             self.pos = convert_coordinates((pos[0]+4*30*i,pos[1]+40))
@@ -116,7 +116,7 @@ def main():
     inicio = True
     
     tiempo = 0
-    fontcro = pygame.font.Font("Digital-7.ttf", 35)
+    fontcro = pygame.font.Font("Fonts/Digital-7.ttf", 35)
     pulse = 0
     ps = 0
     crono_p = pygame.image.load("Imagenes/Crono_p.png")
@@ -154,7 +154,7 @@ def main():
                 elif event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_ESCAPE: return
                     if event.key == pygame.K_x:
-                        if final: return
+                        if fin: return
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if (bola_._id in space._shapes): space.remove(bola_)
                     bola_ = crear(space,event.pos)
@@ -185,20 +185,20 @@ def main():
                     cont[0]-=1
                     cont[1]+=1
         
-            if inicio: fontcro = pygame.font.Font("Digital-7.ttf", 35)
+            if inicio: fontcro = pygame.font.Font("Fonts/Digital-7.ttf", 35)
             if simulando:
                 tiempo+=ms
-                fontcro = pygame.font.Font("Digital-7.ttf", 35)
+                fontcro = pygame.font.Font("Fonts/Digital-7.ttf", 35)
                 pulse = 0
                 ps = 0
                 c_image=crono_p
             if not simulando: c_image=crono_
             if not simulando and not inicio and ps<=10:
                 if pulse >= 10 and pulse <20:
-                    fontcro = pygame.font.Font("Digital-7.ttf", 35)
+                    fontcro = pygame.font.Font("Fonts/Digital-7.ttf", 35)
                     pulse+=1
                 elif pulse <10:
-                    fontcro = pygame.font.Font("Digital-7.ttf", 38)
+                    fontcro = pygame.font.Font("Fonts/Digital-7.ttf", 38)
                     pulse+=1
                 elif pulse == 20:
                     pulse=0

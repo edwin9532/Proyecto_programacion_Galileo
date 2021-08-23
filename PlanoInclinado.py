@@ -24,11 +24,9 @@ def main():
     np_rect = notepad.get_rect()
     np_rect.center = (info.current_w-notepad.get_width()//2,500)
     
-    
-    
         
     class Bola_T:
-        def __init__(self, pos, r, tipo, i, tipo_n,font_name="BebasNeue.otf",font_size=33):
+        def __init__(self, pos, r, tipo, i, tipo_n,font_name="Fonts/BebasNeue.otf",font_size=33):
             self.pos_i = pos
             self.tipo = i
             self.pos = conv_coord((pos[0]+4*rm*i,pos[1]+rm))
@@ -136,7 +134,7 @@ def main():
     Tipos = ["Imagenes/Bola_Madera.png","Imagenes/Bola_Roca.png","Imagenes/Bola_Metal.png"]
     tipo = 0
     
-    font = pygame.font.SysFont("BebasNeue.otf", 23, False)
+    font = pygame.font.SysFont("Fonts/BebasNeue.otf", 23, False)
     font.set_underline(True)
     clock = pygame.time.Clock()
     space = pymunk.Space()
@@ -187,7 +185,7 @@ def main():
     escogido = False
     
     tiempo = 0
-    fontcro = pygame.font.Font("Digital-7.ttf", 35)
+    fontcro = pygame.font.Font("Fonts/Digital-7.ttf", 35)
     pulse = 0
     ps = 0
     ini = True
@@ -283,20 +281,20 @@ def main():
         ms = clock.tick(fps)
         
         
-        if ini: fontcro = pygame.font.Font("Digital-7.ttf", 35)
+        if ini: fontcro = pygame.font.Font("Fonts/Digital-7.ttf", 35)
         if simulando:
             tiempo+=ms
-            fontcro = pygame.font.Font("Digital-7.ttf", 35)
+            fontcro = pygame.font.Font("Fonts/Digital-7.ttf", 35)
             pulse = 0
             ps = 0
             c_image=crono_p
         if not simulando: c_image=crono_
         if not simulando and not ini and ps<=10:
             if pulse >= 10 and pulse <20:
-                fontcro = pygame.font.Font("Digital-7.ttf", 35)
+                fontcro = pygame.font.Font("Fonts/Digital-7.ttf", 35)
                 pulse+=1
             elif pulse <10:
-                fontcro = pygame.font.Font("Digital-7.ttf", 38)
+                fontcro = pygame.font.Font("Fonts/Digital-7.ttf", 38)
                 pulse+=1
             elif pulse == 20:
                 pulse=0
@@ -325,4 +323,4 @@ def main():
         #print(ms)
     return False
 
-#main()main()
+#main()
