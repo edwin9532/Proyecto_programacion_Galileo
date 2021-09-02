@@ -1,6 +1,7 @@
 # Mentes Brillantes.
 Mentes brillantes consiste en un juego en modo historia, en donde el jugador tiene que pasar por las vivencias de Galileo Galilei en cuanto a la experimentación del movimiento de los objetos que caen. Lo anterior por medio de simulaciones de los experimentos realizados por Galileo. Mentes Brillantes da las herramientas y los conocimientos cualitativos para que sea más ameno a las personas que no tienen suficientes bases de física.
 
+El programa empieza en un menú principal dónde se muestra el título del juego "Mentes Brillantes" y las opciones de "Empezar Aventura" y "Salir". Al seleccionar la primera opción, inicia el juego. Éste está compuesto por una serie de diálogos que colocan en contexto al jugador, mostrando a Galileo explicando las creencias de esa época. Además de los diálogos, el programa está compuesto por dos simulaciones, la primera, de caída libre, permite al jugador medir el tiempo de caída de esferas, en ésta se puede modificar el material de la esfera y la altura de caída. En la segunda simulación, de plano inclinado, se  
 Está escrito completamente en python y para su desarrollo se utilizaron las librerías de pygame y pymunk mayoritariamente.
 
 El instalable del juego puede ser descargado a través del siguiente enlace:
